@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess the Song - Glowing Piano Roll</title>
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-background"></div>
+
+    <div id="app">
+      <!-- MAIN MENU SCREEN -->
+      <div id="menu-panel" class="screen-panel">
+        <header class="menu-header">
+          <div class="logo-wrapper">
+            <span class="piano-icon">🎹</span>
+            <h1 class="logo-text">GUESS THE SONG</h1>
+          </div>
+          <p class="subtitle">Piano Roll Guessing Game</p>
+        </header>
+
+        <section class="config-card">
+          <h2 class="section-title">Configure Game</h2>
+
+          <!-- Configuration Settings -->
+          <div class="settings-group">
+            <div class="setting-item">
+              <label for="select-playtime">Play Time</label>
+              <div class="select-wrapper">
+                <select id="select-playtime">
+                  <option value="10">10 Seconds</option>
+                  <option value="15" selected>15 Seconds</option>
+                  <option value="20">20 Seconds</option>
+                </select>
+              </div>
+              <small class="help-text">Time allowed to guess the song</small>
+            </div>
+
+            <div class="setting-item">
+              <label for="select-rounds">Number of Songs</label>
+              <div class="select-wrapper">
+                <select id="select-rounds">
+                  <option value="5" selected>5 Songs</option>
+                  <option value="10">10 Songs</option>
+                  <option value="20">20 Songs</option>
+                </select>
+              </div>
+              <small class="help-text">Rounds to play this session</small>
+            </div>
+
+            <div class="setting-item">
+              <label for="select-category">Song Category</label>
+              <div class="select-wrapper">
+                <select id="select-category">
+                  <option value="all" selected>All Songs</option>
+                  <option value="games">Video Games Only</option>
+                  <option value="pop">80s & 90s Pop Only</option>
+                </select>
+              </div>
+              <small class="help-text">Filter song genres</small>
+            </div>
+
+            <div class="setting-item">
+              <label for="toggle-tts">Voice Reveal (TTS)</label>
+              <label class="toggle-switch">
+                <input type="checkbox" id="toggle-tts" checked>
+                <span class="slider"></span>
+              </label>
+              <small class="help-text">Announce song title when revealed</small>
+            </div>
+
+            <div class="setting-item">
+              <label for="toggle-hints">Show Hints</label>
+              <label class="toggle-switch">
+                <input type="checkbox" id="toggle-hints" checked>
+                <span class="slider"></span>
+              </label>
+              <small class="help-text">Display a song clue during guessing time</small>
+            </div>
+          </div>
+
+          <button id="btn-start" class="btn btn-primary btn-glow">
+            <span>START GAME</span>
+          </button>
+        </section>
+      </div>
+
+      <!-- ACTIVE GAME SCREEN -->
+      <div id="game-panel" class="screen-panel hidden">
+        <header class="game-hud">
+          <button id="btn-quit" class="btn btn-text">
+            <span class="icon">⬅</span> Menu
+          </button>
+          
+          <div id="round-info" class="round-badge">Song 1 of 5</div>
+          
+          <div class="hud-right">
+            <button id="btn-mute" class="btn btn-icon" title="Toggle Sound">
+              <span id="mute-icon">🔊</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- Piano Roll Visualization Area -->
+        <main class="visualizer-wrapper">
+          <canvas id="piano-roll-canvas"></canvas>
+          
+          <!-- GET READY COUNTDOWN OVERLAY -->
+          <div id="get-ready-overlay" class="game-overlay get-ready-view hidden">
+            <div class="countdown-text">READY?</div>
+            <div id="countdown-number" class="countdown-num">3</div>
+          </div>
+
+          <!-- PLAYING OVERLAY (HINT & TIMER) -->
+          <div id="playing-overlay" class="game-overlay playing-view hidden">
+            <div id="hint-box" class="hint-message">Hint: NES Game theme...</div>
+            <div class="timer-radial">
+              <div id="timer-text" class="timer-countdown">15s</div>
+            </div>
+          </div>
+
+          <!-- SONG REVEAL OVERLAY -->
+          <div id="reveal-overlay" class="game-overlay reveal-view hidden">
+            <div class="reveal-card-body">
+              <div class="reveal-header">THE SONG IS:</div>
+              <div id="reveal-title" class="reveal-title-text">SUPER MARIO BROS.</div>
+              <div id="reveal-artist" class="reveal-artist-text">by Koji Kondo</div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="game-controls">
+          <!-- Countdown progress line -->
+          <div class="timer-progress-container">
+            <div id="timer-progress-bar" class="timer-progress-fill"></div>
+          </div>
+          
+          <div class="control-row">
+            <button id="btn-skip" class="btn btn-accent btn-glow">
+              Reveal Song
+            </button>
+          </div>
+        </footer>
+      </div>
+
+      <!-- SUMMARY SCREEN -->
+      <div id="summary-panel" class="screen-panel hidden">
+        <div class="summary-card">
+          <span class="trophy-icon">🏆</span>
+          <h1 class="logo-text">GAME COMPLETE</h1>
+          <p class="summary-desc">You guessed all the melodies! Great job playing!</p>
+          
+          <button id="btn-restart" class="btn btn-primary btn-glow">
+            <span>PLAY AGAIN</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script tags -->
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
