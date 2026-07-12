@@ -63,7 +63,7 @@ export class AudioManager {
           A7: 'A7.mp3',
           C8: 'C8.mp3'
         },
-        baseUrl: '/audio/salamander/',
+        baseUrl: 'audio/salamander/',
         onload: () => {
           this.sampler?.connect(this.volumeNode!);
           resolve();

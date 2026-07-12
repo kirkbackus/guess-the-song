@@ -59,7 +59,7 @@ async function start() {
 
   songs.forEach((song, idx) => {
     if (song.path.startsWith('http')) {
-      const localPath = `/midi/${song.id}.mid`;
+      const localPath = `midi/${song.id}.mid`;
       const localDest = path.join(__dirname, `../public/midi/${song.id}.mid`);
       
       midiTasks.push(async () => {
@@ -71,6 +71,8 @@ async function start() {
           console.error(`Failed to download MIDI for ${song.title}:`, e.message);
         }
       });
+    } else {
+      updatedSongs[idx].path = song.path.replace(/^\//, '');
     }
   });
 
@@ -131,12 +133,19 @@ export const SONGS: Song[] = ${JSON.stringify(updatedSongs, null, 2)};
   if (audioContent.includes("baseUrl: 'https://tonejs.github.io/audio/salamander/'")) {
     audioContent = audioContent.replace(
       "baseUrl: 'https://tonejs.github.io/audio/salamander/'",
-      "baseUrl: '/audio/salamander/'"
+      "baseUrl: 'audio/salamander/'"
     );
     fs.writeFileSync(audioFile, audioContent, 'utf-8');
-    console.log('Updated audio.ts to use local piano samples path (/audio/salamander/).');
+    console.log('Updated audio.ts to use relative piano samples path (audio/salamander/).');
+  } else if (audioContent.includes("baseUrl: '/audio/salamander/'")) {
+    audioContent = audioContent.replace(
+      "baseUrl: '/audio/salamander/'",
+      "baseUrl: 'audio/salamander/'"
+    );
+    fs.writeFileSync(audioFile, audioContent, 'utf-8');
+    console.log('Updated audio.ts from absolute to relative piano samples path (audio/salamander/).');
   } else {
-    console.log('audio.ts is already configured to use local piano samples.');
+    console.log('audio.ts is already configured to use relative piano samples.');
   }
 
   console.log('\nAll assets downloaded successfully! The game is now 100% offline capable.');
