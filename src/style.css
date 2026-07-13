@@ -600,7 +600,7 @@ input:checked + .slider:before {
   display: flex;
   flex: 1;
   overflow: hidden;
-  height: calc(100% - 66px);
+  min-height: 0;
 }
 
 .library-left {
