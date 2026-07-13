@@ -7,7 +7,8 @@ export type GameState = 'MENU' | 'GET_READY' | 'PLAYING' | 'REVEALING' | 'SUMMAR
 export interface GameConfig {
   playTime: number;      // 10, 15, 20 seconds
   rounds: number;        // 5, 10, 20, 30, 50 rounds
-  category: 'games' | 'pop' | 'all';
+  decade: string;
+  genre: string;
   ttsEnabled: boolean;
   hintsEnabled: boolean;
 }
@@ -17,7 +18,8 @@ export class GameManager {
   private config: GameConfig = {
     playTime: 15,
     rounds: 5,
-    category: 'all',
+    decade: 'all',
+    genre: 'all',
     ttsEnabled: true,
     hintsEnabled: true
   };
@@ -88,15 +90,21 @@ export class GameManager {
     this.currentSongIndex = 0;
     
     // Set renderer theme
-    this.renderer.setTheme(config.category === 'pop' ? 'pop' : 'games');
+    this.renderer.setTheme(config.genre === 'game' ? 'games' : 'pop');
     
     // Configure audio TTS
     this.audio.setTtsEnabled(config.ttsEnabled);
 
     // Filter song library
-    let filtered = SONGS.filter((s) => config.category === 'all' || s.category === config.category);
+    let filtered = SONGS.filter((s) => {
+      const matchDecade = config.decade === 'all' || s.decade === config.decade;
+      const matchGenre = config.genre === 'all' || s.genre === config.genre;
+      return matchDecade && matchGenre;
+    });
+    
     if (filtered.length === 0) {
-      filtered = SONGS; // Fallback
+      alert('No songs match the selected filters. Reverting to all songs.');
+      filtered = SONGS;
     }
 
     // Build session playlist

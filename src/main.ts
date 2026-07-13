@@ -33,7 +33,8 @@ const initApp = (): void => {
   
   const selectPlaytime = document.getElementById('select-playtime') as HTMLSelectElement;
   const selectRounds = document.getElementById('select-rounds') as HTMLSelectElement;
-  const selectCategory = document.getElementById('select-category') as HTMLSelectElement;
+  const selectDecade = document.getElementById('select-decade') as HTMLSelectElement;
+  const selectGenre = document.getElementById('select-genre') as HTMLSelectElement;
   const toggleTts = document.getElementById('toggle-tts') as HTMLInputElement;
   const toggleHints = document.getElementById('toggle-hints') as HTMLInputElement;
 
@@ -65,7 +66,8 @@ const initApp = (): void => {
       const config: GameConfig = {
         playTime: parseInt(selectPlaytime.value, 10),
         rounds: parseInt(selectRounds.value, 10),
-        category: selectCategory.value as 'all' | 'games' | 'pop',
+        decade: selectDecade.value,
+        genre: selectGenre.value,
         ttsEnabled: toggleTts.checked,
         hintsEnabled: toggleHints.checked
       };

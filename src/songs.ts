@@ -5,6 +5,8 @@ export interface Song {
   path: string;
   hint: string;
   category: 'games' | 'pop';
+  decade: 'retro' | '80s' | '90s' | '2000s' | '2010s' | '2020s';
+  genre: 'game' | 'pop' | 'rock';
 }
 
 export const SONGS: Song[] = [
@@ -14,7 +16,9 @@ export const SONGS: Song[] = [
     "artist": "Koji Kondo",
     "path": "midi/mario.mid",
     "hint": "NES classic about a plumber rescuing a princess in the Mushroom Kingdom",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "zelda",
@@ -22,7 +26,9 @@ export const SONGS: Song[] = [
     "artist": "Koji Kondo",
     "path": "midi/zelda.mid",
     "hint": "NES classic action-adventure theme for a hero named Link",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "tetris",
@@ -30,7 +36,9 @@ export const SONGS: Song[] = [
     "artist": "Hirokazu Tanaka",
     "path": "midi/tetris.mid",
     "hint": "A Russian folk song turned blocks-stacking puzzle theme",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "10-hollow-knight-the-grimm-troupe",
@@ -38,7 +46,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/10-hollow-knight-the-grimm-troupe.mid",
     "hint": "Iconic soundtrack theme from the game 10 Hollow Knight   The Grimm Troupe",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "9999999",
@@ -46,7 +56,9 @@ export const SONGS: Song[] = [
     "artist": "Portal 2",
     "path": "midi/9999999.mid",
     "hint": "Iconic soundtrack theme from the game Portal 2",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "a-place-to-rest",
@@ -54,7 +66,9 @@ export const SONGS: Song[] = [
     "artist": "Undertale Yellow",
     "path": "midi/a-place-to-rest.mid",
     "hint": "Iconic soundtrack theme from the game Undertale Yellow",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "all-kass-songs-meledy-zelda-breath-of-the-wild",
@@ -62,7 +76,9 @@ export const SONGS: Song[] = [
     "artist": "JvP",
     "path": "midi/all-kass-songs-meledy-zelda-breath-of-the-wild.mid",
     "hint": "Iconic soundtrack theme from the game JvP",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "an-enigmatic-encounter-undertale-last-breath",
@@ -70,7 +86,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/an-enigmatic-encounter-undertale-last-breath.mid",
     "hint": "Iconic soundtrack theme from the game An Enigmatic Encounter    Undertale Last Breath",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "animal-crossing-kk-lullaby-aircheck",
@@ -78,7 +96,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/animal-crossing-kk-lullaby-aircheck.mid",
     "hint": "Iconic soundtrack theme from the game Animal Crossing   KK Lullaby Aircheck",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "avengers-endgame-portals",
@@ -86,7 +106,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/avengers-endgame-portals.mid",
     "hint": "Iconic soundtrack theme from the game Avengers Endgame Portals",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "back-on-track-geometry-dash",
@@ -94,7 +116,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/back-on-track-geometry-dash.mid",
     "hint": "Iconic soundtrack theme from the game Back On Track Geometry Dash",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "battle-black-kyurem-white-kyurem-pokemon-black-2-and-white-2",
@@ -102,7 +126,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/battle-black-kyurem-white-kyurem-pokemon-black-2-and-white-2.mid",
     "hint": "Iconic soundtrack theme from the game Battle! Black Kyurem   White Kyurem   Pokemon Black 2 And White 2",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "c418-danny",
@@ -110,7 +136,9 @@ export const SONGS: Song[] = [
     "artist": "Minecraft OST",
     "path": "midi/c418-danny.mid",
     "hint": "Iconic soundtrack theme from the game Minecraft OST",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "c418-alpha",
@@ -118,7 +146,9 @@ export const SONGS: Song[] = [
     "artist": "Minecraft Volume Beta",
     "path": "midi/c418-alpha.mid",
     "hint": "Iconic soundtrack theme from the game Minecraft Volume Beta",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "castlevania-2-simon-s-quest-bloody-tears",
@@ -126,7 +156,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/castlevania-2-simon-s-quest-bloody-tears.mid",
     "hint": "Iconic soundtrack theme from the game Castlevania 2  Simon's Quest   Bloody Tears",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "chrono-symphonic-darkness-dueling",
@@ -134,7 +166,9 @@ export const SONGS: Song[] = [
     "artist": "8 Bit Sawtooth",
     "path": "midi/chrono-symphonic-darkness-dueling.mid",
     "hint": "Iconic soundtrack theme from the game 8 Bit Sawtooth",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "chrono-trigger-wind-scene",
@@ -142,7 +176,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/chrono-trigger-wind-scene.mid",
     "hint": "Iconic soundtrack theme from the game Chrono Trigger   Wind Scene",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "dear-may-2nd-2023-and-jul-4-2023-and-sep-17-2022-please-exit-brain-okay-greenpath-hollow-knight",
@@ -150,7 +186,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/dear-may-2nd-2023-and-jul-4-2023-and-sep-17-2022-please-exit-brain-okay-greenpath-hollow-knight.mid",
     "hint": "Iconic soundtrack theme from the game Dear May 2nd 2023 And Jul 4 2023 And Sep 17 2022, Please Exit Brain Okay Greenpath   Hollow Knight",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "deltarune-a-cyber-s-world",
@@ -158,7 +196,9 @@ export const SONGS: Song[] = [
     "artist": "Pixel Phil",
     "path": "midi/deltarune-a-cyber-s-world.mid",
     "hint": "Iconic soundtrack theme from the game Pixel Phil",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "doom-e1m1",
@@ -166,7 +206,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/doom-e1m1.mid",
     "hint": "Iconic soundtrack theme from the game Doom   E1M1",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "elder-scrolls-v-skyrim-dragonborn-theme",
@@ -174,7 +216,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/elder-scrolls-v-skyrim-dragonborn-theme.mid",
     "hint": "Iconic soundtrack theme from the game Elder Scrolls V   Skyrim   Dragonborn Theme",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "enter-hallownest-hollow-knight",
@@ -182,7 +226,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/enter-hallownest-hollow-knight.mid",
     "hint": "Iconic soundtrack theme from the game Enter Hallownest   Hollow Knight",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "final-fantasy-vii-final-fantasy-vii-main-theme",
@@ -190,7 +236,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/final-fantasy-vii-final-fantasy-vii-main-theme.mid",
     "hint": "Iconic soundtrack theme from the game Final Fantasy VII   Final Fantasy VII Main Theme",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "final-fantasy-vii-one-winged-angel",
@@ -198,7 +246,9 @@ export const SONGS: Song[] = [
     "artist": "Better Version",
     "path": "midi/final-fantasy-vii-one-winged-angel.mid",
     "hint": "Iconic soundtrack theme from the game Better Version",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "friday-theme-roblox-3008",
@@ -206,7 +256,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/friday-theme-roblox-3008.mid",
     "hint": "Iconic soundtrack theme from the game Friday Theme   Roblox 3008",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "goron-city",
@@ -214,7 +266,9 @@ export const SONGS: Song[] = [
     "artist": "Day   Legend Of Zelda Breath Of The Wild",
     "path": "midi/goron-city.mid",
     "hint": "Iconic soundtrack theme from the game Day   Legend Of Zelda Breath Of The Wild",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "greens-jam-animation-vs-minecraft-episode-16-music-block-battle",
@@ -222,7 +276,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/greens-jam-animation-vs-minecraft-episode-16-music-block-battle.mid",
     "hint": "Iconic soundtrack theme from the game Greens Jam   Animation Vs Minecraft Episode 16  Music Block Battle",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "guiding-light",
@@ -230,7 +286,9 @@ export const SONGS: Song[] = [
     "artist": "Roblox DOORS Credits To Planet Earth",
     "path": "midi/guiding-light.mid",
     "hint": "Iconic soundtrack theme from the game Roblox DOORS Credits To Planet Earth",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "halo-2-menu",
@@ -238,7 +296,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/halo-2-menu.mid",
     "hint": "Iconic soundtrack theme from the game Halo 2   Menu",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "halo-reach-overture-from-the-beginning",
@@ -246,7 +306,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/halo-reach-overture-from-the-beginning.mid",
     "hint": "Iconic soundtrack theme from the game Halo Reach Overture. From The Beginning",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "heavensward-final-fantasy-xiv-3-0",
@@ -254,7 +316,9 @@ export const SONGS: Song[] = [
     "artist": "Rutuweianzhice",
     "path": "midi/heavensward-final-fantasy-xiv-3-0.mid",
     "hint": "Iconic soundtrack theme from the game Rutuweianzhice",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "hollow-knight-mantis-lords-theme",
@@ -262,7 +326,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/hollow-knight-mantis-lords-theme.mid",
     "hint": "Iconic soundtrack theme from the game Hollow Knight   Mantis Lords Theme",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "hollow-knight-hornet",
@@ -270,7 +336,9 @@ export const SONGS: Song[] = [
     "artist": "By BidoofTheInfectedJedi EDITED BY",
     "path": "midi/hollow-knight-hornet.mid",
     "hint": "Iconic soundtrack theme from the game By BidoofTheInfectedJedi EDITED BY",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "hopes-and-dreams-undertale",
@@ -278,7 +346,9 @@ export const SONGS: Song[] = [
     "artist": "WIP",
     "path": "midi/hopes-and-dreams-undertale.mid",
     "hint": "Iconic soundtrack theme from the game WIP",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "inside-the-castle-walls-super-mario-64",
@@ -286,7 +356,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/inside-the-castle-walls-super-mario-64.mid",
     "hint": "Iconic soundtrack theme from the game Inside The Castle Walls   Super Mario 64",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "kass-theme",
@@ -294,7 +366,9 @@ export const SONGS: Song[] = [
     "artist": "Bandoneon Medley   7th Anniversary Special  The Legend Of Zelda  Breath Of The Wild",
     "path": "midi/kass-theme.mid",
     "hint": "Iconic soundtrack theme from the game Bandoneon Medley   7th Anniversary Special  The Legend Of Zelda  Breath Of The Wild",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "kingdom-hearts-dearly-beloved",
@@ -302,7 +376,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/kingdom-hearts-dearly-beloved.mid",
     "hint": "Iconic soundtrack theme from the game Kingdom Hearts   Dearly Beloved",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "kirby-super-star-gourmet-race",
@@ -310,7 +386,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/kirby-super-star-gourmet-race.mid",
     "hint": "Iconic soundtrack theme from the game Kirby Super Star   Gourmet Race",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "kirby-super-star-marx-boss-battle",
@@ -318,7 +396,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/kirby-super-star-marx-boss-battle.mid",
     "hint": "Iconic soundtrack theme from the game Kirby Super Star   Marx Boss Battle",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "korobeiniki",
@@ -326,7 +406,9 @@ export const SONGS: Song[] = [
     "artist": "Tetris Theme",
     "path": "midi/korobeiniki.mid",
     "hint": "Iconic soundtrack theme from the game Tetris Theme",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "last-surprise-persona-5-strikers",
@@ -334,7 +416,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/last-surprise-persona-5-strikers.mid",
     "hint": "Iconic soundtrack theme from the game Last Surprise   Persona 5 Strikers",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "legend-of-zelda-overworld",
@@ -342,7 +426,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/legend-of-zelda-overworld.mid",
     "hint": "Iconic soundtrack theme from the game Legend Of Zelda   Overworld",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "legend-of-zelda-breath-of-the-wild-kass-theme",
@@ -350,7 +436,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/legend-of-zelda-breath-of-the-wild-kass-theme.mid",
     "hint": "Iconic soundtrack theme from the game Legend Of Zelda  Breath Of The Wild   Kass' Theme",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "lena-raine-creator",
@@ -358,7 +446,9 @@ export const SONGS: Song[] = [
     "artist": "Minecraft OST",
     "path": "midi/lena-raine-creator.mid",
     "hint": "Iconic soundtrack theme from the game Minecraft OST",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "lena-raine-creator-minecraft-completed-cover-",
@@ -366,7 +456,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/lena-raine-creator-minecraft-completed-cover-.mid",
     "hint": "Iconic soundtrack theme from the game Lena Raine   Creator [Minecraft] [COMPLETED COVER]",
-    "category": "games"
+    "category": "games",
+    "decade": "2020s",
+    "genre": "game"
   },
   {
     "id": "luigis-mansion-main-theme",
@@ -374,7 +466,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/luigis-mansion-main-theme.mid",
     "hint": "Iconic soundtrack theme from the game Luigis Mansion   Main Theme",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "mf-doom-one-beer",
@@ -382,7 +476,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/mf-doom-one-beer.mid",
     "hint": "Iconic soundtrack theme from the game MF DOOM   One Beer",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "main-theme",
@@ -390,7 +486,9 @@ export const SONGS: Song[] = [
     "artist": "Animal Crossing New Horizons",
     "path": "midi/main-theme.mid",
     "hint": "Iconic soundtrack theme from the game Animal Crossing New Horizons",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "mario-bros-super-mario-bros-theme",
@@ -398,7 +496,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/mario-bros-super-mario-bros-theme.mid",
     "hint": "Iconic soundtrack theme from the game Mario Bros.   Super Mario Bros. Theme",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "megalovania",
@@ -406,7 +506,9 @@ export const SONGS: Song[] = [
     "artist": "Pixel Phil",
     "path": "midi/megalovania.mid",
     "hint": "Iconic soundtrack theme from the game Pixel Phil",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "mice-on-venus-minecraft",
@@ -414,7 +516,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/mice-on-venus-minecraft.mid",
     "hint": "Iconic soundtrack theme from the game Mice On Venus   Minecraft",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "minecraft-death",
@@ -422,7 +526,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/minecraft-death.mid",
     "hint": "Iconic soundtrack theme from the game Minecraft   Death",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "minecraft-livingmice",
@@ -430,7 +536,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/minecraft-livingmice.mid",
     "hint": "Iconic soundtrack theme from the game Minecraft   LivingMice",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "minecraft-moogcity-clavinet-",
@@ -438,7 +546,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/minecraft-moogcity-clavinet-.mid",
     "hint": "Iconic soundtrack theme from the game Minecraft   MoogCity(clavinet)",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "minecraft-moogcity",
@@ -446,7 +556,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/minecraft-moogcity.mid",
     "hint": "Iconic soundtrack theme from the game Minecraft   MoogCity",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "minecraft-parody-of-coldplay-s-viva-la-vida-fallen-kingdom",
@@ -454,7 +566,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/minecraft-parody-of-coldplay-s-viva-la-vida-fallen-kingdom.mid",
     "hint": "Iconic soundtrack theme from the game Minecraft   Parody Of Coldplay S Viva La Vida   Fallen Kingdom",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "minecraft-pigstep",
@@ -462,7 +576,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/minecraft-pigstep.mid",
     "hint": "Iconic soundtrack theme from the game Minecraft   Pigstep",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "minecraft-sweden-instrumental-remake-",
@@ -470,7 +586,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/minecraft-sweden-instrumental-remake-.mid",
     "hint": "Iconic soundtrack theme from the game Minecraft   Sweden(Instrumental)(Remake)",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "minecraft-sweden",
@@ -478,7 +596,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/minecraft-sweden.mid",
     "hint": "Iconic soundtrack theme from the game Minecraft   Sweden",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "minecraft-wet-hands",
@@ -486,7 +606,9 @@ export const SONGS: Song[] = [
     "artist": "Piano Solo",
     "path": "midi/minecraft-wet-hands.mid",
     "hint": "Iconic soundtrack theme from the game Piano Solo",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "minecraft-wethands",
@@ -494,7 +616,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/minecraft-wethands.mid",
     "hint": "Iconic soundtrack theme from the game Minecraft   WetHands",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "minecraft-theme",
@@ -502,7 +626,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/minecraft-theme.mid",
     "hint": "Iconic soundtrack theme from the game Minecraft Theme",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "nada-personal-soda-stereo",
@@ -510,7 +636,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/nada-personal-soda-stereo.mid",
     "hint": "Iconic soundtrack theme from the game Nada Personal   Soda Stereo",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "nightmare-king-hollow-knight",
@@ -518,7 +646,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/nightmare-king-hollow-knight.mid",
     "hint": "Iconic soundtrack theme from the game Nightmare King   Hollow Knight",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "oneshot-dying-light",
@@ -526,7 +656,9 @@ export const SONGS: Song[] = [
     "artist": "A OneShot Megalovania Remix",
     "path": "midi/oneshot-dying-light.mid",
     "hint": "Iconic soundtrack theme from the game A OneShot Megalovania Remix",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "otherside-minecraft",
@@ -534,7 +666,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/otherside-minecraft.mid",
     "hint": "Iconic soundtrack theme from the game Otherside   Minecraft",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "pigstep-minecraft-ost",
@@ -542,7 +676,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/pigstep-minecraft-ost.mid",
     "hint": "Iconic soundtrack theme from the game Pigstep   Minecraft OST",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "pokemon-pokemon-center-theme",
@@ -550,7 +686,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/pokemon-pokemon-center-theme.mid",
     "hint": "Iconic soundtrack theme from the game Pokemon   Pokemon Center Theme",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "pokemon-black-white-dreamyard-pinwheel-forest",
@@ -558,7 +696,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/pokemon-black-white-dreamyard-pinwheel-forest.mid",
     "hint": "Iconic soundtrack theme from the game Pokemon Black White Dreamyard Pinwheel Forest",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "pokemon-redblueyellow-wild-pokemon-battle",
@@ -566,7 +706,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/pokemon-redblueyellow-wild-pokemon-battle.mid",
     "hint": "Iconic soundtrack theme from the game Pokemon RedBlueYellow   Wild Pokemon Battle",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "portal-still-alive",
@@ -574,7 +716,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/portal-still-alive.mid",
     "hint": "Iconic soundtrack theme from the game Portal   Still Alive",
-    "category": "games"
+    "category": "games",
+    "decade": "2000s",
+    "genre": "game"
   },
   {
     "id": "portal-2-cara-mia",
@@ -582,7 +726,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/portal-2-cara-mia.mid",
     "hint": "Iconic soundtrack theme from the game Portal 2   Cara Mia",
-    "category": "games"
+    "category": "games",
+    "decade": "2000s",
+    "genre": "game"
   },
   {
     "id": "quartz-quadrant-present-from-the-sonic-cd-japanese",
@@ -590,7 +736,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/quartz-quadrant-present-from-the-sonic-cd-japanese.mid",
     "hint": "Iconic soundtrack theme from the game Quartz Quadrant Present   From The Sonic CD Japanese",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "rain-deference-for-darkness-halo-3-odst",
@@ -598,7 +746,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/rain-deference-for-darkness-halo-3-odst.mid",
     "hint": "Iconic soundtrack theme from the game Rain, Deference For Darkness   Halo 3 ODST",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "reconstructing-more-science-portal-2",
@@ -606,7 +756,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/reconstructing-more-science-portal-2.mid",
     "hint": "Iconic soundtrack theme from the game Reconstructing More Science   Portal 2",
-    "category": "games"
+    "category": "games",
+    "decade": "2000s",
+    "genre": "game"
   },
   {
     "id": "roblox-doors-elevator-jam-midi",
@@ -614,7 +766,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/roblox-doors-elevator-jam-midi.mid",
     "hint": "Iconic soundtrack theme from the game Roblox Doors   Elevator Jam Midi",
-    "category": "games"
+    "category": "games",
+    "decade": "2020s",
+    "genre": "game"
   },
   {
     "id": "roddy-ricch-ballin-midi-optimized-for-roblox-the-wild-west",
@@ -622,7 +776,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/roddy-ricch-ballin-midi-optimized-for-roblox-the-wild-west.mid",
     "hint": "Iconic soundtrack theme from the game Roddy Ricch   Ballin Midi Optimized For Roblox The Wild West",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "sealed-vessel",
@@ -630,7 +786,9 @@ export const SONGS: Song[] = [
     "artist": "Hollow Knight OST   WIP",
     "path": "midi/sealed-vessel.mid",
     "hint": "Iconic soundtrack theme from the game Hollow Knight OST   WIP",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "showdown-undertale-yellow",
@@ -638,7 +796,9 @@ export const SONGS: Song[] = [
     "artist": "JvP",
     "path": "midi/showdown-undertale-yellow.mid",
     "hint": "Iconic soundtrack theme from the game JvP",
-    "category": "games"
+    "category": "games",
+    "decade": "2020s",
+    "genre": "game"
   },
   {
     "id": "sonic-the-hedgehog-green-hill-zone",
@@ -646,7 +806,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/sonic-the-hedgehog-green-hill-zone.mid",
     "hint": "Iconic soundtrack theme from the game Sonic The Hedgehog   Green Hill Zone",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "sonic-exe-hill-act-0",
@@ -654,7 +816,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/sonic-exe-hill-act-0.mid",
     "hint": "Iconic soundtrack theme from the game Sonic.exe Hill Act 0",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "subwoofer-lullaby-c418-minecraft",
@@ -662,7 +826,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/subwoofer-lullaby-c418-minecraft.mid",
     "hint": "Iconic soundtrack theme from the game Subwoofer Lullaby C418  Minecraft",
-    "category": "games"
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "super-mario-64-medley",
@@ -670,7 +836,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-64-medley.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario 64   Medley",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-64-slide",
@@ -678,7 +846,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-64-slide.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario 64   Slide",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-bros-1-super-mario-bros-main-theme-with-left-hand-chords",
@@ -686,7 +856,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-bros-1-super-mario-bros-main-theme-with-left-hand-chords.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario Bros. 1   Super Mario Bros   Main Theme With Left Hand Chords",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "super-mario-bros-1-super-mario-bros-main-theme",
@@ -694,7 +866,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-bros-1-super-mario-bros-main-theme.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario Bros. 1   Super Mario Bros   Main Theme",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "super-mario-land-2-6-golden-coins-athletic",
@@ -702,7 +876,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-land-2-6-golden-coins-athletic.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario Land 2 6 Golden Coins   Athletic",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-land-2-6-golden-coins-boss-battle",
@@ -710,7 +886,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-land-2-6-golden-coins-boss-battle.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario Land 2 6 Golden Coins   Boss Battle",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-land-2-6-golden-coins-ending-theme",
@@ -718,7 +896,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-land-2-6-golden-coins-ending-theme.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario Land 2 6 Golden Coins   Ending Theme",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-land-2-6-golden-coins-file-select",
@@ -726,7 +906,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-land-2-6-golden-coins-file-select.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario Land 2 6 Golden Coins   File Select",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-land-2-6-golden-coins-haunted-house",
@@ -734,7 +916,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-land-2-6-golden-coins-haunted-house.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario Land 2 6 Golden Coins   Haunted House",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-land-2-6-golden-coins-map",
@@ -742,7 +926,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-land-2-6-golden-coins-map.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario Land 2 6 Golden Coins   Map",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-land-2-6-golden-coins-overworld",
@@ -750,7 +936,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-land-2-6-golden-coins-overworld.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario Land 2 6 Golden Coins   Overworld",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-land-2-6-golden-coins-seashore",
@@ -758,7 +946,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-land-2-6-golden-coins-seashore.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario Land 2 6 Golden Coins   Seashore",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-land-2-6-golden-coins-star-maze",
@@ -766,7 +956,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-land-2-6-golden-coins-star-maze.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario Land 2 6 Golden Coins   Star Maze",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-land-2-6-golden-coins-the-moon",
@@ -774,7 +966,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-land-2-6-golden-coins-the-moon.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario Land 2 6 Golden Coins   The Moon",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-land-2-6-golden-coins-zone-medley",
@@ -782,7 +976,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-land-2-6-golden-coins-zone-medley.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario Land 2 6 Golden Coins   Zone Medley",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-rpg-forest-maze",
@@ -790,7 +986,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-mario-rpg-forest-maze.mid",
     "hint": "Iconic soundtrack theme from the game Super Mario RPG   Forest Maze",
-    "category": "games"
+    "category": "games",
+    "decade": "90s",
+    "genre": "game"
   },
   {
     "id": "super-mario-world-ending-theme",
@@ -798,7 +996,9 @@ export const SONGS: Song[] = [
     "artist": "Tom Brier",
     "path": "midi/super-mario-world-ending-theme.mid",
     "hint": "Iconic soundtrack theme from the game Tom Brier",
-    "category": "games"
+    "category": "games",
+    "decade": "80s",
+    "genre": "game"
   },
   {
     "id": "super-smash-bros-brawl-ground-theme-super-mario-bros",
@@ -806,7 +1006,9 @@ export const SONGS: Song[] = [
     "artist": "Video Game Composer",
     "path": "midi/super-smash-bros-brawl-ground-theme-super-mario-bros.mid",
     "hint": "Iconic soundtrack theme from the game Super Smash Bros Brawl   Ground Theme Super Mario Bros",
-    "category": "games"
+    "category": "games",
+    "decade": "2000s",
+    "genre": "game"
   },
   {
     "id": "rickroll",
@@ -814,7 +1016,9 @@ export const SONGS: Song[] = [
     "artist": "Rick Astley",
     "path": "midi/rickroll.mid",
     "hint": "The ultimate 80s pop song used to prank people on the internet",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "billiejean",
@@ -822,7 +1026,9 @@ export const SONGS: Song[] = [
     "artist": "Michael Jackson",
     "path": "midi/billiejean.mid",
     "hint": "Michael Jackson 80s hit with an iconic bassline and moonwalk dance",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "takeonme",
@@ -830,7 +1036,9 @@ export const SONGS: Song[] = [
     "artist": "A-ha",
     "path": "midi/takeonme.mid",
     "hint": "80s synth-pop track by Norwegian band A-ha with a famous high-pitched chorus",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "21-guns",
@@ -838,7 +1046,9 @@ export const SONGS: Song[] = [
     "artist": "Green Day",
     "path": "midi/21-guns.mid",
     "hint": "Famous 80s/90s pop/rock hit by Green Day",
-    "category": "pop"
+    "category": "pop",
+    "decade": "90s",
+    "genre": "rock"
   },
   {
     "id": "505-arctic-monkeys",
@@ -846,7 +1056,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/505-arctic-monkeys.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "a-ha-take-on-me",
@@ -854,7 +1066,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/a-ha-take-on-me.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "abba-dancing-queen",
@@ -862,7 +1076,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/abba-dancing-queen.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "acdc-highway-to-hell",
@@ -870,7 +1086,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/acdc-highway-to-hell.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "acdc-thunderstruck",
@@ -878,7 +1096,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/acdc-thunderstruck.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "ace-of-base-happy-nation",
@@ -886,7 +1106,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/ace-of-base-happy-nation.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "america-a-horse-with-no-name",
@@ -894,7 +1116,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/america-a-horse-with-no-name.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "abba-lay-all-your-love-on-me",
@@ -902,7 +1126,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/abba-lay-all-your-love-on-me.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "america-the-beautiful",
@@ -910,7 +1136,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/america-the-beautiful.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "retro",
+    "genre": "pop"
   },
   {
     "id": "american-idiot-green-day",
@@ -918,7 +1146,9 @@ export const SONGS: Song[] = [
     "artist": "Fixed Drums",
     "path": "midi/american-idiot-green-day.mid",
     "hint": "Famous 80s/90s pop/rock hit by Fixed Drums",
-    "category": "pop"
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "pop"
   },
   {
     "id": "arctic-monkeys-r-u-mine",
@@ -926,7 +1156,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/arctic-monkeys-r-u-mine.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "arctic-monkeys-when-the-sun-goes-down",
@@ -934,7 +1166,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/arctic-monkeys-when-the-sun-goes-down.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "avicii-levels",
@@ -942,7 +1176,9 @@ export const SONGS: Song[] = [
     "artist": "Skrillex Remix",
     "path": "midi/avicii-levels.mid",
     "hint": "Famous 80s/90s pop/rock hit by Skrillex Remix",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "avicii-waiting-for-love",
@@ -950,7 +1186,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/avicii-waiting-for-love.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "black-sabbath-paranoid",
@@ -958,7 +1196,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/black-sabbath-paranoid.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "rock"
   },
   {
     "id": "bowie-starman",
@@ -966,7 +1206,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/bowie-starman.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "backstreet-boys-i-want-it-that-way",
@@ -974,7 +1216,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/backstreet-boys-i-want-it-that-way.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "billy-joel-piano-man",
@@ -982,7 +1226,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/billy-joel-piano-man.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "boulevard-of-broken-dreams-green-day-ippantekina",
@@ -990,7 +1236,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/boulevard-of-broken-dreams-green-day-ippantekina.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "pop"
   },
   {
     "id": "buddy-holly-weezer-2",
@@ -998,7 +1246,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/buddy-holly-weezer-2.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "buddy-holly-weezer",
@@ -1006,7 +1256,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/buddy-holly-weezer.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "clash-royale-little-prince-arena-theme",
@@ -1014,7 +1266,9 @@ export const SONGS: Song[] = [
     "artist": "Converted",
     "path": "midi/clash-royale-little-prince-arena-theme.mid",
     "hint": "Famous 80s/90s pop/rock hit by Converted",
-    "category": "pop"
+    "category": "pop",
+    "decade": "2010s",
+    "genre": "game"
   },
   {
     "id": "coldplay-clocks",
@@ -1022,7 +1276,9 @@ export const SONGS: Song[] = [
     "artist": "Full Song",
     "path": "midi/coldplay-clocks.mid",
     "hint": "Famous 80s/90s pop/rock hit by Full Song",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "coldplay-viva-la-vida",
@@ -1030,7 +1286,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/coldplay-viva-la-vida.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "coldplay-yellow",
@@ -1038,7 +1296,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/coldplay-yellow.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "coolio-gangstas-paradise",
@@ -1046,7 +1306,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/coolio-gangstas-paradise.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "coolio-gangsta-s-paradise",
@@ -1054,7 +1316,9 @@ export const SONGS: Song[] = [
     "artist": "Gangster's Paradise",
     "path": "midi/coolio-gangsta-s-paradise.mid",
     "hint": "Famous 80s/90s pop/rock hit by Gangster's Paradise",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "daft-punk-around-the-world",
@@ -1062,7 +1326,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/daft-punk-around-the-world.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "daft-punk-one-more-time",
@@ -1070,7 +1336,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/daft-punk-one-more-time.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "does-the-journey-seem-long",
@@ -1078,7 +1346,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/does-the-journey-seem-long.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "europe-the-final-countdown",
@@ -1086,7 +1356,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/europe-the-final-countdown.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "elton-john-bennie-and-the-jets-edit-by-sesh",
@@ -1094,7 +1366,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/elton-john-bennie-and-the-jets-edit-by-sesh.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "elton-john-i-m-still-standing",
@@ -1102,7 +1376,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/elton-john-i-m-still-standing.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "pop"
   },
   {
     "id": "elton-john-rocket-man",
@@ -1110,7 +1386,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/elton-john-rocket-man.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "exit-music",
@@ -1118,7 +1396,9 @@ export const SONGS: Song[] = [
     "artist": "For A Film   Radiohead",
     "path": "midi/exit-music.mid",
     "hint": "Famous 80s/90s pop/rock hit by For A Film   Radiohead",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "rock"
   },
   {
     "id": "good-riddance",
@@ -1126,7 +1406,9 @@ export const SONGS: Song[] = [
     "artist": "Time Of Your Life Green Day",
     "path": "midi/good-riddance.mid",
     "hint": "Famous 80s/90s pop/rock hit by Time Of Your Life Green Day",
-    "category": "pop"
+    "category": "pop",
+    "decade": "90s",
+    "genre": "rock"
   },
   {
     "id": "green-day-basket-case",
@@ -1134,7 +1416,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/green-day-basket-case.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "green-day-holiday",
@@ -1142,7 +1426,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/green-day-holiday.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "pop"
   },
   {
     "id": "green-day-wake-me-up-when-september-ends",
@@ -1150,7 +1436,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/green-day-wake-me-up-when-september-ends.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "pop"
   },
   {
     "id": "green-day-welcome-to-paradise-v7",
@@ -1158,7 +1446,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/green-day-welcome-to-paradise-v7.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "guns-n-roses-sweet-child-o-mine",
@@ -1166,7 +1456,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/guns-n-roses-sweet-child-o-mine.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "rock"
   },
   {
     "id": "hey-brother-avicii",
@@ -1174,7 +1466,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/hey-brother-avicii.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "in-the-air-tonight",
@@ -1182,7 +1476,9 @@ export const SONGS: Song[] = [
     "artist": "Phil Collins",
     "path": "midi/in-the-air-tonight.mid",
     "hint": "Famous 80s/90s pop/rock hit by Phil Collins",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "killer-queen-queen",
@@ -1190,7 +1486,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/killer-queen-queen.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "led-zeppelin-stairway-to-heaven",
@@ -1198,7 +1496,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/led-zeppelin-stairway-to-heaven.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "linkin-park-numb",
@@ -1206,7 +1506,9 @@ export const SONGS: Song[] = [
     "artist": "Tim Dawes Remix",
     "path": "midi/linkin-park-numb.mid",
     "hint": "Famous 80s/90s pop/rock hit by Tim Dawes Remix",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "linkin-park-one-step-closer",
@@ -1214,7 +1516,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/linkin-park-one-step-closer.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "metallica-enter-sandman",
@@ -1222,7 +1526,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/metallica-enter-sandman.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "metallica-master-of-puppets",
@@ -1230,7 +1536,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/metallica-master-of-puppets.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "metallica-nothing-else-matters",
@@ -1238,7 +1546,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/metallica-nothing-else-matters.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "michael-jackson-beat-it",
@@ -1246,7 +1556,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/michael-jackson-beat-it.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "michael-jackson-billie-jean",
@@ -1254,7 +1566,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/michael-jackson-billie-jean.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "oasis-wonderwall",
@@ -1262,7 +1576,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/oasis-wonderwall.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "pink-floyd-brain-damage",
@@ -1270,7 +1586,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/pink-floyd-brain-damage.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "queen-bohemian-rhapsody",
@@ -1278,7 +1596,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/queen-bohemian-rhapsody.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "rdr2-ost-american-venom",
@@ -1286,7 +1606,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/rdr2-ost-american-venom.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "2010s",
+    "genre": "pop"
   },
   {
     "id": "radiohead-creep",
@@ -1294,7 +1616,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/radiohead-creep.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "radiohead-no-surprises",
@@ -1302,7 +1626,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/radiohead-no-surprises.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "red-hot-chili-peppers-californication",
@@ -1310,7 +1636,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/red-hot-chili-peppers-californication.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "smash-mouth-all-star",
@@ -1318,7 +1646,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/smash-mouth-all-star.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "scar-tissue-red-hot-chili-peppers",
@@ -1326,7 +1656,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/scar-tissue-red-hot-chili-peppers.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "scorpions-rock-you-like-a-hurricane",
@@ -1334,7 +1666,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/scorpions-rock-you-like-a-hurricane.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "smashing-pumpkins-1979",
@@ -1342,7 +1676,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/smashing-pumpkins-1979.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "90s",
+    "genre": "pop"
   },
   {
     "id": "soundgarden-black-hole-sun",
@@ -1350,7 +1686,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/soundgarden-black-hole-sun.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "starships-nicki-minaj",
@@ -1358,7 +1696,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/starships-nicki-minaj.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-love-me-do",
@@ -1366,7 +1706,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-love-me-do.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-hey-jude",
@@ -1374,7 +1716,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-hey-jude.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "toto-africa",
@@ -1382,7 +1726,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/toto-africa.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "team-america-america",
@@ -1390,7 +1736,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/team-america-america.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "thanks-for-the-sabbath-school",
@@ -1398,7 +1746,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/thanks-for-the-sabbath-school.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-because",
@@ -1406,7 +1756,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-because.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-carry-that-weight",
@@ -1414,7 +1766,9 @@ export const SONGS: Song[] = [
     "artist": "1",
     "path": "midi/the-beatles-carry-that-weight.mid",
     "hint": "Famous 80s/90s pop/rock hit by 1",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-come-together",
@@ -1422,7 +1776,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-come-together.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-golden-slumbers",
@@ -1430,7 +1786,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-golden-slumbers.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-her-majesty",
@@ -1438,7 +1796,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-her-majesty.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-here-comes-the-sun",
@@ -1446,7 +1806,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-here-comes-the-sun.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-i-want-you",
@@ -1454,7 +1816,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-i-want-you.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-maxwell-s-silver-hammer",
@@ -1462,7 +1826,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-maxwell-s-silver-hammer.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-mean-mr-mustard",
@@ -1470,7 +1836,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-mean-mr-mustard.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-octopus-s-garden",
@@ -1478,7 +1846,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-octopus-s-garden.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-oh-darling",
@@ -1486,7 +1856,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-oh-darling.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-old-brown-shoe",
@@ -1494,7 +1866,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-old-brown-shoe.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-polythene-pam",
@@ -1502,7 +1876,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-polythene-pam.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-she-came-in-through-the-bathroom-window",
@@ -1510,7 +1886,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-she-came-in-through-the-bathroom-window.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-something",
@@ -1518,7 +1896,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-something.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-strawberry-fields-forever",
@@ -1526,7 +1906,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-strawberry-fields-forever.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-sun-king",
@@ -1534,7 +1916,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-sun-king.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-the-ballad-of-john-and-yoko",
@@ -1542,7 +1926,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-the-ballad-of-john-and-yoko.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-the-end",
@@ -1550,7 +1936,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-the-end.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-beatles-you-never-give-me-your-money",
@@ -1558,7 +1946,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-beatles-you-never-give-me-your-money.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-chain-fleetwood-mac",
@@ -1566,7 +1956,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-chain-fleetwood-mac.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-nights-avicii",
@@ -1574,7 +1966,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-nights-avicii.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-smashing-pumpkins-disarm-v4",
@@ -1582,7 +1976,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-smashing-pumpkins-disarm-v4.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "the-smashing-pumpkins-zero",
@@ -1590,7 +1986,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/the-smashing-pumpkins-zero.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "van-halen-love-walks-in",
@@ -1598,7 +1996,9 @@ export const SONGS: Song[] = [
     "artist": "Various Artists",
     "path": "midi/van-halen-love-walks-in.mid",
     "hint": "Famous 80s/90s pop/rock hit by Various Artists",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   },
   {
     "id": "waterloo-abba",
@@ -1606,6 +2006,8 @@ export const SONGS: Song[] = [
     "artist": "Piano Cover",
     "path": "midi/waterloo-abba.mid",
     "hint": "Famous 80s/90s pop/rock hit by Piano Cover",
-    "category": "pop"
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop"
   }
 ];
