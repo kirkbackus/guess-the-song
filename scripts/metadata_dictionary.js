@@ -1,25 +1,8 @@
-export interface Song {
-  id: string;
-  title: string;
-  artist: string;
-  path: string;
-  hint: string;
-  category: 'games' | 'pop';
-  decade: 'retro' | '80s' | '90s' | '2000s' | '2010s' | '2020s';
-  genre: 'game' | 'pop' | 'rock';
-  year: number;
-  style: string;
-  game?: string;
-  franchise?: string;
-  company?: string;
-}
-
-export const SONGS: Song[] = [
-  {
-    "id": "mario",
+export const metadataDictionary = {
+  // ==================== GAMES CATEGORY ====================
+  "mario": {
     "title": "Super Mario Bros. Main Theme",
     "artist": "Koji Kondo",
-    "path": "/midi/mario.mid",
     "hint": "NES classic about a plumber rescuing a princess in the Mushroom Kingdom",
     "category": "games",
     "decade": "80s",
@@ -30,11 +13,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "zelda",
+  "zelda": {
     "title": "The Legend of Zelda Theme",
     "artist": "Koji Kondo",
-    "path": "/midi/zelda.mid",
     "hint": "NES classic action-adventure theme for a hero named Link",
     "category": "games",
     "decade": "80s",
@@ -45,11 +26,9 @@ export const SONGS: Song[] = [
     "franchise": "Zelda",
     "company": "Nintendo"
   },
-  {
-    "id": "tetris",
+  "tetris": {
     "title": "Tetris Theme (Korobeiniki)",
     "artist": "Hirokazu Tanaka",
-    "path": "/midi/tetris.mid",
     "hint": "A Russian folk song turned blocks-stacking puzzle theme",
     "category": "games",
     "decade": "80s",
@@ -60,11 +39,9 @@ export const SONGS: Song[] = [
     "franchise": "Tetris",
     "company": "Nintendo"
   },
-  {
-    "id": "10-hollow-knight-the-grimm-troupe",
+  "10-hollow-knight-the-grimm-troupe": {
     "title": "The Grimm Troupe",
     "artist": "Christopher Larkin",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/10%20Hollow%20Knight%20-%20The%20Grimm%20Troupe.mid.mid",
     "hint": "Dramatic, gothic soundtrack theme from Hollow Knight's expansion",
     "category": "games",
     "decade": "2010s",
@@ -75,11 +52,9 @@ export const SONGS: Song[] = [
     "franchise": "Hollow Knight",
     "company": "Indie"
   },
-  {
-    "id": "9999999",
+  "9999999": {
     "title": "9999999",
     "artist": "Mike Morasky",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/9999999%20(Portal%202).mid",
     "hint": "Stuttering and ambient electronic track playing at the start of Portal 2",
     "category": "games",
     "decade": "2010s",
@@ -90,11 +65,9 @@ export const SONGS: Song[] = [
     "franchise": "Portal",
     "company": "Valve"
   },
-  {
-    "id": "a-place-to-rest",
+  "a-place-to-rest": {
     "title": "A Place to Rest",
     "artist": "Shane Mesa",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/A%20Place%20to%20Rest%20(Undertale%20Yellow).mid",
     "hint": "Calm and peaceful theme from Undertale Yellow's soundtrack",
     "category": "games",
     "decade": "2020s",
@@ -105,11 +78,9 @@ export const SONGS: Song[] = [
     "franchise": "Undertale",
     "company": "Indie"
   },
-  {
-    "id": "all-kass-songs-meledy-zelda-breath-of-the-wild",
+  "all-kass-songs-meledy-zelda-breath-of-the-wild": {
     "title": "Kass's Theme Medley",
     "artist": "Manaka Kataoka",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/All%20Kass%20Songs%20Meledy%20(Piano)%20-%20Zelda_Breath%20Of%20The%20Wild%20(JvP).mid",
     "hint": "Accordion melody compilation featuring all songs by Kass in Breath of the Wild",
     "category": "games",
     "decade": "2010s",
@@ -120,11 +91,9 @@ export const SONGS: Song[] = [
     "franchise": "Zelda",
     "company": "Nintendo"
   },
-  {
-    "id": "an-enigmatic-encounter-undertale-last-breath",
+  "an-enigmatic-encounter-undertale-last-breath": {
     "title": "An Enigmatic Encounter",
     "artist": "Benlab Crimson",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/An%20Enigmatic%20Encounter%20-%20%20Undertale%20last%20breath.mid",
     "hint": "High-intensity battle track from the Undertale: Last Breath fangame",
     "category": "games",
     "decade": "2020s",
@@ -135,11 +104,9 @@ export const SONGS: Song[] = [
     "franchise": "Undertale",
     "company": "Indie"
   },
-  {
-    "id": "animal-crossing-kk-lullaby-aircheck",
+  "animal-crossing-kk-lullaby-aircheck": {
     "title": "K.K. Lullaby (Aircheck)",
     "artist": "Toru Minegishi",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Animal%20Crossing%20-%20KK%20Lullaby%20Aircheck.mid",
     "hint": "Soothing music box lullaby performed by the famous dog guitarist",
     "category": "games",
     "decade": "2000s",
@@ -150,11 +117,9 @@ export const SONGS: Song[] = [
     "franchise": "Animal Crossing",
     "company": "Nintendo"
   },
-  {
-    "id": "avengers-endgame-portals",
+  "avengers-endgame-portals": {
     "title": "Portals",
     "artist": "Alan Silvestri",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Avengers-Endgame-Portals.mid",
     "hint": "Epic, swelling orchestral theme from the climactic battle in Avengers: Endgame",
     "category": "pop",
     "decade": "2010s",
@@ -162,11 +127,9 @@ export const SONGS: Song[] = [
     "year": 2019,
     "style": "Orchestral Soundtrack"
   },
-  {
-    "id": "back-on-track-geometry-dash",
+  "back-on-track-geometry-dash": {
     "title": "Back On Track",
     "artist": "DJVI",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Back%20on%20Track%20Geometry%20dash.mid",
     "hint": "Upbeat electro track playing in the second level of Geometry Dash",
     "category": "games",
     "decade": "2010s",
@@ -177,11 +140,9 @@ export const SONGS: Song[] = [
     "franchise": "Geometry Dash",
     "company": "Indie"
   },
-  {
-    "id": "battle-black-kyurem-white-kyurem-pokemon-black-2-and-white-2",
+  "battle-black-kyurem-white-kyurem-pokemon-black-2-and-white-2": {
     "title": "Battle! Black Kyurem & White Kyurem",
     "artist": "Go Ichinose",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Battle!%20Black%20Kyurem%20_%20White%20Kyurem%20-%20Pokemon%20Black%202%20and%20White%202.mid",
     "hint": "Dramatic battle theme from Pokemon Black 2 and White 2 against the mascot legendaries",
     "category": "games",
     "decade": "2010s",
@@ -192,11 +153,9 @@ export const SONGS: Song[] = [
     "franchise": "Pokémon",
     "company": "Nintendo"
   },
-  {
-    "id": "c418-danny",
+  "c418-danny": {
     "title": "Danny",
     "artist": "C418",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/C418%20-%20Danny%20(Minecraft%20OST).mid",
     "hint": "Beautiful, nostalgic ambient keyboard track from Minecraft Volume Alpha",
     "category": "games",
     "decade": "2010s",
@@ -207,11 +166,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "c418-alpha",
+  "c418-alpha": {
     "title": "Alpha",
     "artist": "C418",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/C418%20Alpha%20(Minecraft%20Volume%20Beta).mid",
     "hint": "Atmospheric and sweeping background theme from Minecraft Volume Beta",
     "category": "games",
     "decade": "2010s",
@@ -222,11 +179,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "castlevania-2-simon-s-quest-bloody-tears",
+  "castlevania-2-simon-s-quest-bloody-tears": {
     "title": "Bloody Tears",
     "artist": "Kenichi Matsubara",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Castlevania%202_%20Simon's%20Quest%20-%20Bloody%20Tears.mid",
     "hint": "Gothic, driving minor-key action theme first heard in Simon's Quest",
     "category": "games",
     "decade": "80s",
@@ -237,11 +192,9 @@ export const SONGS: Song[] = [
     "franchise": "Castlevania",
     "company": "Konami"
   },
-  {
-    "id": "chrono-symphonic-darkness-dueling",
+  "chrono-symphonic-darkness-dueling": {
     "title": "Darkness Dueling",
     "artist": "Ruboy",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Chrono%20Symphonic%20-%20Darkness%20Dueling%20(8-Bit%20Sawtooth).mid",
     "hint": "Symphonic orchestral rock remix from the Chrono Symphonic project",
     "category": "games",
     "decade": "2000s",
@@ -252,11 +205,9 @@ export const SONGS: Song[] = [
     "franchise": "Chrono",
     "company": "Square Enix"
   },
-  {
-    "id": "chrono-trigger-wind-scene",
+  "chrono-trigger-wind-scene": {
     "title": "Wind Scene",
     "artist": "Yasunori Mitsuda",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Chrono_Trigger_-_Wind_Scene.mid",
     "hint": "Nostalgic and soothing overworld map theme from Chrono Trigger",
     "category": "games",
     "decade": "90s",
@@ -267,11 +218,9 @@ export const SONGS: Song[] = [
     "franchise": "Chrono",
     "company": "Square Enix"
   },
-  {
-    "id": "dear-may-2nd-2023-and-jul-4-2023-and-sep-17-2022-please-exit-brain-okay-greenpath-hollow-knight",
+  "dear-may-2nd-2023-and-jul-4-2023-and-sep-17-2022-please-exit-brain-okay-greenpath-hollow-knight": {
     "title": "Greenpath",
     "artist": "Christopher Larkin",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Dear%20May%202nd%202023%20and%20Jul%204%202023%20and%20Sep%2017%202022%2C%20please%20exit%20brain%20okay_Greenpath%20-%20Hollow%20Knight.mid",
     "hint": "Lush, string-based exploration theme from Hollow Knight's forest area",
     "category": "games",
     "decade": "2010s",
@@ -282,11 +231,9 @@ export const SONGS: Song[] = [
     "franchise": "Hollow Knight",
     "company": "Indie"
   },
-  {
-    "id": "deltarune-a-cyber-s-world",
+  "deltarune-a-cyber-s-world": {
     "title": "A CYBER'S WORLD",
     "artist": "Toby Fox",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Deltarune_%20A%20CYBER'S%20WORLD_%20(Pixel-Phil).mid",
     "hint": "Upbeat synth-heavy overworld theme from Deltarune Chapter 2",
     "category": "games",
     "decade": "2020s",
@@ -297,11 +244,9 @@ export const SONGS: Song[] = [
     "franchise": "Undertale",
     "company": "Indie"
   },
-  {
-    "id": "doom-e1m1",
+  "doom-e1m1": {
     "title": "At Doom's Gate (E1M1)",
     "artist": "Bobby Prince",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Doom%20-%20E1M1.mid",
     "hint": "Aggressive, heavy metal inspired theme playing in Doom's first level",
     "category": "games",
     "decade": "90s",
@@ -312,11 +257,9 @@ export const SONGS: Song[] = [
     "franchise": "Doom",
     "company": "id Software"
   },
-  {
-    "id": "elder-scrolls-v-skyrim-dragonborn-theme",
+  "elder-scrolls-v-skyrim-dragonborn-theme": {
     "title": "Dragonborn (Skyrim Theme)",
     "artist": "Jeremy Soule",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Elder%20Scrolls%20V%20-%20Skyrim%20-%20Dragonborn%20Theme.mid",
     "hint": "Epic orchestral theme featuring a male choir singing in the dragon language",
     "category": "games",
     "decade": "2010s",
@@ -327,11 +270,9 @@ export const SONGS: Song[] = [
     "franchise": "Elder Scrolls",
     "company": "Bethesda"
   },
-  {
-    "id": "enter-hallownest-hollow-knight",
+  "enter-hallownest-hollow-knight": {
     "title": "Enter Hallownest",
     "artist": "Christopher Larkin",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Enter%20Hallownest%20-%20Hollow%20Knight.mid",
     "hint": "Somber and atmospheric opening track from Hollow Knight",
     "category": "games",
     "decade": "2010s",
@@ -342,11 +283,9 @@ export const SONGS: Song[] = [
     "franchise": "Hollow Knight",
     "company": "Indie"
   },
-  {
-    "id": "final-fantasy-vii-final-fantasy-vii-main-theme",
+  "final-fantasy-vii-final-fantasy-vii-main-theme": {
     "title": "Main Theme of Final Fantasy VII",
     "artist": "Nobuo Uematsu",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Final%20Fantasy%20VII%20-%20Final%20Fantasy%20VII%20Main%20Theme.mid",
     "hint": "Sweeping, legendary overworld theme from Final Fantasy VII",
     "category": "games",
     "decade": "90s",
@@ -357,11 +296,9 @@ export const SONGS: Song[] = [
     "franchise": "Final Fantasy",
     "company": "Square Enix"
   },
-  {
-    "id": "final-fantasy-vii-one-winged-angel",
+  "final-fantasy-vii-one-winged-angel": {
     "title": "One-Winged Angel",
     "artist": "Nobuo Uematsu",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Final%20Fantasy%20VII%20-%20One%20Winged%20Angel%20(Better%20Version)%20(1).mid",
     "hint": "Iconic, ominous final boss theme for Sephiroth with Latin chanting",
     "category": "games",
     "decade": "90s",
@@ -372,11 +309,9 @@ export const SONGS: Song[] = [
     "franchise": "Final Fantasy",
     "company": "Square Enix"
   },
-  {
-    "id": "friday-theme-roblox-3008",
+  "friday-theme-roblox-3008": {
     "title": "Friday Theme (Roblox 3008)",
     "artist": "Uglyburger0",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Friday%20Theme%20-%20Roblox%203008.mid",
     "hint": "Vibrant and catchy electronic theme from the Roblox SCP-3008 retail store game",
     "category": "games",
     "decade": "2020s",
@@ -387,11 +322,9 @@ export const SONGS: Song[] = [
     "franchise": "Roblox",
     "company": "Indie"
   },
-  {
-    "id": "goron-city",
+  "goron-city": {
     "title": "Goron City (Day)",
     "artist": "Yasuaki Iwata",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Goron%20City%20(Day)%20-%20Legend%20of%20Zelda%20Breath%20of%20the%20Wild.mid",
     "hint": "Jolly, percussion-heavy acoustic theme from Breath of the Wild's volcano town",
     "category": "games",
     "decade": "2010s",
@@ -402,11 +335,9 @@ export const SONGS: Song[] = [
     "franchise": "Zelda",
     "company": "Nintendo"
   },
-  {
-    "id": "greens-jam-animation-vs-minecraft-episode-16-music-block-battle",
+  "greens-jam-animation-vs-minecraft-episode-16-music-block-battle": {
     "title": "Green's Jam",
     "artist": "Aaron Grooves",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Greens%20Jam%20-%20Animation%20vs%20Minecraft%20Episode%2016_%20Music%20Block%20Battle.mid",
     "hint": "Catchy synth tune featured in the music block battle of Animation vs. Minecraft",
     "category": "games",
     "decade": "2010s",
@@ -417,11 +348,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Indie"
   },
-  {
-    "id": "guiding-light",
+  "guiding-light": {
     "title": "Guiding Light",
     "artist": "LightningSplash",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Guiding%20Light%20(Roblox%20DOORS%20credits%20to%20planet%20earth).mid",
     "hint": "Mysterious, ambient piano melody heard after dying in Roblox DOORS",
     "category": "games",
     "decade": "2020s",
@@ -432,11 +361,9 @@ export const SONGS: Song[] = [
     "franchise": "Roblox",
     "company": "Indie"
   },
-  {
-    "id": "halo-2-menu",
+  "halo-2-menu": {
     "title": "Halo 2 Theme (Mjolnir Mix)",
     "artist": "Martin O'Donnell & Michael Salvatori",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Halo%202%20-%20Menu.mid",
     "hint": "The classic Halo monks chant re-imagined with a driving heavy metal guitar solo",
     "category": "games",
     "decade": "2000s",
@@ -447,11 +374,9 @@ export const SONGS: Song[] = [
     "franchise": "Halo",
     "company": "Microsoft"
   },
-  {
-    "id": "halo-reach-overture-from-the-beginning",
+  "halo-reach-overture-from-the-beginning": {
     "title": "Overture",
     "artist": "Martin O'Donnell & Michael Salvatori",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Halo%20Reach%20Overture.%20From%20the%20Beginning%20.mid",
     "hint": "Somber, military-infused sweeping orchestral overture for Halo: Reach",
     "category": "games",
     "decade": "2010s",
@@ -462,11 +387,9 @@ export const SONGS: Song[] = [
     "franchise": "Halo",
     "company": "Microsoft"
   },
-  {
-    "id": "heavensward-final-fantasy-xiv-3-0",
+  "heavensward-final-fantasy-xiv-3-0": {
     "title": "Heavensward",
     "artist": "Masayoshi Soken",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Heavensward%20-%20Final%20Fantasy%20XIV%203.0%20(Rutuweianzhice).mid",
     "hint": "Grand, soaring opening cinematic theme for FXXIV's first expansion pack",
     "category": "games",
     "decade": "2010s",
@@ -477,11 +400,9 @@ export const SONGS: Song[] = [
     "franchise": "Final Fantasy",
     "company": "Square Enix"
   },
-  {
-    "id": "hollow-knight-mantis-lords-theme",
+  "hollow-knight-mantis-lords-theme": {
     "title": "Mantis Lords",
     "artist": "Christopher Larkin",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Hollow%20Knight%20-%20Mantis%20Lords%20Theme.mid",
     "hint": "Fast-paced harpsichord and string arrangement for an intense battle of honor",
     "category": "games",
     "decade": "2010s",
@@ -492,11 +413,9 @@ export const SONGS: Song[] = [
     "franchise": "Hollow Knight",
     "company": "Indie"
   },
-  {
-    "id": "hollow-knight-hornet",
+  "hollow-knight-hornet": {
     "title": "Hornet",
     "artist": "Christopher Larkin",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Hollow%20Knight_%20Hornet%20(by%20BidoofTheInfectedJedi)%20EDITED%20BY%20(Gundam%20Creator).mid",
     "hint": "Stirring, string-heavy theme playing during your encounters with the protector of Hallownest",
     "category": "games",
     "decade": "2010s",
@@ -507,11 +426,9 @@ export const SONGS: Song[] = [
     "franchise": "Hollow Knight",
     "company": "Indie"
   },
-  {
-    "id": "hopes-and-dreams-undertale",
+  "hopes-and-dreams-undertale": {
     "title": "Hopes and Dreams",
     "artist": "Toby Fox",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Hopes%20and%20Dreams%20-%20Undertale%20(WIP).mid",
     "hint": "Triumphant rock and orchestral arrangement for Undertale's true final boss fight",
     "category": "games",
     "decade": "2010s",
@@ -522,11 +439,9 @@ export const SONGS: Song[] = [
     "franchise": "Undertale",
     "company": "Indie"
   },
-  {
-    "id": "inside-the-castle-walls-super-mario-64",
+  "inside-the-castle-walls-super-mario-64": {
     "title": "Inside the Castle Walls",
     "artist": "Koji Kondo",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Inside%20the%20Castle%20Walls%20-%20Super%20Mario%2064.mid",
     "hint": "Nostalgic waltz playing inside Princess Peach's castle in Super Mario 64",
     "category": "games",
     "decade": "90s",
@@ -537,11 +452,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "kass-theme",
+  "kass-theme": {
     "title": "Kass's Theme",
     "artist": "Manaka Kataoka",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Kass'%20Theme%20(Bandoneon%20Medley)%20-%207th%20Anniversary%20Special_%20The%20Legend%20of%20Zelda_%20Breath%20of%20the%20Wild.mid",
     "hint": "The iconic accordion tune played by the traveling minstrel Rito in BOTW",
     "category": "games",
     "decade": "2010s",
@@ -552,11 +465,9 @@ export const SONGS: Song[] = [
     "franchise": "Zelda",
     "company": "Nintendo"
   },
-  {
-    "id": "kingdom-hearts-dearly-beloved",
+  "kingdom-hearts-dearly-beloved": {
     "title": "Dearly Beloved",
     "artist": "Yoko Shimomura",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Kingdom%20Hearts%20-%20Dearly%20Beloved.mid",
     "hint": "Melancholic, beautiful piano theme playing on the Kingdom Hearts main menu",
     "category": "games",
     "decade": "2000s",
@@ -567,11 +478,9 @@ export const SONGS: Song[] = [
     "franchise": "Kingdom Hearts",
     "company": "Square Enix"
   },
-  {
-    "id": "kirby-super-star-gourmet-race",
+  "kirby-super-star-gourmet-race": {
     "title": "Gourmet Race",
     "artist": "Jun Ishikawa",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Kirby%20Super%20Star%20-%20Gourmet%20Race.mid",
     "hint": "High-speed, extremely catchy theme for a food-eating race in Dream Land",
     "category": "games",
     "decade": "90s",
@@ -582,11 +491,9 @@ export const SONGS: Song[] = [
     "franchise": "Kirby",
     "company": "Nintendo"
   },
-  {
-    "id": "kirby-super-star-marx-boss-battle",
+  "kirby-super-star-marx-boss-battle": {
     "title": "Marx's Theme",
     "artist": "Jun Ishikawa",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Kirby%20Super%20Star%20-%20Marx%20Boss%20Battle.mid",
     "hint": "Frantic, chaotic orchestrations for the battle against Kirby's betrayer",
     "category": "games",
     "decade": "90s",
@@ -597,11 +504,9 @@ export const SONGS: Song[] = [
     "franchise": "Kirby",
     "company": "Nintendo"
   },
-  {
-    "id": "korobeiniki",
+  "korobeiniki": {
     "title": "Korobeiniki (Tetris Theme)",
     "artist": "Hirokazu Tanaka",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Korobeiniki%20(Tetris%20theme).mid",
     "hint": "The ultimate classic puzzle theme, adapted from a Russian folk song",
     "category": "games",
     "decade": "80s",
@@ -612,11 +517,9 @@ export const SONGS: Song[] = [
     "franchise": "Tetris",
     "company": "Nintendo"
   },
-  {
-    "id": "last-surprise-persona-5-strikers",
+  "last-surprise-persona-5-strikers": {
     "title": "Last Surprise",
     "artist": "Shoji Meguro",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Last%20Surprise%20-%20Persona%205%20Strikers.mid",
     "hint": "Ultra-stylish acid jazz battle theme of the Phantom Thieves in Persona 5",
     "category": "games",
     "decade": "2010s",
@@ -627,11 +530,9 @@ export const SONGS: Song[] = [
     "franchise": "Persona",
     "company": "Sega"
   },
-  {
-    "id": "legend-of-zelda-overworld",
+  "legend-of-zelda-overworld": {
     "title": "Overworld Theme",
     "artist": "Koji Kondo",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Legend%20of%20Zelda%20-%20Overworld.mid",
     "hint": "The legendary adventure theme for Hyrule's overworld in the NES classic",
     "category": "games",
     "decade": "80s",
@@ -642,11 +543,9 @@ export const SONGS: Song[] = [
     "franchise": "Zelda",
     "company": "Nintendo"
   },
-  {
-    "id": "legend-of-zelda-breath-of-the-wild-kass-theme",
+  "legend-of-zelda-breath-of-the-wild-kass-theme": {
     "title": "Kass's Theme",
     "artist": "Manaka Kataoka",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Legend%20of%20Zelda_%20Breath%20of%20the%20Wild%20-%20Kass'%20Theme.mid",
     "hint": "The accordion theme of the wandering minstrel Rito in Breath of the Wild",
     "category": "games",
     "decade": "2010s",
@@ -657,11 +556,9 @@ export const SONGS: Song[] = [
     "franchise": "Zelda",
     "company": "Nintendo"
   },
-  {
-    "id": "lena-raine-creator",
+  "lena-raine-creator": {
     "title": "Creator",
     "artist": "Lena Raine",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Lena%20Raine%20-%20Creator%20(Minecraft%20OST).mid",
     "hint": "Playful music disc with toy piano and electronic elements added in Minecraft 1.21",
     "category": "games",
     "decade": "2020s",
@@ -672,11 +569,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "lena-raine-creator-minecraft-completed-cover-",
+  "lena-raine-creator-minecraft-completed-cover-": {
     "title": "Creator",
     "artist": "Lena Raine",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Lena%20Raine%20-%20Creator%20%5BMinecraft%5D%20%5BCOMPLETED%20COVER%5D.mid",
     "hint": "Playful music disc with toy piano and electronic elements added in Minecraft 1.21",
     "category": "games",
     "decade": "2020s",
@@ -687,11 +582,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "luigis-mansion-main-theme",
+  "luigis-mansion-main-theme": {
     "title": "Luigi's Mansion Theme",
     "artist": "Kazumi Totaka",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Luigis%20Mansion%20-%20Main%20Theme.mid",
     "hint": "Spooky, whistling main theme for Luigi's ghost-busting adventure",
     "category": "games",
     "decade": "2000s",
@@ -702,11 +595,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "mf-doom-one-beer",
+  "mf-doom-one-beer": {
     "title": "One Beer",
     "artist": "MF DOOM",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/MF%20DOOM%20-%20One%20Beer.mid",
     "hint": "Cerebral underground hip-hop track featuring the masked villain over a soul sample",
     "category": "pop",
     "decade": "2000s",
@@ -714,11 +605,9 @@ export const SONGS: Song[] = [
     "year": 2004,
     "style": "Hip Hop"
   },
-  {
-    "id": "main-theme",
+  "main-theme": {
     "title": "Animal Crossing: New Horizons Theme",
     "artist": "Yasuaki Iwata",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Main%20Theme%20(Animal%20Crossing%20New%20Horizons).mid",
     "hint": "Uplifting acoustic guitar and flugelhorn theme for the deserted island getaway",
     "category": "games",
     "decade": "2020s",
@@ -729,11 +618,9 @@ export const SONGS: Song[] = [
     "franchise": "Animal Crossing",
     "company": "Nintendo"
   },
-  {
-    "id": "mario-bros-super-mario-bros-theme",
+  "mario-bros-super-mario-bros-theme": {
     "title": "Super Mario Bros. Theme",
     "artist": "Koji Kondo",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Mario%20Bros.%20-%20Super%20Mario%20Bros.%20Theme.mid",
     "hint": "The ultimate classic retro gaming theme heard on NES World 1-1",
     "category": "games",
     "decade": "80s",
@@ -744,11 +631,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "megalovania",
+  "megalovania": {
     "title": "Megalovania",
     "artist": "Toby Fox",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Megalovania%20(Pixel-Phil).mid",
     "hint": "Furious chiptune rock track representing the ultimate boss fight in Undertale",
     "category": "games",
     "decade": "2010s",
@@ -759,11 +644,9 @@ export const SONGS: Song[] = [
     "franchise": "Undertale",
     "company": "Indie"
   },
-  {
-    "id": "mice-on-venus-minecraft",
+  "mice-on-venus-minecraft": {
     "title": "Mice on Venus",
     "artist": "C418",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Mice%20on%20Venus%20-%20Minecraft.mid",
     "hint": "Beautiful, calming keyboard-to-orchestral transition piece from Minecraft",
     "category": "games",
     "decade": "2010s",
@@ -774,11 +657,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "minecraft-death",
+  "minecraft-death": {
     "title": "Oof! (Death Sound)",
     "artist": "C418",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Minecraft%20-%20Death.mid",
     "hint": "The famous retro damage sound effect from early versions of Minecraft",
     "category": "games",
     "decade": "2010s",
@@ -789,11 +670,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "minecraft-livingmice",
+  "minecraft-livingmice": {
     "title": "Living Mice",
     "artist": "C418",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Minecraft%20-%20LivingMice.mid",
     "hint": "Nostalgic, gentle keyboard tune playing as you explore the blocky world",
     "category": "games",
     "decade": "2010s",
@@ -804,11 +683,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "minecraft-moogcity-clavinet-",
+  "minecraft-moogcity-clavinet-": {
     "title": "Moog City (Clavinet)",
     "artist": "C418",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Minecraft%20-%20MoogCity(clavinet).mid",
     "hint": "A retro-electronic ambient synth tune from early Minecraft development",
     "category": "games",
     "decade": "2010s",
@@ -819,11 +696,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "minecraft-moogcity",
+  "minecraft-moogcity": {
     "title": "Moog City",
     "artist": "C418",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Minecraft%20-%20MoogCity.mid",
     "hint": "A retro-electronic ambient synth tune from early Minecraft development",
     "category": "games",
     "decade": "2010s",
@@ -834,11 +709,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "minecraft-parody-of-coldplay-s-viva-la-vida-fallen-kingdom",
+  "minecraft-parody-of-coldplay-s-viva-la-vida-fallen-kingdom": {
     "title": "Fallen Kingdom",
     "artist": "TryHardNinja",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Minecraft%20-%20Parody%20of%20Coldplay_s%20Viva%20la%20Vida%20-%20Fallen%20Kingdom.mid",
     "hint": "The definitive Minecraft music video parody of Coldplay's Viva La Vida",
     "category": "games",
     "decade": "2010s",
@@ -849,11 +722,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Indie"
   },
-  {
-    "id": "minecraft-pigstep",
+  "minecraft-pigstep": {
     "title": "Pigstep",
     "artist": "Lena Raine",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Minecraft%20-%20Pigstep.mid",
     "hint": "A groovy, retro-inspired chiptune hip-hop beat found in Nether Bastions",
     "category": "games",
     "decade": "2020s",
@@ -864,11 +735,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "minecraft-sweden-instrumental-remake-",
+  "minecraft-sweden-instrumental-remake-": {
     "title": "Sweden",
     "artist": "C418",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Minecraft%20-%20Sweden(Instrumental)(Remake).mid",
     "hint": "The most famous, beloved and emotionally resonant piano track in Minecraft history",
     "category": "games",
     "decade": "2010s",
@@ -879,11 +748,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "minecraft-sweden",
+  "minecraft-sweden": {
     "title": "Sweden",
     "artist": "C418",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Minecraft%20-%20Sweden.mid",
     "hint": "The most famous, beloved and emotionally resonant piano track in Minecraft history",
     "category": "games",
     "decade": "2010s",
@@ -894,11 +761,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "minecraft-wet-hands",
+  "minecraft-wet-hands": {
     "title": "Wet Hands",
     "artist": "C418",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Minecraft%20-%20Wet%20Hands%20(Piano%20Solo).mid",
     "hint": "Simple, melancholic yet calming piano melody from early Minecraft",
     "category": "games",
     "decade": "2010s",
@@ -909,11 +774,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "minecraft-wethands",
+  "minecraft-wet-hands-remake": {
     "title": "Wet Hands",
     "artist": "C418",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Minecraft%20-%20WetHands.mid",
     "hint": "Simple, melancholic yet calming piano melody from early Minecraft",
     "category": "games",
     "decade": "2010s",
@@ -924,11 +787,22 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "minecraft-theme",
+  "minecraft-wethands": {
+    "title": "Wet Hands",
+    "artist": "C418",
+    "hint": "Simple, melancholic yet calming piano melody from early Minecraft",
+    "category": "games",
+    "decade": "2010s",
+    "genre": "game",
+    "year": 2011,
+    "style": "Ambient Piano",
+    "game": "Minecraft",
+    "franchise": "Minecraft",
+    "company": "Mojang"
+  },
+  "minecraft-theme": {
     "title": "Minecraft Main Theme (Danny)",
     "artist": "C418",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Minecraft%20Theme.mid",
     "hint": "The soft piano/keyboard opening theme for the game's home screen",
     "category": "games",
     "decade": "2010s",
@@ -939,11 +813,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "nada-personal-soda-stereo",
+  "nada-personal-soda-stereo": {
     "title": "Nada Personal",
     "artist": "Soda Stereo",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Nada%20Personal%20-%20Soda%20Stereo%20cover.mid",
     "hint": "Classic Argentine new wave and synth-rock hit from the album of the same name",
     "category": "pop",
     "decade": "80s",
@@ -951,11 +823,9 @@ export const SONGS: Song[] = [
     "year": 1985,
     "style": "New Wave"
   },
-  {
-    "id": "nightmare-king-hollow-knight",
+  "nightmare-king-hollow-knight": {
     "title": "Nightmare King",
     "artist": "Christopher Larkin",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Nightmare%20King%20-%20Hollow%20Knight.mid",
     "hint": "Hyper-dramatic final boss theme for Grimm with gothic pipe organ and heavy strings",
     "category": "games",
     "decade": "2010s",
@@ -966,11 +836,9 @@ export const SONGS: Song[] = [
     "franchise": "Hollow Knight",
     "company": "Indie"
   },
-  {
-    "id": "oneshot-dying-light",
+  "oneshot-dying-light": {
     "title": "Dying Light",
     "artist": "Nightmargin",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Oneshot%20DYING%20LIGHT%20(A%20OneShot%20Megalovania)%20Remix.mid",
     "hint": "A mournful, electronic ambient theme playing at key moments in OneShot",
     "category": "games",
     "decade": "2010s",
@@ -981,11 +849,9 @@ export const SONGS: Song[] = [
     "franchise": "OneShot",
     "company": "Indie"
   },
-  {
-    "id": "otherside-minecraft",
+  "otherside-minecraft": {
     "title": "Otherside",
     "artist": "Lena Raine",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Otherside%20-%20Minecraft.mid",
     "hint": "Upbeat, retro-inspired electronic music disc added in Caves & Cliffs update",
     "category": "games",
     "decade": "2020s",
@@ -996,11 +862,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "pigstep-minecraft-ost",
+  "pigstep-minecraft-ost": {
     "title": "Pigstep",
     "artist": "Lena Raine",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Pigstep_-_Minecraft_OST.mid.mid",
     "hint": "A groovy, retro-inspired chiptune hip-hop beat found in Nether Bastions",
     "category": "games",
     "decade": "2020s",
@@ -1011,11 +875,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "pokemon-pokemon-center-theme",
+  "pokemon-pokemon-center-theme": {
     "title": "Pokémon Center Theme",
     "artist": "Junichi Masuda",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Pokemon%20-%20Pokemon%20Center%20Theme.mid",
     "hint": "Relaxing, looping chiptune theme playing while healing your Pokémon squad",
     "category": "games",
     "decade": "90s",
@@ -1026,11 +888,9 @@ export const SONGS: Song[] = [
     "franchise": "Pokémon",
     "company": "Nintendo"
   },
-  {
-    "id": "pokemon-black-white-dreamyard-pinwheel-forest",
+  "pokemon-black-white-dreamyard-pinwheel-forest": {
     "title": "Dreamyard / Pinwheel Forest",
     "artist": "Junichi Masuda",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Pokemon%20Black_White%20Dreamyard_Pinwheel%20Forest.mid",
     "hint": "Lush woodwind-led exploration theme from Pokémon Black and White's forests",
     "category": "games",
     "decade": "2010s",
@@ -1041,11 +901,9 @@ export const SONGS: Song[] = [
     "franchise": "Pokémon",
     "company": "Nintendo"
   },
-  {
-    "id": "pokemon-redblueyellow-wild-pokemon-battle",
+  "pokemon-redblueyellow-wild-pokemon-battle": {
     "title": "Wild Pokémon Battle Theme",
     "artist": "Junichi Masuda",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Pokemon%20RedBlueYellow%20-%20Wild%20Pokemon%20Battle.mid",
     "hint": "High-energy retro chiptune theme from the original game's random encounters",
     "category": "games",
     "decade": "90s",
@@ -1056,11 +914,9 @@ export const SONGS: Song[] = [
     "franchise": "Pokémon",
     "company": "Nintendo"
   },
-  {
-    "id": "portal-still-alive",
+  "portal-still-alive": {
     "title": "Still Alive",
     "artist": "Ellen McLain",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Portal%20-%20Still%20Alive.mid",
     "hint": "Satirical credits song sung by the AI GLaDOS accompanied by acoustic guitar",
     "category": "games",
     "decade": "2000s",
@@ -1071,11 +927,9 @@ export const SONGS: Song[] = [
     "franchise": "Portal",
     "company": "Valve"
   },
-  {
-    "id": "portal-2-cara-mia",
+  "portal-2-cara-mia": {
     "title": "Cara Mia Addio (Turret Opera)",
     "artist": "Ellen McLain",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Portal%202%20-%20Cara%20Mia.mid",
     "hint": "Beautiful and bizarre Italian vocal opera sung by turret bots in Portal 2",
     "category": "games",
     "decade": "2010s",
@@ -1086,11 +940,9 @@ export const SONGS: Song[] = [
     "franchise": "Portal",
     "company": "Valve"
   },
-  {
-    "id": "quartz-quadrant-present-from-the-sonic-cd-japanese",
+  "quartz-quadrant-present-from-the-sonic-cd-japanese": {
     "title": "Quartz Quadrant (Present) [Japanese]",
     "artist": "Naofumi Hataya",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Quartz%20Quadrant%20Present%20-%20From%20The%20Sonic%20CD%20Japanese%20OST.mid",
     "hint": "Groovy, synth-funk tune from the Japanese and European release of Sonic CD",
     "category": "games",
     "decade": "90s",
@@ -1101,11 +953,9 @@ export const SONGS: Song[] = [
     "franchise": "Sonic",
     "company": "Sega"
   },
-  {
-    "id": "rain-deference-for-darkness-halo-3-odst",
+  "rain-deference-for-darkness-halo-3-odst": {
     "title": "Deference for Darkness",
     "artist": "Martin O'Donnell & Michael Salvatori",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Rain%2C%20Deference%20for%20Darkness%20-%20Halo%203%20ODST.mid",
     "hint": "Mood-setting ambient jazz soundtrack with solo piano and saxophone for rainy streets",
     "category": "games",
     "decade": "2000s",
@@ -1116,11 +966,9 @@ export const SONGS: Song[] = [
     "franchise": "Halo",
     "company": "Microsoft"
   },
-  {
-    "id": "reconstructing-more-science-portal-2",
+  "reconstructing-more-science-portal-2": {
     "title": "Reconstructing More Science",
     "artist": "Mike Morasky",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Reconstructing_More_Science_-_Portal_2.mid",
     "hint": "Layered electronic synth and percussion theme during test chamber solving in Portal 2",
     "category": "games",
     "decade": "2010s",
@@ -1131,11 +979,9 @@ export const SONGS: Song[] = [
     "franchise": "Portal",
     "company": "Valve"
   },
-  {
-    "id": "roblox-doors-elevator-jam-midi",
+  "roblox-doors-elevator-jam-midi": {
     "title": "Elevator Jam",
     "artist": "LightningSplash",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Roblox%20Doors%20-%20Elevator%20Jam%20Midi%20Cover.mid",
     "hint": "Super catchy lift music with electronic beats playing in Roblox DOORS elevator",
     "category": "games",
     "decade": "2020s",
@@ -1146,11 +992,9 @@ export const SONGS: Song[] = [
     "franchise": "Roblox",
     "company": "Indie"
   },
-  {
-    "id": "roddy-ricch-ballin-midi-optimized-for-roblox-the-wild-west",
+  "roddy-ricch-ballin-midi-optimized-for-roblox-the-wild-west": {
     "title": "Ballin'",
     "artist": "Roddy Ricch",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Roddy_Ricch_-_Ballin_midi_Optimized_for_Roblox_the_Wild_West.mid",
     "hint": "West Coast hip hop track with an infectious hook and soulful backing track",
     "category": "pop",
     "decade": "2010s",
@@ -1158,11 +1002,9 @@ export const SONGS: Song[] = [
     "year": 2019,
     "style": "Hip Hop"
   },
-  {
-    "id": "sealed-vessel",
+  "sealed-vessel": {
     "title": "Sealed Vessel",
     "artist": "Christopher Larkin",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Sealed%20Vessel%20(Hollow%20Knight%20OST)%20-%20WIP.mid",
     "hint": "Emotional, tragic orchestral crescendo playing during the final boss battle of Hollow Knight",
     "category": "games",
     "decade": "2010s",
@@ -1173,11 +1015,9 @@ export const SONGS: Song[] = [
     "franchise": "Hollow Knight",
     "company": "Indie"
   },
-  {
-    "id": "showdown-undertale-yellow",
+  "showdown-undertale-yellow": {
     "title": "Showdown",
     "artist": "MasterSwordRemix",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Showdown%20-%20Undertale%20Yellow%20(JvP).mid",
     "hint": "Epic battle theme with western acoustic guitar and fast chiptune from Undertale Yellow",
     "category": "games",
     "decade": "2020s",
@@ -1188,11 +1028,9 @@ export const SONGS: Song[] = [
     "franchise": "Undertale",
     "company": "Indie"
   },
-  {
-    "id": "sonic-the-hedgehog-green-hill-zone",
+  "sonic-the-hedgehog-green-hill-zone": {
     "title": "Green Hill Zone Theme",
     "artist": "Masato Nakamura",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Sonic%20the%20Hedgehog%20-%20Green%20Hill%20Zone.mid",
     "hint": "Upbeat, breezy opening level theme for the blue hedgehog's Sega Genesis debut",
     "category": "games",
     "decade": "90s",
@@ -1203,11 +1041,9 @@ export const SONGS: Song[] = [
     "franchise": "Sonic",
     "company": "Sega"
   },
-  {
-    "id": "sonic-exe-hill-act-0",
+  "sonic-exe-hill-act-0": {
     "title": "Hill Act 1 (Sonic.exe)",
     "artist": "Kyleryder",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Sonic.exe%20Hill%20Act%200.mid",
     "hint": "Distorting, reverse-playing creepy remix of Green Hill Zone from a horror creepypasta game",
     "category": "games",
     "decade": "2010s",
@@ -1218,11 +1054,9 @@ export const SONGS: Song[] = [
     "franchise": "Sonic",
     "company": "Indie"
   },
-  {
-    "id": "subwoofer-lullaby-c418-minecraft",
+  "subwoofer-lullaby-c418-minecraft": {
     "title": "Subwoofer Lullaby",
     "artist": "C418",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Subwoofer%20Lullaby-C418-%20Minecraft.mid",
     "hint": "Melodious, warm ambient synth track from Minecraft's soundtrack",
     "category": "games",
     "decade": "2010s",
@@ -1233,11 +1067,9 @@ export const SONGS: Song[] = [
     "franchise": "Minecraft",
     "company": "Mojang"
   },
-  {
-    "id": "super-mario-64-medley",
+  "super-mario-64-medley": {
     "title": "Super Mario 64 Medley",
     "artist": "Koji Kondo",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%2064%20-%20Medley.mid",
     "hint": "Dynamic orchestral medley of major themes from Mario's first 3D adventure",
     "category": "games",
     "decade": "90s",
@@ -1248,11 +1080,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-64-slide",
+  "super-mario-64-slide": {
     "title": "Slider Theme",
     "artist": "Koji Kondo",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%2064%20-%20Slide.mid",
     "hint": "Fast-paced country bluegrass theme playing in race levels and secret slides in SM64",
     "category": "games",
     "decade": "90s",
@@ -1263,11 +1093,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-bros-1-super-mario-bros-main-theme-with-left-hand-chords",
+  "super-mario-bros-1-super-mario-bros-main-theme-with-left-hand-chords": {
     "title": "Super Mario Bros. Main Theme",
     "artist": "Koji Kondo",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20Bros.%201%20-%20Super%20Mario%20Bros%20-%20Main%20Theme%20with%20Left%20Hand%20Chords.mid",
     "hint": "The ultimate classic retro gaming theme heard on NES World 1-1",
     "category": "games",
     "decade": "80s",
@@ -1278,11 +1106,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-bros-1-super-mario-bros-main-theme",
+  "super-mario-bros-1-super-mario-bros-main-theme": {
     "title": "Super Mario Bros. Main Theme",
     "artist": "Koji Kondo",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20Bros.%201%20-%20Super%20Mario%20Bros%20-%20Main%20Theme.mid",
     "hint": "The ultimate classic retro gaming theme heard on NES World 1-1",
     "category": "games",
     "decade": "80s",
@@ -1293,11 +1119,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-land-2-6-golden-coins-athletic",
+  "super-mario-land-2-6-golden-coins-athletic": {
     "title": "Athletic Theme",
     "artist": "Ryoji Yoshitomi",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20Land%202%206%20Golden%20Coins%20-%20Athletic.mid",
     "hint": "Upbeat, bouncy chiptune theme from Game Boy's 6 Golden Coins",
     "category": "games",
     "decade": "90s",
@@ -1308,11 +1132,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-land-2-6-golden-coins-boss-battle",
+  "super-mario-land-2-6-golden-coins-boss-battle": {
     "title": "Boss Battle Theme",
     "artist": "Ryoji Yoshitomi",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20Land%202%206%20Golden%20Coins%20-%20Boss%20Battle.mid",
     "hint": "High-tempo battle music from Super Mario Land 2",
     "category": "games",
     "decade": "90s",
@@ -1323,11 +1145,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-land-2-6-golden-coins-ending-theme",
+  "super-mario-land-2-6-golden-coins-ending-theme": {
     "title": "Ending Theme",
     "artist": "Ryoji Yoshitomi",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20Land%202%206%20Golden%20Coins%20-%20Ending%20Theme.mid",
     "hint": "Soothing, triumphant ending theme of Super Mario Land 2",
     "category": "games",
     "decade": "90s",
@@ -1338,11 +1158,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-land-2-6-golden-coins-file-select",
+  "super-mario-land-2-6-golden-coins-file-select": {
     "title": "File Select Theme",
     "artist": "Ryoji Yoshitomi",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20Land%202%206%20Golden%20Coins%20-%20File%20Select.mid",
     "hint": "Short looping select screen theme from 6 Golden Coins",
     "category": "games",
     "decade": "90s",
@@ -1353,11 +1171,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-land-2-6-golden-coins-haunted-house",
+  "super-mario-land-2-6-golden-coins-haunted-house": {
     "title": "Haunted House Theme",
     "artist": "Ryoji Yoshitomi",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20Land%202%206%20Golden%20Coins%20-%20Haunted%20House.mid",
     "hint": "Creepy, slow-paced ghost level theme from 6 Golden Coins",
     "category": "games",
     "decade": "90s",
@@ -1368,11 +1184,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-land-2-6-golden-coins-map",
+  "super-mario-land-2-6-golden-coins-map": {
     "title": "Overworld Map Theme",
     "artist": "Ryoji Yoshitomi",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20Land%202%206%20Golden%20Coins%20-%20Map.mid",
     "hint": "Catchy map screen exploration theme from 6 Golden Coins",
     "category": "games",
     "decade": "90s",
@@ -1383,11 +1197,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-land-2-6-golden-coins-overworld",
+  "super-mario-land-2-6-golden-coins-overworld": {
     "title": "Overworld Theme",
     "artist": "Ryoji Yoshitomi",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20Land%202%206%20Golden%20Coins%20-%20Overworld.mid",
     "hint": "Classic main stage theme from the Game Boy Mario sequel",
     "category": "games",
     "decade": "90s",
@@ -1398,11 +1210,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-land-2-6-golden-coins-seashore",
+  "super-mario-land-2-6-golden-coins-seashore": {
     "title": "Seashore Theme",
     "artist": "Ryoji Yoshitomi",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20Land%202%206%20Golden%20Coins%20-%20Seashore.mid",
     "hint": "Bubbly, underwater and beach theme from 6 Golden Coins",
     "category": "games",
     "decade": "90s",
@@ -1413,11 +1223,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-land-2-6-golden-coins-star-maze",
+  "super-mario-land-2-6-golden-coins-star-maze": {
     "title": "Star Maze Theme",
     "artist": "Ryoji Yoshitomi",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20Land%202%206%20Golden%20Coins%20-%20Star%20Maze.mid",
     "hint": "Spacey, atmospheric chiptune theme for the low gravity zone",
     "category": "games",
     "decade": "90s",
@@ -1428,11 +1236,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-land-2-6-golden-coins-the-moon",
+  "super-mario-land-2-6-golden-coins-the-moon": {
     "title": "The Moon Theme",
     "artist": "Ryoji Yoshitomi",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20Land%202%206%20Golden%20Coins%20-%20The%20Moon.mid",
     "hint": "Quiet, ethereal space exploration theme from 6 Golden Coins",
     "category": "games",
     "decade": "90s",
@@ -1443,11 +1249,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-land-2-6-golden-coins-zone-medley",
+  "super-mario-land-2-6-golden-coins-zone-medley": {
     "title": "Zone Medley",
     "artist": "Ryoji Yoshitomi",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20Land%202%206%20Golden%20Coins%20-%20Zone%20Medley.mid",
     "hint": "Medley compiling the unique zone tracks of Super Mario Land 2",
     "category": "games",
     "decade": "90s",
@@ -1458,11 +1262,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-rpg-forest-maze",
+  "super-mario-rpg-forest-maze": {
     "title": "Beware the Forest's Mushrooms",
     "artist": "Yoko Shimomura",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20RPG%20-%20Forest%20Maze.mid",
     "hint": "Extremely catchy woodwind-led forest exploration theme from Super Mario RPG",
     "category": "games",
     "decade": "90s",
@@ -1473,11 +1275,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-mario-world-ending-theme",
+  "super-mario-world-ending-theme": {
     "title": "Ending Theme",
     "artist": "Koji Kondo",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Mario%20World%20-%20Ending%20Theme%20(Tom%20Brier).mid",
     "hint": "Ragtime-inspired emotional ending theme for Super Mario World",
     "category": "games",
     "decade": "90s",
@@ -1488,11 +1288,9 @@ export const SONGS: Song[] = [
     "franchise": "Mario",
     "company": "Nintendo"
   },
-  {
-    "id": "super-smash-bros-brawl-ground-theme-super-mario-bros",
+  "super-smash-bros-brawl-ground-theme-super-mario-bros": {
     "title": "Super Mario Bros. Ground Theme",
     "artist": "Koji Kondo",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Super%20Smash%20Bros%20Brawl%20-%20Ground%20Theme%20Super%20Mario%20Bros.mid",
     "hint": "Epic choral arrangement of the Mario theme heard in Smash Bros. Brawl",
     "category": "games",
     "decade": "2000s",
@@ -1503,311 +1301,9 @@ export const SONGS: Song[] = [
     "franchise": "Smash Bros",
     "company": "Nintendo"
   },
-  {
-    "id": "rickroll",
-    "title": "Never Gonna Give You Up",
-    "artist": "Rick Astley",
-    "path": "/midi/rickroll.mid",
-    "hint": "The ultimate 80s pop song used to prank people on the internet",
-    "category": "pop",
-    "decade": "80s",
-    "genre": "pop",
-    "year": 1987,
-    "style": "Synth-pop"
-  },
-  {
-    "id": "billiejean",
-    "title": "Billie Jean",
-    "artist": "Michael Jackson",
-    "path": "/midi/billiejean.mid",
-    "hint": "Michael Jackson 80s hit with an iconic bassline and moonwalk dance",
-    "category": "pop",
-    "decade": "80s",
-    "genre": "pop",
-    "year": 1982,
-    "style": "R&B Pop"
-  },
-  {
-    "id": "takeonme",
-    "title": "Take On Me",
-    "artist": "A-ha",
-    "path": "/midi/takeonme.mid",
-    "hint": "80s synth-pop track by Norwegian band A-ha with a famous high-pitched chorus",
-    "category": "pop",
-    "decade": "80s",
-    "genre": "pop",
-    "year": 1984,
-    "style": "Synth-pop"
-  },
-  {
-    "id": "21-guns",
-    "title": "21 Guns",
-    "artist": "Green Day",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/21%20Guns%20(Green%20Day).mid",
-    "hint": "Power ballad by Green Day addressing patriotism and anti-war sentiments",
-    "category": "pop",
-    "decade": "2000s",
-    "genre": "rock",
-    "year": 2009,
-    "style": "Alternative Rock"
-  },
-  {
-    "id": "505-arctic-monkeys",
-    "title": "505",
-    "artist": "Arctic Monkeys",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/505%20-%20Arctic%20Monkeys.mid",
-    "hint": "Atmospheric organ-driven love song from Favourite Worst Nightmare",
-    "category": "pop",
-    "decade": "2000s",
-    "genre": "rock",
-    "year": 2007,
-    "style": "Indie Rock"
-  },
-  {
-    "id": "a-ha-take-on-me",
-    "title": "Take On Me",
-    "artist": "A-ha",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/A%20HA.Take%20on%20me%20%20K.mid",
-    "hint": "80s synth-pop track by Norwegian band A-ha with a famous high-pitched chorus",
-    "category": "pop",
-    "decade": "80s",
-    "genre": "pop",
-    "year": 1984,
-    "style": "Synth-pop"
-  },
-  {
-    "id": "abba-dancing-queen",
-    "title": "Dancing Queen",
-    "artist": "ABBA",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/ABBA%20-%20Dancing%20Queen.mid",
-    "hint": "Sprightly, joyful disco-pop hit from Swedish supergroup ABBA",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "pop",
-    "year": 1976,
-    "style": "Disco"
-  },
-  {
-    "id": "acdc-highway-to-hell",
-    "title": "Highway to Hell",
-    "artist": "AC/DC",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/ACDC.Highway%20to%20Hell%20K.mid",
-    "hint": "High-octane hard rock anthem featuring Bon Scott's signature vocals",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "rock",
-    "year": 1979,
-    "style": "Hard Rock"
-  },
-  {
-    "id": "acdc-thunderstruck",
-    "title": "Thunderstruck",
-    "artist": "AC/DC",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/ACDC.Thunderstruck%20K.mid",
-    "hint": "Adrenaline-fueled stadium rock classic with a fast, tapping guitar intro by Angus Young",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "rock",
-    "year": 1990,
-    "style": "Hard Rock"
-  },
-  {
-    "id": "ace-of-base-happy-nation",
-    "title": "Happy Nation",
-    "artist": "Ace of Base",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/ACE%20OF%20BASE.Happy%20nation.mid",
-    "hint": "Mid-tempo Swedish reggae-pop and eurodance track promoting peace",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "pop",
-    "year": 1992,
-    "style": "Reggae-pop"
-  },
-  {
-    "id": "america-a-horse-with-no-name",
-    "title": "A Horse with No Name",
-    "artist": "America",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/AMERICA.A%20horse%20with%20no%20name.MID",
-    "hint": "Soft folk-rock ballad recounting a journey through the desert with a nameless horse",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "rock",
-    "year": 1971,
-    "style": "Folk Rock"
-  },
-  {
-    "id": "abba-lay-all-your-love-on-me",
-    "title": "Lay All Your Love on Me",
-    "artist": "ABBA",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Abba%20-%20Lay%20All%20Your%20Love%20On%20Me.mid.mid",
-    "hint": "Dance-pop/disco track by ABBA with a distinctive church-organ style synthesizer hook",
-    "category": "pop",
-    "decade": "80s",
-    "genre": "pop",
-    "year": 1980,
-    "style": "Disco"
-  },
-  {
-    "id": "america-the-beautiful",
-    "title": "America the Beautiful",
-    "artist": "Samuel A. Ward",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/America%20the%20Beautiful.mid",
-    "hint": "Traditional patriotic American anthem celebrating natural beauty and unity",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "pop",
-    "year": 1910,
-    "style": "Patriotic"
-  },
-  {
-    "id": "american-idiot-green-day",
-    "title": "American Idiot",
-    "artist": "Green Day",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/American%20Idiot%20-%20Green%20Day%20(Fixed%20Drums).mid",
-    "hint": "Furious punk rock title track criticizing media-driven hysteria",
-    "category": "pop",
-    "decade": "2000s",
-    "genre": "rock",
-    "year": 2004,
-    "style": "Punk Rock"
-  },
-  {
-    "id": "arctic-monkeys-r-u-mine",
-    "title": "R U Mine?",
-    "artist": "Arctic Monkeys",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Arctic%20Monkeys%20-%20R%20U%20Mine_.mid",
-    "hint": "Riff-heavy indie rock song with complex drumming from AM",
-    "category": "pop",
-    "decade": "2010s",
-    "genre": "rock",
-    "year": 2012,
-    "style": "Indie Rock"
-  },
-  {
-    "id": "arctic-monkeys-when-the-sun-goes-down",
-    "title": "When the Sun Goes Down",
-    "artist": "Arctic Monkeys",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Arctic%20Monkeys%20-%20When%20the%20Sun%20Goes%20Down.mid",
-    "hint": "Driving indie rock track telling stories about nightlife in Sheffield",
-    "category": "pop",
-    "decade": "2000s",
-    "genre": "rock",
-    "year": 2006,
-    "style": "Indie Rock"
-  },
-  {
-    "id": "avicii-levels",
-    "title": "Levels",
-    "artist": "Avicii",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Avicii%20-%20Levels%20(Skrillex%20remix).mid",
-    "hint": "Vibrant progressive house hit sampling Etta James' vocals",
-    "category": "pop",
-    "decade": "2010s",
-    "genre": "pop",
-    "year": 2011,
-    "style": "EDM House"
-  },
-  {
-    "id": "avicii-waiting-for-love",
-    "title": "Waiting for Love",
-    "artist": "Avicii",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Avicii%20-%20Waiting%20for%20love.mid",
-    "hint": "Soaring, emotional electro-house track co-produced by Martin Garrix",
-    "category": "pop",
-    "decade": "2010s",
-    "genre": "pop",
-    "year": 2015,
-    "style": "EDM House"
-  },
-  {
-    "id": "black-sabbath-paranoid",
-    "title": "Paranoid",
-    "artist": "Black Sabbath",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/BLACK%20SABBATH.Paranoid.mid",
-    "hint": "Influential, fast proto-metal song expressing angst and despair",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "rock",
-    "year": 1970,
-    "style": "Heavy Metal"
-  },
-  {
-    "id": "bowie-starman",
-    "title": "Starman",
-    "artist": "David Bowie",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/BOWIE.Starman.mid",
-    "hint": "Uplifting acoustic glam-rock anthem about an alien savior in the sky",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "rock",
-    "year": 1972,
-    "style": "Glam Rock"
-  },
-  {
-    "id": "backstreet-boys-i-want-it-that-way",
-    "title": "I Want It That Way",
-    "artist": "Backstreet Boys",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Backstreet%20Boys%20-%20I%20Want%20It%20That%20Way.mid",
-    "hint": "The ultimate late 90s boy band pop ballad with cryptic lyrics",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "pop",
-    "year": 1999,
-    "style": "Boy Band Pop"
-  },
-  {
-    "id": "billy-joel-piano-man",
-    "title": "Piano Man",
-    "artist": "Billy Joel",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Billy%20Joel%20-%20Piano%20Man.mid",
-    "hint": "Harmonica-laced piano waltz recounting the lives of patrons in a bar",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "pop",
-    "year": 1973,
-    "style": "Singer-Songwriter"
-  },
-  {
-    "id": "boulevard-of-broken-dreams-green-day-ippantekina",
-    "title": "Boulevard of Broken Dreams",
-    "artist": "Green Day",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Boulevard%20of%20Broken%20Dreams%20-%20Green%20Day%20-%20Ippantekina.mid",
-    "hint": "Melancholic alternative rock track about loneliness and isolation in a city",
-    "category": "pop",
-    "decade": "2000s",
-    "genre": "rock",
-    "year": 2004,
-    "style": "Alternative Rock"
-  },
-  {
-    "id": "buddy-holly-weezer-2",
-    "title": "Buddy Holly",
-    "artist": "Weezer",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Buddy%20Holly%20-%20Weezer%202.mid",
-    "hint": "Quirky power-pop/rock hit referencing 50s icon Buddy Holly",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "rock",
-    "year": 1994,
-    "style": "Power Pop"
-  },
-  {
-    "id": "buddy-holly-weezer",
-    "title": "Buddy Holly",
-    "artist": "Weezer",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Buddy%20Holly%20-%20Weezer.mid",
-    "hint": "Quirky power-pop/rock hit referencing 50s icon Buddy Holly",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "rock",
-    "year": 1994,
-    "style": "Power Pop"
-  },
-  {
-    "id": "clash-royale-little-prince-arena-theme",
+  "clash-royale-little-prince-arena-theme": {
     "title": "Little Prince Arena Theme",
     "artist": "Yentl Tijssens",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Clash%20Royale%20little%20prince%20arena%20theme%20(Converted).mid",
     "hint": "Orchestral fanfare playing in the Clash Royale arena for the Little Prince update",
     "category": "games",
     "decade": "2020s",
@@ -1818,407 +1314,9 @@ export const SONGS: Song[] = [
     "franchise": "Clash of Clans",
     "company": "Supercell"
   },
-  {
-    "id": "coldplay-clocks",
-    "title": "Clocks",
-    "artist": "Coldplay",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Coldplay%20-%20Clocks%20(Full%20Song).mid",
-    "hint": "Hypnotic, piano-arpeggio-driven alternative rock track from A Rush of Blood to the Head",
-    "category": "pop",
-    "decade": "2000s",
-    "genre": "rock",
-    "year": 2002,
-    "style": "Alternative Rock"
-  },
-  {
-    "id": "coldplay-viva-la-vida",
-    "title": "Viva la Vida",
-    "artist": "Coldplay",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Coldplay%20-%20Viva%20La%20Vida.mid",
-    "hint": "Orchestral pop track with soaring string loops detailing a fallen king's regrets",
-    "category": "pop",
-    "decade": "2000s",
-    "genre": "pop",
-    "year": 2008,
-    "style": "Baroque Pop"
-  },
-  {
-    "id": "coldplay-yellow",
-    "title": "Yellow",
-    "artist": "Coldplay",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Coldplay%20-%20Yellow.mid",
-    "hint": "Acoustic-driven, soaring alternative rock breakthrough track dedicated to devotions",
-    "category": "pop",
-    "decade": "2000s",
-    "genre": "rock",
-    "year": 2000,
-    "style": "Alternative Rock"
-  },
-  {
-    "id": "coolio-gangstas-paradise",
-    "title": "Gangsta's Paradise",
-    "artist": "Coolio",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Coolio%20-%20Gangstas%20Paradise.mid",
-    "hint": "Dark hip-hop masterpiece sampling Stevie Wonder, detailing inner-city struggles",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "pop",
-    "year": 1995,
-    "style": "Hip Hop"
-  },
-  {
-    "id": "coolio-gangsta-s-paradise",
-    "title": "Gangsta's Paradise",
-    "artist": "Coolio",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Coolio%20_%20Gangsta's%20Paradise%20(gangster's%20paradise)%20(redone).mid",
-    "hint": "Dark hip-hop masterpiece sampling Stevie Wonder, detailing inner-city struggles",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "pop",
-    "year": 1995,
-    "style": "Hip Hop"
-  },
-  {
-    "id": "daft-punk-around-the-world",
-    "title": "Around the World",
-    "artist": "Daft Punk",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Daft%20Punk%20-%20Around%20The%20World.mid",
-    "hint": "Repetitive, groovy French house classic with a syncopated synth bassline",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "pop",
-    "year": 1997,
-    "style": "French House"
-  },
-  {
-    "id": "daft-punk-one-more-time",
-    "title": "One More Time",
-    "artist": "Daft Punk",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Daft%20Punk%20-%20One%20More%20Time.mid",
-    "hint": "Euphoric, heavily autotuned filter-house dance floor anthem",
-    "category": "pop",
-    "decade": "2000s",
-    "genre": "pop",
-    "year": 2000,
-    "style": "French House"
-  },
-  {
-    "id": "does-the-journey-seem-long",
-    "title": "Does the Journey Seem Long",
-    "artist": "Charles Davis Tillman",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Does%20the%20Journey%20Seem%20Long.mid",
-    "hint": "Traditional Christian hymn urging perseverance through trials",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "pop",
-    "year": 1900,
-    "style": "Hymn"
-  },
-  {
-    "id": "europe-the-final-countdown",
-    "title": "The Final Countdown",
-    "artist": "Europe",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/EUROPE.The%20final%20countdown%20K.mid",
-    "hint": "Epic 80s hair metal anthem defined by its triumphant, brassy synth riff",
-    "category": "pop",
-    "decade": "80s",
-    "genre": "rock",
-    "year": 1986,
-    "style": "Synth Rock"
-  },
-  {
-    "id": "elton-john-bennie-and-the-jets-edit-by-sesh",
-    "title": "Bennie and the Jets",
-    "artist": "Elton John",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Elton%20John%20-%20Bennie%20and%20the%20Jets%20-%20Edit%20by%20Sesh.mid.mid",
-    "hint": "Mid-tempo piano rock song celebrating a fictional futuristic band",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "pop",
-    "year": 1973,
-    "style": "Glam Rock"
-  },
-  {
-    "id": "elton-john-i-m-still-standing",
-    "title": "I'm Still Standing",
-    "artist": "Elton John",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Elton%20John%20-%20I'm%20still%20standing.mid",
-    "hint": "Upbeat pop-rock survival anthem featuring high-energy piano playing",
-    "category": "pop",
-    "decade": "80s",
-    "genre": "pop",
-    "year": 1983,
-    "style": "Pop Rock"
-  },
-  {
-    "id": "elton-john-rocket-man",
-    "title": "Rocket Man",
-    "artist": "Elton John",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Elton%20John%20-%20Rocket%20Man.mid",
-    "hint": "Emotional piano ballad exploring an astronaut's loneliness in outer space",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "pop",
-    "year": 1972,
-    "style": "Soft Rock"
-  },
-  {
-    "id": "exit-music",
-    "title": "Exit Music (For a Film)",
-    "artist": "Radiohead",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Exit%20Music%20(For%20A%20Film)%20-%20Radiohead.mid",
-    "hint": "Haunting, acoustic-to-fuzz-bass climax track composed for Romeo + Juliet",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "rock",
-    "year": 1997,
-    "style": "Alternative Rock"
-  },
-  {
-    "id": "good-riddance",
-    "title": "Good Riddance (Time of Your Life)",
-    "artist": "Green Day",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Good%20Riddance%20(Time%20Of%20your%20Life)%20Green%20day%20.mid",
-    "hint": "Acoustic folk-rock ballad widely used for school graduations and farewells",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "rock",
-    "year": 1997,
-    "style": "Acoustic Rock"
-  },
-  {
-    "id": "green-day-basket-case",
-    "title": "Basket Case",
-    "artist": "Green Day",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Green%20Day%20-%20Basket%20Case.mid",
-    "hint": "High-speed punk rock hit describing panic attacks and mental anxiety",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "rock",
-    "year": 1994,
-    "style": "Punk Rock"
-  },
-  {
-    "id": "green-day-holiday",
-    "title": "Holiday",
-    "artist": "Green Day",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Green%20Day%20-%20Holiday.mid",
-    "hint": "Uplifting punk rock protest song with a driving beat and shout-along chorus",
-    "category": "pop",
-    "decade": "2000s",
-    "genre": "rock",
-    "year": 2004,
-    "style": "Punk Rock"
-  },
-  {
-    "id": "green-day-wake-me-up-when-september-ends",
-    "title": "Wake Me Up When September Ends",
-    "artist": "Green Day",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Green%20Day%20-%20Wake%20Me%20Up%20When%20September%20Ends.mid",
-    "hint": "Somber alternative rock acoustic track written about the loss of the singer's father",
-    "category": "pop",
-    "decade": "2000s",
-    "genre": "rock",
-    "year": 2004,
-    "style": "Alternative Rock"
-  },
-  {
-    "id": "green-day-welcome-to-paradise-v7",
-    "title": "Welcome to Paradise",
-    "artist": "Green Day",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Green%20Day%20-%20Welcome%20To%20Paradise%20v7.mid",
-    "hint": "Fast-paced punk track about transitioning to independent, albeit gritty, living",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "rock",
-    "year": 1991,
-    "style": "Punk Rock"
-  },
-  {
-    "id": "guns-n-roses-sweet-child-o-mine",
-    "title": "Sweet Child O' Mine",
-    "artist": "Guns N' Roses",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Guns%20n%20Roses%20-%20Sweet%20Child%20O%20Mine.mid",
-    "hint": "Hard rock hit legendary for Slash's string-skipping intro guitar riff",
-    "category": "pop",
-    "decade": "80s",
-    "genre": "rock",
-    "year": 1987,
-    "style": "Hard Rock"
-  },
-  {
-    "id": "hey-brother-avicii",
-    "title": "Hey Brother",
-    "artist": "Avicii",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Hey_Brother-Avicii.mid",
-    "hint": "EDM dance track infused with bluegrass banjo, brass horns and soulful country vocals",
-    "category": "pop",
-    "decade": "2010s",
-    "genre": "pop",
-    "year": 2013,
-    "style": "Folk House"
-  },
-  {
-    "id": "in-the-air-tonight",
-    "title": "In the Air Tonight",
-    "artist": "Phil Collins",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/In%20the%20Air%20Tonight%20(Phil%20Collins).mid",
-    "hint": "Atmospheric pop-rock song famous for its gated-reverb drum break halfway through",
-    "category": "pop",
-    "decade": "80s",
-    "genre": "pop",
-    "year": 1981,
-    "style": "Synth-pop"
-  },
-  {
-    "id": "killer-queen-queen",
-    "title": "Killer Queen",
-    "artist": "Queen",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Killer%20Queen%20-%20Queen.mid",
-    "hint": "Vaudeville-style glam-rock song highlighting Freddie Mercury's theatrical vocals",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "rock",
-    "year": 1974,
-    "style": "Glam Rock"
-  },
-  {
-    "id": "led-zeppelin-stairway-to-heaven",
-    "title": "Stairway to Heaven",
-    "artist": "Led Zeppelin",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/LED%20ZEPPELIN.Stairway%20to%20heaven%20K.mid",
-    "hint": "Acoustic-to-heavy epic rock progressive track featuring Jimmy Page's legendary guitar solo",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "rock",
-    "year": 1971,
-    "style": "Classic Rock"
-  },
-  {
-    "id": "linkin-park-numb",
-    "title": "Numb",
-    "artist": "Linkin Park",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Linkin%20Park%20-%20Numb%20(Tim%20Dawes%20Remix).mid",
-    "hint": "Emotional nu-metal anthem about collapsing under parental/societal expectations",
-    "category": "pop",
-    "decade": "2000s",
-    "genre": "rock",
-    "year": 2003,
-    "style": "Alternative Rock"
-  },
-  {
-    "id": "linkin-park-one-step-closer",
-    "title": "One Step Closer",
-    "artist": "Linkin Park",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Linkin%20Park%20-%20One%20Step%20Closer.mid",
-    "hint": "Furious, aggressive nu-metal song with the famous breakdown 'Shut up when I'm talking to you!'",
-    "category": "pop",
-    "decade": "2000s",
-    "genre": "rock",
-    "year": 2000,
-    "style": "Nu Metal"
-  },
-  {
-    "id": "metallica-enter-sandman",
-    "title": "Enter Sandman",
-    "artist": "Metallica",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Metallica%20-%20Enter%20Sandman.mid",
-    "hint": "Heavy metal classic with a creepy nightmare nursery rhyme monologue",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "rock",
-    "year": 1991,
-    "style": "Heavy Metal"
-  },
-  {
-    "id": "metallica-master-of-puppets",
-    "title": "Master of Puppets",
-    "artist": "Metallica",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Metallica%20-%20Master%20Of%20Puppets.mid",
-    "hint": "Epic 8-minute thrash metal masterpiece depicting the horrors of drug addiction",
-    "category": "pop",
-    "decade": "80s",
-    "genre": "rock",
-    "year": 1986,
-    "style": "Thrash Metal"
-  },
-  {
-    "id": "metallica-nothing-else-matters",
-    "title": "Nothing Else Matters",
-    "artist": "Metallica",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Metallica%20-%20Nothing%20Else%20Matters.mid",
-    "hint": "Intimate power ballad featuring acoustic guitar picking and orchestral backing strings",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "rock",
-    "year": 1992,
-    "style": "Heavy Metal Ballad"
-  },
-  {
-    "id": "michael-jackson-beat-it",
-    "title": "Beat It",
-    "artist": "Michael Jackson",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Michael%20Jackson%20-%20Beat%20It.mid",
-    "hint": "Anti-violence dance-rock song featuring Eddie Van Halen's explosive guitar solo",
-    "category": "pop",
-    "decade": "80s",
-    "genre": "pop",
-    "year": 1982,
-    "style": "Pop Rock"
-  },
-  {
-    "id": "michael-jackson-billie-jean",
-    "title": "Billie Jean",
-    "artist": "Michael Jackson",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Michael%20Jackson%20-%20Billie%20Jean.mid",
-    "hint": "Michael Jackson 80s hit with an iconic bassline and moonwalk dance",
-    "category": "pop",
-    "decade": "80s",
-    "genre": "pop",
-    "year": 1982,
-    "style": "R&B Pop"
-  },
-  {
-    "id": "oasis-wonderwall",
-    "title": "Wonderwall",
-    "artist": "Oasis",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/OASIS.Wonderwall%20K.mid",
-    "hint": "Acoustic-heavy Britpop anthem featuring Liam Gallagher's nasal vocal delivery",
-    "category": "pop",
-    "decade": "90s",
-    "genre": "rock",
-    "year": 1995,
-    "style": "Britpop"
-  },
-  {
-    "id": "pink-floyd-brain-damage",
-    "title": "Brain Damage",
-    "artist": "Pink Floyd",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Pink%20Floyd%20-%20Brain%20Damage.mid",
-    "hint": "Psychedelic progressive rock track about madness and the dark side of the moon",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "rock",
-    "year": 1973,
-    "style": "Progressive Rock"
-  },
-  {
-    "id": "queen-bohemian-rhapsody",
-    "title": "Bohemian Rhapsody",
-    "artist": "Queen",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Queen%20-%20Bohemian%20Rhapsody.mid",
-    "hint": "Operatic, multi-section rock suite that broke all standard pop song rules",
-    "category": "pop",
-    "decade": "retro",
-    "genre": "rock",
-    "year": 1975,
-    "style": "Progressive Rock"
-  },
-  {
-    "id": "rdr2-ost-american-venom",
+  "rdr2-ost-american-venom": {
     "title": "American Venom",
     "artist": "Woody Jackson",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/RDR2%20OST%20-%20American%20Venom.mid",
     "hint": "Epic western acoustic guitar and horn theme from Red Dead Redemption 2's finale",
     "category": "games",
     "decade": "2010s",
@@ -2229,11 +1327,591 @@ export const SONGS: Song[] = [
     "franchise": "Red Dead",
     "company": "Rockstar Games"
   },
-  {
-    "id": "radiohead-creep",
+
+  // ==================== POP CATEGORY ====================
+  "rickroll": {
+    "title": "Never Gonna Give You Up",
+    "artist": "Rick Astley",
+    "hint": "The ultimate 80s pop song used to prank people on the internet",
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop",
+    "year": 1987,
+    "style": "Synth-pop"
+  },
+  "billiejean": {
+    "title": "Billie Jean",
+    "artist": "Michael Jackson",
+    "hint": "Michael Jackson 80s hit with an iconic bassline and moonwalk dance",
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop",
+    "year": 1982,
+    "style": "R&B Pop"
+  },
+  "takeonme": {
+    "title": "Take On Me",
+    "artist": "A-ha",
+    "hint": "80s synth-pop track by Norwegian band A-ha with a famous high-pitched chorus",
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop",
+    "year": 1984,
+    "style": "Synth-pop"
+  },
+  "21-guns": {
+    "title": "21 Guns",
+    "artist": "Green Day",
+    "hint": "Power ballad by Green Day addressing patriotism and anti-war sentiments",
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "rock",
+    "year": 2009,
+    "style": "Alternative Rock"
+  },
+  "505-arctic-monkeys": {
+    "title": "505",
+    "artist": "Arctic Monkeys",
+    "hint": "Atmospheric organ-driven love song from Favourite Worst Nightmare",
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "rock",
+    "year": 2007,
+    "style": "Indie Rock"
+  },
+  "a-ha-take-on-me": {
+    "title": "Take On Me",
+    "artist": "A-ha",
+    "hint": "80s synth-pop track by Norwegian band A-ha with a famous high-pitched chorus",
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop",
+    "year": 1984,
+    "style": "Synth-pop"
+  },
+  "abba-dancing-queen": {
+    "title": "Dancing Queen",
+    "artist": "ABBA",
+    "hint": "Sprightly, joyful disco-pop hit from Swedish supergroup ABBA",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "pop",
+    "year": 1976,
+    "style": "Disco"
+  },
+  "acdc-highway-to-hell": {
+    "title": "Highway to Hell",
+    "artist": "AC/DC",
+    "hint": "High-octane hard rock anthem featuring Bon Scott's signature vocals",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "rock",
+    "year": 1979,
+    "style": "Hard Rock"
+  },
+  "acdc-thunderstruck": {
+    "title": "Thunderstruck",
+    "artist": "AC/DC",
+    "hint": "Adrenaline-fueled stadium rock classic with a fast, tapping guitar intro by Angus Young",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "rock",
+    "year": 1990,
+    "style": "Hard Rock"
+  },
+  "ace-of-base-happy-nation": {
+    "title": "Happy Nation",
+    "artist": "Ace of Base",
+    "hint": "Mid-tempo Swedish reggae-pop and eurodance track promoting peace",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "pop",
+    "year": 1992,
+    "style": "Reggae-pop"
+  },
+  "america-a-horse-with-no-name": {
+    "title": "A Horse with No Name",
+    "artist": "America",
+    "hint": "Soft folk-rock ballad recounting a journey through the desert with a nameless horse",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "rock",
+    "year": 1971,
+    "style": "Folk Rock"
+  },
+  "abba-lay-all-your-love-on-me": {
+    "title": "Lay All Your Love on Me",
+    "artist": "ABBA",
+    "hint": "Dance-pop/disco track by ABBA with a distinctive church-organ style synthesizer hook",
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop",
+    "year": 1980,
+    "style": "Disco"
+  },
+  "america-the-beautiful": {
+    "title": "America the Beautiful",
+    "artist": "Samuel A. Ward",
+    "hint": "Traditional patriotic American anthem celebrating natural beauty and unity",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "pop",
+    "year": 1910,
+    "style": "Patriotic"
+  },
+  "american-idiot-green-day": {
+    "title": "American Idiot",
+    "artist": "Green Day",
+    "hint": "Furious punk rock title track criticizing media-driven hysteria",
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "rock",
+    "year": 2004,
+    "style": "Punk Rock"
+  },
+  "arctic-monkeys-r-u-mine": {
+    "title": "R U Mine?",
+    "artist": "Arctic Monkeys",
+    "hint": "Riff-heavy indie rock song with complex drumming from AM",
+    "category": "pop",
+    "decade": "2010s",
+    "genre": "rock",
+    "year": 2012,
+    "style": "Indie Rock"
+  },
+  "arctic-monkeys-when-the-sun-goes-down": {
+    "title": "When the Sun Goes Down",
+    "artist": "Arctic Monkeys",
+    "hint": "Driving indie rock track telling stories about nightlife in Sheffield",
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "rock",
+    "year": 2006,
+    "style": "Indie Rock"
+  },
+  "avicii-levels": {
+    "title": "Levels",
+    "artist": "Avicii",
+    "hint": "Vibrant progressive house hit sampling Etta James' vocals",
+    "category": "pop",
+    "decade": "2010s",
+    "genre": "pop",
+    "year": 2011,
+    "style": "EDM House"
+  },
+  "avicii-waiting-for-love": {
+    "title": "Waiting for Love",
+    "artist": "Avicii",
+    "hint": "Soaring, emotional electro-house track co-produced by Martin Garrix",
+    "category": "pop",
+    "decade": "2010s",
+    "genre": "pop",
+    "year": 2015,
+    "style": "EDM House"
+  },
+  "black-sabbath-paranoid": {
+    "title": "Paranoid",
+    "artist": "Black Sabbath",
+    "hint": "Influential, fast proto-metal song expressing angst and despair",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "rock",
+    "year": 1970,
+    "style": "Heavy Metal"
+  },
+  "bowie-starman": {
+    "title": "Starman",
+    "artist": "David Bowie",
+    "hint": "Uplifting acoustic glam-rock anthem about an alien savior in the sky",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "rock",
+    "year": 1972,
+    "style": "Glam Rock"
+  },
+  "backstreet-boys-i-want-it-that-way": {
+    "title": "I Want It That Way",
+    "artist": "Backstreet Boys",
+    "hint": "The ultimate late 90s boy band pop ballad with cryptic lyrics",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "pop",
+    "year": 1999,
+    "style": "Boy Band Pop"
+  },
+  "billy-joel-piano-man": {
+    "title": "Piano Man",
+    "artist": "Billy Joel",
+    "hint": "Harmonica-laced piano waltz recounting the lives of patrons in a bar",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "pop",
+    "year": 1973,
+    "style": "Singer-Songwriter"
+  },
+  "boulevard-of-broken-dreams-green-day-ippantekina": {
+    "title": "Boulevard of Broken Dreams",
+    "artist": "Green Day",
+    "hint": "Melancholic alternative rock track about loneliness and isolation in a city",
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "rock",
+    "year": 2004,
+    "style": "Alternative Rock"
+  },
+  "buddy-holly-weezer-2": {
+    "title": "Buddy Holly",
+    "artist": "Weezer",
+    "hint": "Quirky power-pop/rock hit referencing 50s icon Buddy Holly",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "rock",
+    "year": 1994,
+    "style": "Power Pop"
+  },
+  "buddy-holly-weezer": {
+    "title": "Buddy Holly",
+    "artist": "Weezer",
+    "hint": "Quirky power-pop/rock hit referencing 50s icon Buddy Holly",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "rock",
+    "year": 1994,
+    "style": "Power Pop"
+  },
+  "coldplay-clocks": {
+    "title": "Clocks",
+    "artist": "Coldplay",
+    "hint": "Hypnotic, piano-arpeggio-driven alternative rock track from A Rush of Blood to the Head",
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "rock",
+    "year": 2002,
+    "style": "Alternative Rock"
+  },
+  "coldplay-viva-la-vida": {
+    "title": "Viva la Vida",
+    "artist": "Coldplay",
+    "hint": "Orchestral pop track with soaring string loops detailing a fallen king's regrets",
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "pop",
+    "year": 2008,
+    "style": "Baroque Pop"
+  },
+  "coldplay-yellow": {
+    "title": "Yellow",
+    "artist": "Coldplay",
+    "hint": "Acoustic-driven, soaring alternative rock breakthrough track dedicated to devotions",
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "rock",
+    "year": 2000,
+    "style": "Alternative Rock"
+  },
+  "coolio-gangstas-paradise": {
+    "title": "Gangsta's Paradise",
+    "artist": "Coolio",
+    "hint": "Dark hip-hop masterpiece sampling Stevie Wonder, detailing inner-city struggles",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "pop",
+    "year": 1995,
+    "style": "Hip Hop"
+  },
+  "coolio-gangsta-s-paradise": {
+    "title": "Gangsta's Paradise",
+    "artist": "Coolio",
+    "hint": "Dark hip-hop masterpiece sampling Stevie Wonder, detailing inner-city struggles",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "pop",
+    "year": 1995,
+    "style": "Hip Hop"
+  },
+  "daft-punk-around-the-world": {
+    "title": "Around the World",
+    "artist": "Daft Punk",
+    "hint": "Repetitive, groovy French house classic with a syncopated synth bassline",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "pop",
+    "year": 1997,
+    "style": "French House"
+  },
+  "daft-punk-one-more-time": {
+    "title": "One More Time",
+    "artist": "Daft Punk",
+    "hint": "Euphoric, heavily autotuned filter-house dance floor anthem",
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "pop",
+    "year": 2000,
+    "style": "French House"
+  },
+  "does-the-journey-seem-long": {
+    "title": "Does the Journey Seem Long",
+    "artist": "Charles Davis Tillman",
+    "hint": "Traditional Christian hymn urging perseverance through trials",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "pop",
+    "year": 1900,
+    "style": "Hymn"
+  },
+  "europe-the-final-countdown": {
+    "title": "The Final Countdown",
+    "artist": "Europe",
+    "hint": "Epic 80s hair metal anthem defined by its triumphant, brassy synth riff",
+    "category": "pop",
+    "decade": "80s",
+    "genre": "rock",
+    "year": 1986,
+    "style": "Synth Rock"
+  },
+  "elton-john-bennie-and-the-jets-edit-by-sesh": {
+    "title": "Bennie and the Jets",
+    "artist": "Elton John",
+    "hint": "Mid-tempo piano rock song celebrating a fictional futuristic band",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "pop",
+    "year": 1973,
+    "style": "Glam Rock"
+  },
+  "elton-john-i-m-still-standing": {
+    "title": "I'm Still Standing",
+    "artist": "Elton John",
+    "hint": "Upbeat pop-rock survival anthem featuring high-energy piano playing",
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop",
+    "year": 1983,
+    "style": "Pop Rock"
+  },
+  "elton-john-rocket-man": {
+    "title": "Rocket Man",
+    "artist": "Elton John",
+    "hint": "Emotional piano ballad exploring an astronaut's loneliness in outer space",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "pop",
+    "year": 1972,
+    "style": "Soft Rock"
+  },
+  "exit-music": {
+    "title": "Exit Music (For a Film)",
+    "artist": "Radiohead",
+    "hint": "Haunting, acoustic-to-fuzz-bass climax track composed for Romeo + Juliet",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "rock",
+    "year": 1997,
+    "style": "Alternative Rock"
+  },
+  "good-riddance": {
+    "title": "Good Riddance (Time of Your Life)",
+    "artist": "Green Day",
+    "hint": "Acoustic folk-rock ballad widely used for school graduations and farewells",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "rock",
+    "year": 1997,
+    "style": "Acoustic Rock"
+  },
+  "green-day-basket-case": {
+    "title": "Basket Case",
+    "artist": "Green Day",
+    "hint": "High-speed punk rock hit describing panic attacks and mental anxiety",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "rock",
+    "year": 1994,
+    "style": "Punk Rock"
+  },
+  "green-day-holiday": {
+    "title": "Holiday",
+    "artist": "Green Day",
+    "hint": "Uplifting punk rock protest song with a driving beat and shout-along chorus",
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "rock",
+    "year": 2004,
+    "style": "Punk Rock"
+  },
+  "green-day-wake-me-up-when-september-ends": {
+    "title": "Wake Me Up When September Ends",
+    "artist": "Green Day",
+    "hint": "Somber alternative rock acoustic track written about the loss of the singer's father",
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "rock",
+    "year": 2004,
+    "style": "Alternative Rock"
+  },
+  "green-day-welcome-to-paradise-v7": {
+    "title": "Welcome to Paradise",
+    "artist": "Green Day",
+    "hint": "Fast-paced punk track about transitioning to independent, albeit gritty, living",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "rock",
+    "year": 1991,
+    "style": "Punk Rock"
+  },
+  "guns-n-roses-sweet-child-o-mine": {
+    "title": "Sweet Child O' Mine",
+    "artist": "Guns N' Roses",
+    "hint": "Hard rock hit legendary for Slash's string-skipping intro guitar riff",
+    "category": "pop",
+    "decade": "80s",
+    "genre": "rock",
+    "year": 1987,
+    "style": "Hard Rock"
+  },
+  "hey-brother-avicii": {
+    "title": "Hey Brother",
+    "artist": "Avicii",
+    "hint": "EDM dance track infused with bluegrass banjo, brass horns and soulful country vocals",
+    "category": "pop",
+    "decade": "2010s",
+    "genre": "pop",
+    "year": 2013,
+    "style": "Folk House"
+  },
+  "in-the-air-tonight": {
+    "title": "In the Air Tonight",
+    "artist": "Phil Collins",
+    "hint": "Atmospheric pop-rock song famous for its gated-reverb drum break halfway through",
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop",
+    "year": 1981,
+    "style": "Synth-pop"
+  },
+  "killer-queen-queen": {
+    "title": "Killer Queen",
+    "artist": "Queen",
+    "hint": "Vaudeville-style glam-rock song highlighting Freddie Mercury's theatrical vocals",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "rock",
+    "year": 1974,
+    "style": "Glam Rock"
+  },
+  "led-zeppelin-stairway-to-heaven": {
+    "title": "Stairway to Heaven",
+    "artist": "Led Zeppelin",
+    "hint": "Acoustic-to-heavy epic rock progressive track featuring Jimmy Page's legendary guitar solo",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "rock",
+    "year": 1971,
+    "style": "Classic Rock"
+  },
+  "linkin-park-numb": {
+    "title": "Numb",
+    "artist": "Linkin Park",
+    "hint": "Emotional nu-metal anthem about collapsing under parental/societal expectations",
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "rock",
+    "year": 2003,
+    "style": "Alternative Rock"
+  },
+  "linkin-park-one-step-closer": {
+    "title": "One Step Closer",
+    "artist": "Linkin Park",
+    "hint": "Furious, aggressive nu-metal song with the famous breakdown 'Shut up when I'm talking to you!'",
+    "category": "pop",
+    "decade": "2000s",
+    "genre": "rock",
+    "year": 2000,
+    "style": "Nu Metal"
+  },
+  "metallica-enter-sandman": {
+    "title": "Enter Sandman",
+    "artist": "Metallica",
+    "hint": "Heavy metal classic with a creepy nightmare nursery rhyme monologue",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "rock",
+    "year": 1991,
+    "style": "Heavy Metal"
+  },
+  "metallica-master-of-puppets": {
+    "title": "Master of Puppets",
+    "artist": "Metallica",
+    "hint": "Epic 8-minute thrash metal masterpiece depicting the horrors of drug addiction",
+    "category": "pop",
+    "decade": "80s",
+    "genre": "rock",
+    "year": 1986,
+    "style": "Thrash Metal"
+  },
+  "metallica-nothing-else-matters": {
+    "title": "Nothing Else Matters",
+    "artist": "Metallica",
+    "hint": "Intimate power ballad featuring acoustic guitar picking and orchestral backing strings",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "rock",
+    "year": 1992,
+    "style": "Heavy Metal Ballad"
+  },
+  "michael-jackson-beat-it": {
+    "title": "Beat It",
+    "artist": "Michael Jackson",
+    "hint": "Anti-violence dance-rock song featuring Eddie Van Halen's explosive guitar solo",
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop",
+    "year": 1982,
+    "style": "Pop Rock"
+  },
+  "michael-jackson-billie-jean": {
+    "title": "Billie Jean",
+    "artist": "Michael Jackson",
+    "hint": "Michael Jackson 80s hit with an iconic bassline and moonwalk dance",
+    "category": "pop",
+    "decade": "80s",
+    "genre": "pop",
+    "year": 1982,
+    "style": "R&B Pop"
+  },
+  "oasis-wonderwall": {
+    "title": "Wonderwall",
+    "artist": "Oasis",
+    "hint": "Acoustic-heavy Britpop anthem featuring Liam Gallagher's nasal vocal delivery",
+    "category": "pop",
+    "decade": "90s",
+    "genre": "rock",
+    "year": 1995,
+    "style": "Britpop"
+  },
+  "pink-floyd-brain-damage": {
+    "title": "Brain Damage",
+    "artist": "Pink Floyd",
+    "hint": "Psychedelic progressive rock track about madness and the dark side of the moon",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "rock",
+    "year": 1973,
+    "style": "Progressive Rock"
+  },
+  "queen-bohemian-rhapsody": {
+    "title": "Bohemian Rhapsody",
+    "artist": "Queen",
+    "hint": "Operatic, multi-section rock suite that broke all standard pop song rules",
+    "category": "pop",
+    "decade": "retro",
+    "genre": "rock",
+    "year": 1975,
+    "style": "Progressive Rock"
+  },
+  "radiohead-creep": {
     "title": "Creep",
     "artist": "Radiohead",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Radiohead%20-%20Creep.mid",
     "hint": "90s alternative rock self-loathing anthem marked by sudden, abrasive guitar crunches",
     "category": "pop",
     "decade": "90s",
@@ -2241,11 +1919,9 @@ export const SONGS: Song[] = [
     "year": 1992,
     "style": "Alternative Rock"
   },
-  {
-    "id": "radiohead-no-surprises",
+  "radiohead-no-surprises": {
     "title": "No Surprises",
     "artist": "Radiohead",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Radiohead%20-%20No%20Surprises.mid",
     "hint": "Melancholic, nursery-rhyme-like glockenspiel theme describing mid-life exhaustion",
     "category": "pop",
     "decade": "90s",
@@ -2253,11 +1929,9 @@ export const SONGS: Song[] = [
     "year": 1997,
     "style": "Alternative Rock"
   },
-  {
-    "id": "red-hot-chili-peppers-californication",
+  "red-hot-chili-peppers-californication": {
     "title": "Californication",
     "artist": "Red Hot Chili Peppers",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Red%20Hot%20Chili%20Peppers%20-%20Californication.mid",
     "hint": "Funk-rock ballad detailing the dark side of Hollywood's cultural export",
     "category": "pop",
     "decade": "90s",
@@ -2265,11 +1939,9 @@ export const SONGS: Song[] = [
     "year": 1999,
     "style": "Alternative Rock"
   },
-  {
-    "id": "smash-mouth-all-star",
+  "smash-mouth-all-star": {
     "title": "All Star",
     "artist": "Smash Mouth",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/SMASH%20MOUTH.All%20star.mid",
     "hint": "Catchy power-pop track forever associated with the animated movie Shrek",
     "category": "pop",
     "decade": "90s",
@@ -2277,11 +1949,9 @@ export const SONGS: Song[] = [
     "year": 1999,
     "style": "Pop Rock"
   },
-  {
-    "id": "scar-tissue-red-hot-chili-peppers",
+  "scar-tissue-red-hot-chili-peppers": {
     "title": "Scar Tissue",
     "artist": "Red Hot Chili Peppers",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Scar%20Tissue%20-%20Red%20Hot%20Chili%20Peppers.mid",
     "hint": "Melodic alternative rock track featuring John Frusciante's slide guitar solos",
     "category": "pop",
     "decade": "90s",
@@ -2289,11 +1959,9 @@ export const SONGS: Song[] = [
     "year": 1999,
     "style": "Alternative Rock"
   },
-  {
-    "id": "scorpions-rock-you-like-a-hurricane",
+  "scorpions-rock-you-like-a-hurricane": {
     "title": "Rock You Like a Hurricane",
     "artist": "Scorpions",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Scorpions%20-%20Rock%20You%20Like%20A%20Hurricane%20.mid",
     "hint": "German heavy metal/hard rock anthem with a massive, driving main riff",
     "category": "pop",
     "decade": "80s",
@@ -2301,11 +1969,9 @@ export const SONGS: Song[] = [
     "year": 1984,
     "style": "Hard Rock"
   },
-  {
-    "id": "smashing-pumpkins-1979",
+  "smashing-pumpkins-1979": {
     "title": "1979",
     "artist": "The Smashing Pumpkins",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Smashing%20Pumpkins%20-%201979.mid",
     "hint": "Nostalgic, synth-infused alternative rock song recalling teenage memories",
     "category": "pop",
     "decade": "90s",
@@ -2313,11 +1979,9 @@ export const SONGS: Song[] = [
     "year": 1995,
     "style": "Alternative Rock"
   },
-  {
-    "id": "soundgarden-black-hole-sun",
+  "soundgarden-black-hole-sun": {
     "title": "Black Hole Sun",
     "artist": "Soundgarden",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Soundgarden%20-%20Black%20Hole%20Sun.mid",
     "hint": "Psychedelic-grunge masterpiece with warbling guitar effects and a dark tone",
     "category": "pop",
     "decade": "90s",
@@ -2325,11 +1989,9 @@ export const SONGS: Song[] = [
     "year": 1994,
     "style": "Grunge"
   },
-  {
-    "id": "starships-nicki-minaj",
+  "starships-nicki-minaj": {
     "title": "Starships",
     "artist": "Nicki Minaj",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Starships%20-%20Nicki%20Minaj.mid",
     "hint": "Euphoric dance-pop/eurodance track with a heavy synthesiser breakdown",
     "category": "pop",
     "decade": "2010s",
@@ -2337,11 +1999,9 @@ export const SONGS: Song[] = [
     "year": 2012,
     "style": "Dance-pop"
   },
-  {
-    "id": "the-beatles-love-me-do",
+  "the-beatles-love-me-do": {
     "title": "Love Me Do",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/THE%20BEATLES%20-%20Love%20me%20do%20K.mid",
     "hint": "Early British invasion classic featuring a prominent bluesy harmonica hook",
     "category": "pop",
     "decade": "retro",
@@ -2349,11 +2009,9 @@ export const SONGS: Song[] = [
     "year": 1962,
     "style": "Classic Rock"
   },
-  {
-    "id": "the-beatles-hey-jude",
+  "the-beatles-hey-jude": {
     "title": "Hey Jude",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/THE%20BEATLES.Hey%20Jude%20K.mid",
     "hint": "Iconic piano ballad written to comfort a child, ending with a massive 'Na-na-na' singalong",
     "category": "pop",
     "decade": "retro",
@@ -2361,11 +2019,9 @@ export const SONGS: Song[] = [
     "year": 1968,
     "style": "Classic Rock"
   },
-  {
-    "id": "toto-africa",
+  "toto-africa": {
     "title": "Africa",
     "artist": "Toto",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/TOTO.Africa%20K.mid",
     "hint": "Soft rock/synth-pop masterclass featuring kalimba sounds and a massive chorus",
     "category": "pop",
     "decade": "80s",
@@ -2373,11 +2029,9 @@ export const SONGS: Song[] = [
     "year": 1982,
     "style": "Synth-pop"
   },
-  {
-    "id": "team-america-america",
+  "team-america-america": {
     "title": "America, F**k Yeah",
     "artist": "Trey Parker",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Team_America_-_America.mid",
     "hint": "Over-the-top patriotic satire track from the creators of South Park",
     "category": "pop",
     "decade": "2000s",
@@ -2385,11 +2039,9 @@ export const SONGS: Song[] = [
     "year": 2004,
     "style": "Satire Rock"
   },
-  {
-    "id": "thanks-for-the-sabbath-school",
+  "thanks-for-the-sabbath-school": {
     "title": "Thanks for the Sabbath School",
     "artist": "William J. Kirkpatrick",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Thanks%20for%20the%20Sabbath%20School.mid",
     "hint": "Traditional Sunday school hymn expressing gratitude for spiritual learning",
     "category": "pop",
     "decade": "retro",
@@ -2397,11 +2049,9 @@ export const SONGS: Song[] = [
     "year": 1890,
     "style": "Hymn"
   },
-  {
-    "id": "the-beatles-because",
+  "the-beatles-because": {
     "title": "Because",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Because.mid",
     "hint": "Three-part vocal harmony masterpiece with a electric harpsichord intro inspired by Beethoven",
     "category": "pop",
     "decade": "retro",
@@ -2409,11 +2059,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Art Rock"
   },
-  {
-    "id": "the-beatles-carry-that-weight",
+  "the-beatles-carry-that-weight": {
     "title": "Carry That Weight",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Carry%20That%20Weight%20(1).mid",
     "hint": "Abbey Road medley track featuring brass orchestrations and unison vocals",
     "category": "pop",
     "decade": "retro",
@@ -2421,11 +2069,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Classic Rock"
   },
-  {
-    "id": "the-beatles-come-together",
+  "the-beatles-come-together": {
     "title": "Come Together",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Come%20Together.mid",
     "hint": "Swampy blues-rock track featuring John Lennon's whispered 'shoot me' vocal",
     "category": "pop",
     "decade": "retro",
@@ -2433,11 +2079,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Blues Rock"
   },
-  {
-    "id": "the-beatles-golden-slumbers",
+  "the-beatles-golden-slumbers": {
     "title": "Golden Slumbers",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Golden%20Slumbers.mid",
     "hint": "Soaring piano lullaby adapted from a 17th-century poem in the Abbey Road medley",
     "category": "pop",
     "decade": "retro",
@@ -2445,11 +2089,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Classic Rock"
   },
-  {
-    "id": "the-beatles-her-majesty",
+  "the-beatles-her-majesty": {
     "title": "Her Majesty",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Her%20Majesty.mid",
     "hint": "Short acoustic tongue-in-cheek ditty playing as a hidden track at the end of Abbey Road",
     "category": "pop",
     "decade": "retro",
@@ -2457,11 +2099,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Acoustic Folk"
   },
-  {
-    "id": "the-beatles-here-comes-the-sun",
+  "the-beatles-here-comes-the-sun": {
     "title": "Here Comes the Sun",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Here%20Comes%20the%20Sun.mid",
     "hint": "Optimistic acoustic folk-rock track written by George Harrison in Eric Clapton's garden",
     "category": "pop",
     "decade": "retro",
@@ -2469,11 +2109,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Folk Rock"
   },
-  {
-    "id": "the-beatles-i-want-you",
+  "the-beatles-i-want-you": {
     "title": "I Want You (She's So Heavy)",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20I%20Want%20You.mid",
     "hint": "Hypnotic, intense blues-rock track ending with a wall of white noise that cuts off abruptly",
     "category": "pop",
     "decade": "retro",
@@ -2481,11 +2119,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Blues Rock"
   },
-  {
-    "id": "the-beatles-maxwell-s-silver-hammer",
+  "the-beatles-maxwell-s-silver-hammer": {
     "title": "Maxwell's Silver Hammer",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Maxwell's%20Silver%20Hammer.mid",
     "hint": "Jovial pop song about a murderous student using a hammer, featuring Moog synthesiser",
     "category": "pop",
     "decade": "retro",
@@ -2493,11 +2129,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Music Hall Pop"
   },
-  {
-    "id": "the-beatles-mean-mr-mustard",
+  "the-beatles-mean-mr-mustard": {
     "title": "Mean Mr. Mustard",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Mean%20Mr.%20Mustard%20.mid",
     "hint": "Eccentric character song about a miserly man, part of the Abbey Road medley",
     "category": "pop",
     "decade": "retro",
@@ -2505,11 +2139,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Classic Rock"
   },
-  {
-    "id": "the-beatles-octopus-s-garden",
+  "the-beatles-octopus-s-garden": {
     "title": "Octopus's Garden",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Octopus's%20Garden.mid",
     "hint": "Cheerful, bubble-blowing pop-rock tune written and sung by Ringo Starr",
     "category": "pop",
     "decade": "retro",
@@ -2517,11 +2149,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Pop Rock"
   },
-  {
-    "id": "the-beatles-oh-darling",
+  "the-beatles-oh-darling": {
     "title": "Oh! Darling",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Oh!%20Darling.mid",
     "hint": "Heavy 50s-style doo-wop rock ballad featuring Paul McCartney's rawest vocals",
     "category": "pop",
     "decade": "retro",
@@ -2529,11 +2159,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Blues Rock"
   },
-  {
-    "id": "the-beatles-old-brown-shoe",
+  "the-beatles-old-brown-shoe": {
     "title": "Old Brown Shoe",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Old%20Brown%20Shoe.mid",
     "hint": "Upbeat rock track driven by a complex bassline played by George Harrison",
     "category": "pop",
     "decade": "retro",
@@ -2541,11 +2169,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Classic Rock"
   },
-  {
-    "id": "the-beatles-polythene-pam",
+  "the-beatles-polythene-pam": {
     "title": "Polythene Pam",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Polythene%20Pam.mid",
     "hint": "Acoustic-driven character song with a heavy Liverpool accent in the Abbey Road medley",
     "category": "pop",
     "decade": "retro",
@@ -2553,11 +2179,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Classic Rock"
   },
-  {
-    "id": "the-beatles-she-came-in-through-the-bathroom-window",
+  "the-beatles-she-came-in-through-the-bathroom-window": {
     "title": "She Came in Through the Bathroom Window",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20She%20Came%20In%20Through%20the%20Bathroom%20Window.mid",
     "hint": "Fast-paced rock song inspired by fans breaking into Paul McCartney's house",
     "category": "pop",
     "decade": "retro",
@@ -2565,11 +2189,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Classic Rock"
   },
-  {
-    "id": "the-beatles-something",
+  "the-beatles-something": {
     "title": "Something",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Something.mid",
     "hint": "Stunning soft-rock love ballad written by George Harrison, lauded by Frank Sinatra",
     "category": "pop",
     "decade": "retro",
@@ -2577,11 +2199,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Soft Rock"
   },
-  {
-    "id": "the-beatles-strawberry-fields-forever",
+  "the-beatles-strawberry-fields-forever": {
     "title": "Strawberry Fields Forever",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Strawberry%20Fields%20Forever.mid",
     "hint": "Groundbreaking psychedelic rock track characterized by Mellotron flutes and cellos",
     "category": "pop",
     "decade": "retro",
@@ -2589,11 +2209,9 @@ export const SONGS: Song[] = [
     "year": 1967,
     "style": "Psychedelic Pop"
   },
-  {
-    "id": "the-beatles-sun-king",
+  "the-beatles-sun-king": {
     "title": "Sun King",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20Sun%20King.mid",
     "hint": "Dreamy, atmospheric track featuring faux-Spanish gibberish lyrics",
     "category": "pop",
     "decade": "retro",
@@ -2601,11 +2219,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Dream Pop"
   },
-  {
-    "id": "the-beatles-the-ballad-of-john-and-yoko",
+  "the-beatles-the-ballad-of-john-and-yoko": {
     "title": "The Ballad of John and Yoko",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20The%20Ballad%20of%20John%20and%20Yoko.mid",
     "hint": "Upbeat folk-rock track chronicling the trials of John Lennon and Yoko Ono's marriage",
     "category": "pop",
     "decade": "retro",
@@ -2613,11 +2229,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Classic Rock"
   },
-  {
-    "id": "the-beatles-the-end",
+  "the-beatles-the-end": {
     "title": "The End",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20The%20End.mid",
     "hint": "Medley finale featuring the only drum solo in the Beatles catalog and rotating guitar solos",
     "category": "pop",
     "decade": "retro",
@@ -2625,11 +2239,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Classic Rock"
   },
-  {
-    "id": "the-beatles-you-never-give-me-your-money",
+  "the-beatles-you-never-give-me-your-money": {
     "title": "You Never Give Me Your Money",
     "artist": "The Beatles",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Beatles%20-%20You%20Never%20Give%20Me%20Your%20Money.mid",
     "hint": "Suite-like piano-to-boogie-woogie track about business disputes opening the Abbey Road medley",
     "category": "pop",
     "decade": "retro",
@@ -2637,11 +2249,9 @@ export const SONGS: Song[] = [
     "year": 1969,
     "style": "Progressive Rock"
   },
-  {
-    "id": "the-chain-fleetwood-mac",
+  "the-chain-fleetwood-mac": {
     "title": "The Chain",
     "artist": "Fleetwood Mac",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Chain%20-%20Fleetwood%20Mac.mid",
     "hint": "Folk-rock classic famous for its dramatic final bass solo and group harmonies",
     "category": "pop",
     "decade": "retro",
@@ -2649,11 +2259,9 @@ export const SONGS: Song[] = [
     "year": 1977,
     "style": "Classic Rock"
   },
-  {
-    "id": "the-nights-avicii",
+  "the-nights-avicii": {
     "title": "The Nights",
     "artist": "Avicii",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Nights%20-%20Avicii.mid",
     "hint": "Groovy EDM hit combining acoustic folk instrumentation with electronic drop synths",
     "category": "pop",
     "decade": "2010s",
@@ -2661,11 +2269,9 @@ export const SONGS: Song[] = [
     "year": 2014,
     "style": "Folk House"
   },
-  {
-    "id": "the-smashing-pumpkins-disarm-v4",
+  "the-smashing-pumpkins-disarm-v4": {
     "title": "Disarm",
     "artist": "The Smashing Pumpkins",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Smashing%20Pumpkins%20-%20Disarm%20v4.mid",
     "hint": "Alternative rock song featuring tubular bells and sweeping symphonic strings instead of guitars",
     "category": "pop",
     "decade": "90s",
@@ -2673,11 +2279,9 @@ export const SONGS: Song[] = [
     "year": 1993,
     "style": "Alternative Rock"
   },
-  {
-    "id": "the-smashing-pumpkins-zero",
+  "the-smashing-pumpkins-zero": {
     "title": "Zero",
     "artist": "The Smashing Pumpkins",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/The%20Smashing%20Pumpkins%20~%20Zero.mid",
     "hint": "Heavy, aggressive alternative metal track with aggressive distortion and a high-pitched solo",
     "category": "pop",
     "decade": "90s",
@@ -2685,11 +2289,9 @@ export const SONGS: Song[] = [
     "year": 1995,
     "style": "Alternative Rock"
   },
-  {
-    "id": "van-halen-love-walks-in",
+  "van-halen-love-walks-in": {
     "title": "Love Walks In",
     "artist": "Van Halen",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Van%20Halen%20-%20Love%20Walks%20In.mid",
     "hint": "Power rock ballad marked by prominent synthesizer chords and a soaring guitar solo",
     "category": "pop",
     "decade": "80s",
@@ -2697,11 +2299,9 @@ export const SONGS: Song[] = [
     "year": 1986,
     "style": "Synth Rock"
   },
-  {
-    "id": "waterloo-abba",
+  "waterloo-abba": {
     "title": "Waterloo",
     "artist": "ABBA",
-    "path": "https://raw.githubusercontent.com/thewildwestmidis/midis/main/Waterloo%20-%20ABBA%20(Piano%20Cover).mid",
     "hint": "Upbeat pop-rock track that won the 1974 Eurovision Song Contest for Sweden",
     "category": "pop",
     "decade": "retro",
@@ -2709,4 +2309,4 @@ export const SONGS: Song[] = [
     "year": 1974,
     "style": "Pop Rock"
   }
-];
+};

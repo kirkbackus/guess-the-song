@@ -2,21 +2,28 @@ import './style.css';
 import { AudioManager } from './audio';
 import { WebGLRenderer } from './renderer';
 import { GameManager, type GameConfig } from './game';
+import { LibraryManager } from './library';
 
 const initApp = (): void => {
   const canvas = document.getElementById('piano-roll-canvas') as HTMLCanvasElement;
-  if (!canvas) return;
+  const libraryCanvas = document.getElementById('library-piano-roll-canvas') as HTMLCanvasElement;
+  if (!canvas || !libraryCanvas) return;
 
   const audio = new AudioManager();
   const renderer = new WebGLRenderer();
+  const libraryRenderer = new WebGLRenderer();
   
   renderer.init(canvas);
+  libraryRenderer.init(libraryCanvas);
+  
   const game = new GameManager(audio, renderer);
+  const library = new LibraryManager(audio, libraryRenderer);
   
   // Grab DOM Elements
   const elMenu = document.getElementById('menu-panel')!;
   const elGame = document.getElementById('game-panel')!;
   const elSummary = document.getElementById('summary-panel')!;
+  const elLibraryPanel = document.getElementById('library-panel')!;
   const elTimer = document.getElementById('timer-text')!;
   const elTimerProgress = document.getElementById('timer-progress-bar')!;
   const elSongTitle = document.getElementById('reveal-title')!;
@@ -30,6 +37,11 @@ const initApp = (): void => {
   const elMuteBtn = document.getElementById('btn-mute') as HTMLButtonElement;
   const elMuteIcon = document.getElementById('mute-icon')!;
   const elRestartBtn = document.getElementById('btn-restart') as HTMLButtonElement;
+  
+  const elLibraryBtn = document.getElementById('btn-library') as HTMLButtonElement;
+  const elLibraryBackBtn = document.getElementById('btn-library-back') as HTMLButtonElement;
+  const elLibraryMuteBtn = document.getElementById('btn-library-mute') as HTMLButtonElement;
+  const elLibraryMuteIcon = document.getElementById('library-mute-icon')!;
   
   const selectPlaytime = document.getElementById('select-playtime') as HTMLSelectElement;
   const selectRounds = document.getElementById('select-rounds') as HTMLSelectElement;
@@ -53,6 +65,24 @@ const initApp = (): void => {
     muteBtn: elMuteBtn,
     skipBtn: elSkipBtn
   });
+
+  // Bind UI to Library Manager
+  library.bindUI({
+    muteBtn: elLibraryMuteBtn,
+    muteIcon: elLibraryMuteIcon,
+    searchInput: document.getElementById('library-search') as HTMLInputElement,
+    decadeFilter: document.getElementById('library-filter-decade') as HTMLSelectElement,
+    genreFilter: document.getElementById('library-filter-genre') as HTMLSelectElement,
+    songList: document.getElementById('library-song-list')!,
+    nowPlayingStatus: document.querySelector('#library-now-playing .now-playing-status') as HTMLElement,
+    playingTitle: document.getElementById('library-playing-title')!,
+    playingArtist: document.getElementById('library-playing-artist')!,
+    playPauseBtn: document.getElementById('btn-library-play-pause')!,
+    stopBtn: document.getElementById('btn-library-stop')!,
+    currentTimeText: document.getElementById('library-current-time')!,
+    progressSlider: document.getElementById('library-progress-slider') as HTMLInputElement,
+    totalTimeText: document.getElementById('library-total-time')!
+  });
   
   // Wire up Start Game
   elStartBtn.addEventListener('click', async () => {
@@ -72,6 +102,10 @@ const initApp = (): void => {
         hintsEnabled: toggleHints.checked
       };
       
+      const isMuted = audio.getMuted();
+      elMuteIcon.textContent = isMuted ? '🔇' : '🔊';
+      elMuteBtn.title = isMuted ? 'Unmute Sound' : 'Mute Sound';
+
       await game.startNewGame(config);
     } catch (err) {
       console.error(err);
@@ -82,6 +116,39 @@ const initApp = (): void => {
     }
   });
   
+  // Wire up View Music Library
+  elLibraryBtn.addEventListener('click', async () => {
+    const originalText = elLibraryBtn.innerHTML;
+    elLibraryBtn.disabled = true;
+    elLibraryBtn.innerHTML = '<span>LOADING PIANO...</span>';
+    
+    try {
+      await audio.init();
+      game.quitToMenu();
+      
+      elMenu.classList.add('hidden');
+      elLibraryPanel.classList.remove('hidden');
+      library.enter();
+    } catch (err) {
+      console.error(err);
+      alert('Failed to load piano samples. Check your connection.');
+    } finally {
+      elLibraryBtn.disabled = false;
+      elLibraryBtn.innerHTML = originalText;
+    }
+  });
+
+  // Quit Library to Menu
+  elLibraryBackBtn.addEventListener('click', () => {
+    library.exit();
+    elLibraryPanel.classList.add('hidden');
+    elMenu.classList.remove('hidden');
+    
+    const isMuted = audio.getMuted();
+    elMuteIcon.textContent = isMuted ? '🔇' : '🔊';
+    elMuteBtn.title = isMuted ? 'Unmute Sound' : 'Mute Sound';
+  });
+
   // Quit Game
   elQuitBtn.addEventListener('click', () => game.quitToMenu());
   

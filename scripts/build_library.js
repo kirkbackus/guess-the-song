@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { metadataDictionary } from './metadata_dictionary.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,7 +26,7 @@ const popArtists = [
   'eurythmics', 'avicii', 'daft punk', 'red hot chili', 'u2', 'blink-182', 'gloria gaynor', 
   'ricky martin', 'smash mouth', 'van halen', 'guns n roses', 'scorpions', 'deep purple', 'starship', 
   'duran duran', 'simple minds', 'tears for fears', 'no doubt', 'celine dion', 'shania twain', 
-  'sheryl crow', 'alanis morissette', 'smashing pumpkins', 'sublime', 'soundgarden', 'pearl jam', 
+  'sheryl crowd', 'alanis morissette', 'smashing pumpkins', 'sublime', 'soundgarden', 'pearl jam', 
   'weezer', 'fugees', 'coolio', 'will smith', 'tlc', 'destiny\'s child'
 ];
 
@@ -62,7 +63,7 @@ function parseSongName(filename, category) {
   
   let artist = category === 'games' ? 'Video Game Composer' : 'Various Artists';
   let title = baseClean;
-
+ 
   // Split by ' - ' or '-' or '.' to guess artist
   if (baseClean.includes(' - ')) {
     const parts = baseClean.split(' - ');
@@ -86,7 +87,7 @@ function parseSongName(filename, category) {
   // Generate generic hints
   const hint = category === 'games'
     ? `Iconic soundtrack theme from the game ${artist === 'Video Game Composer' ? title : artist}`
-    : `Famous 80s/90s pop/rock hit by ${artist}`;
+    : `Famous pop/rock hit by ${artist}`;
 
   return { title, artist, hint };
 }
@@ -228,6 +229,30 @@ async function build() {
     const combinedPop = [...localSongsMeta.filter(s => s.category === 'pop'), ...finalPop].slice(0, 100);
     const songsList = [...combinedGames, ...combinedPop];
 
+    // Map each song through our metadata dictionary to clean up tags
+    const enhancedSongsList = songsList.map(s => {
+      if (metadataDictionary[s.id]) {
+        return {
+          ...s,
+          ...metadataDictionary[s.id]
+        };
+      }
+
+      // Default tags if not in dictionary
+      let decade = '80s';
+      let genre = s.category === 'games' ? 'game' : 'pop';
+      let year = 1985;
+      let style = s.category === 'games' ? 'Chiptune' : 'Pop';
+
+      return {
+        ...s,
+        decade,
+        genre,
+        year,
+        style
+      };
+    });
+
     // Write file content
     const codeContent = `export interface Song {
   id: string;
@@ -236,13 +261,20 @@ async function build() {
   path: string;
   hint: string;
   category: 'games' | 'pop';
+  decade: 'retro' | '80s' | '90s' | '2000s' | '2010s' | '2020s';
+  genre: 'game' | 'pop' | 'rock';
+  year: number;
+  style: string;
+  game?: string;
+  franchise?: string;
+  company?: string;
 }
 
-export const SONGS: Song[] = ${JSON.stringify(songsList, null, 2)};
+export const SONGS: Song[] = ${JSON.stringify(enhancedSongsList, null, 2)};
 `;
 
     fs.writeFileSync(songsFile, codeContent, 'utf-8');
-    console.log(`Successfully generated src/songs.ts with ${combinedGames.length} Game songs and ${combinedPop.length} Pop songs (Total: ${songsList.length}).`);
+    console.log(`Successfully generated src/songs.ts with ${combinedGames.length} Game songs and ${combinedPop.length} Pop songs (Total: ${enhancedSongsList.length}).`);
 
   } catch (error) {
     console.error('Error generating library:', error.message);

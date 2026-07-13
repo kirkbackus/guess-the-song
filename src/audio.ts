@@ -198,6 +198,13 @@ export class AudioManager {
     return Tone.Transport.seconds;
   }
 
+  // Seek playback position
+  seek(seconds: number): void {
+    Tone.Transport.seconds = seconds;
+    if (this.sampler) this.sampler.releaseAll();
+  }
+
+
   // Get total song duration
   getDuration(): number {
     if (this.notes.length === 0) return 0;

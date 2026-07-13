@@ -100,9 +100,14 @@
             </div>
           </div>
 
-          <button id="btn-start" class="btn btn-primary btn-glow">
-            <span>START GAME</span>
-          </button>
+          <div class="menu-buttons">
+            <button id="btn-start" class="btn btn-primary btn-glow">
+              <span>START GAME</span>
+            </button>
+            <button id="btn-library" class="btn btn-secondary">
+              <span>VIEW MUSIC LIBRARY</span>
+            </button>
+          </div>
         </section>
       </div>
 
@@ -162,6 +167,80 @@
             </button>
           </div>
         </footer>
+      </div>
+
+      <!-- MUSIC LIBRARY SCREEN -->
+      <div id="library-panel" class="screen-panel hidden">
+        <header class="game-hud">
+          <button id="btn-library-back" class="btn btn-text">
+            <span class="icon">⬅</span> Menu
+          </button>
+          <div class="round-badge">Music Library</div>
+          <div class="hud-right">
+            <button id="btn-library-mute" class="btn btn-icon" title="Toggle Sound">
+              <span id="library-mute-icon">🔊</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="library-content">
+          <!-- Left side: search/filters & list -->
+          <div class="library-left">
+            <div class="library-search-filters">
+              <input type="text" id="library-search" placeholder="Search by song or artist..." class="library-input" />
+              <div class="library-dropdowns">
+                <div class="select-wrapper">
+                  <select id="library-filter-decade">
+                    <option value="all">All Decades</option>
+                    <option value="retro">Retro (60s/70s)</option>
+                    <option value="80s">80s</option>
+                    <option value="90s">90s</option>
+                    <option value="2000s">2000s</option>
+                    <option value="2010s">2010s</option>
+                    <option value="2020s">2020s</option>
+                  </select>
+                </div>
+                <div class="select-wrapper">
+                  <select id="library-filter-genre">
+                    <option value="all">All Genres</option>
+                    <option value="game">Video Games</option>
+                    <option value="pop">Pop</option>
+                    <option value="rock">Rock</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scrollable song list -->
+            <div id="library-song-list" class="library-song-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Right side: Piano Roll playback visualization -->
+          <div class="library-right">
+            <div class="library-visualizer-wrapper">
+              <canvas id="library-piano-roll-canvas"></canvas>
+              <!-- Now playing overlay details -->
+              <div id="library-now-playing" class="library-now-playing">
+                <div class="now-playing-status">Select a song to play</div>
+                <div id="library-playing-title" class="now-playing-title"></div>
+                <div id="library-playing-artist" class="now-playing-artist"></div>
+              </div>
+            </div>
+            
+            <!-- Playback Controls -->
+            <div class="library-player-controls">
+              <button id="btn-library-play-pause" class="btn btn-icon" disabled>⏸</button>
+              <button id="btn-library-stop" class="btn btn-icon" disabled>⏹</button>
+              <div class="library-progress-container">
+                <span id="library-current-time">0:00</span>
+                <input type="range" id="library-progress-slider" min="0" max="100" value="0" class="library-slider" disabled>
+                <span id="library-total-time">0:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- SUMMARY SCREEN -->

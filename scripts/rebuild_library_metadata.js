@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { metadataDictionary } from './metadata_dictionary.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,6 +15,8 @@ function classifySong(song) {
 
   let decade = '80s'; // default
   let genre = 'pop';  // default
+  let year = 1985;
+  let style = 'Pop';
 
   // 1. Detect Genre
   if (
@@ -32,6 +35,7 @@ function classifySong(song) {
     pathStr.includes('game')
   ) {
     genre = 'game';
+    style = 'Chiptune';
   } else if (
     artist.includes('acdc') || 
     artist.includes('ac/dc') || 
@@ -62,6 +66,7 @@ function classifySong(song) {
     title.includes('paranoid')
   ) {
     genre = 'rock';
+    style = 'Rock';
   }
 
   // 2. Detect Decade
@@ -73,9 +78,10 @@ function classifySong(song) {
     artist.includes('sinatra') || 
     artist.includes('america') || 
     title.includes('america the beautiful') ||
-    artist.includes('abba') && title.includes('waterloo')
+    (artist.includes('abba') && title.includes('waterloo'))
   ) {
     decade = 'retro';
+    year = 1972;
   }
   // 90s
   else if (
@@ -100,6 +106,7 @@ function classifySong(song) {
     title.includes('creutz')
   ) {
     decade = '90s';
+    year = 1995;
   }
   // 2000s
   else if (
@@ -118,6 +125,7 @@ function classifySong(song) {
     pathStr.includes('smash-bros')
   ) {
     decade = '2000s';
+    year = 2004;
   }
   // 2010s
   else if (
@@ -132,6 +140,7 @@ function classifySong(song) {
     title.includes('ballin')
   ) {
     decade = '2010s';
+    year = 2014;
   }
   // 2020s
   else if (
@@ -141,18 +150,10 @@ function classifySong(song) {
     pathStr.includes('doors')
   ) {
     decade = '2020s';
+    year = 2022;
   }
 
-  // Adjust specific core manual mappings
-  if (song.id === 'mario' || song.id === 'zelda' || song.id === 'tetris') {
-    decade = '80s';
-    genre = 'game';
-  } else if (song.id === 'rickroll' || song.id === 'billiejean' || song.id === 'takeonme') {
-    decade = '80s';
-    genre = 'pop';
-  }
-
-  return { decade, genre };
+  return { decade, genre, year, style };
 }
 
 function start() {
@@ -167,14 +168,25 @@ function start() {
   }
 
   const songs = JSON.parse(content.substring(startIdx, endIdx));
-  console.log(`Loaded ${songs.length} songs. Applying decade and genre classifications...`);
+  console.log(`Loaded ${songs.length} songs. Applying corrections and classifications...`);
 
   const updatedSongs = songs.map(s => {
+    // If the song is in our metadata dictionary, use the exact hand-tagged details!
+    if (metadataDictionary[s.id]) {
+      return {
+        ...s,
+        ...metadataDictionary[s.id]
+      };
+    }
+
+    // Otherwise, apply legacy fallback classification
     const classification = classifySong(s);
     return {
       ...s,
       decade: classification.decade,
-      genre: classification.genre
+      genre: classification.genre,
+      year: s.year || classification.year,
+      style: s.style || classification.style
     };
   });
 
@@ -187,13 +199,18 @@ function start() {
   category: 'games' | 'pop';
   decade: 'retro' | '80s' | '90s' | '2000s' | '2010s' | '2020s';
   genre: 'game' | 'pop' | 'rock';
+  year: number;
+  style: string;
+  game?: string;
+  franchise?: string;
+  company?: string;
 }
 
 export const SONGS: Song[] = ${JSON.stringify(updatedSongs, null, 2)};
 `;
 
   fs.writeFileSync(songsFile, codeContent, 'utf-8');
-  console.log('Successfully updated songs.ts with decade and genre properties!');
+  console.log('Successfully updated songs.ts with enhanced tags!');
 }
 
 start();
