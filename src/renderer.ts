@@ -77,6 +77,7 @@ export class WebGLRenderer {
       varying vec2 v_texCoord;
       varying vec2 v_rectSize;
       varying float v_type;
+      varying vec2 v_screenPos;
 
       uniform vec2 u_resolution;
 
@@ -89,6 +90,7 @@ export class WebGLRenderer {
         v_texCoord = a_texCoord;
         v_rectSize = a_rectSize;
         v_type = a_type;
+        v_screenPos = a_position;
       }
     `;
 
@@ -98,6 +100,7 @@ export class WebGLRenderer {
       varying vec2 v_texCoord;
       varying vec2 v_rectSize;
       varying float v_type;
+      varying vec2 v_screenPos;
 
       void main() {
         if (v_type < 0.5) {
@@ -126,7 +129,10 @@ export class WebGLRenderer {
         float whiteEdge = smoothstep(-1.2, -0.2, dist);
         finalColor = mix(finalColor, vec3(1.0), whiteEdge * 0.6);
 
-        gl_FragColor = vec4(finalColor, v_color.a * alpha);
+        // Fade out notes near the top edge of the canvas (within the top 60px)
+        float topFade = smoothstep(0.0, 60.0, v_screenPos.y);
+
+        gl_FragColor = vec4(finalColor, v_color.a * alpha * topFade);
       }
     `;
 
