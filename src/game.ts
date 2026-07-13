@@ -2,6 +2,7 @@ import { SONGS, type Song } from './songs';
 import type { AudioManager} from './audio';
 import { type NoteEvent } from './audio';
 import type { WebGLRenderer } from './renderer';
+import { showCustomModal } from './modal';
 
 export type GameState = 'MENU' | 'GET_READY' | 'PLAYING' | 'REVEALING' | 'SUMMARY';
 
@@ -103,7 +104,7 @@ export class GameManager {
     this.audio.setTtsEnabled(config.ttsEnabled);
 
     // Filter song library
-    let filtered = SONGS.filter((s) => {
+    const filtered = SONGS.filter((s) => {
       const matchDecade = config.decade === 'all' || s.decade === config.decade;
       const matchGenre = config.genre === 'all' || s.genre === config.genre;
       const matchStyle = config.style === 'all' || s.style === config.style;
@@ -112,9 +113,9 @@ export class GameManager {
       return matchDecade && matchGenre && matchStyle && matchCompany && matchFranchise;
     });
     
-    if (filtered.length === 0) {
-      alert('No songs match the selected filters. Reverting to all songs.');
-      filtered = SONGS;
+    if (filtered.length < config.rounds) {
+      showCustomModal('Selection Warning', `Not enough matching songs! Only ${filtered.length} song${filtered.length === 1 ? '' : 's'} match${filtered.length === 1 ? 'es' : ''} your selected filters, but you requested ${config.rounds} rounds. Please adjust your filters or choose fewer rounds.`);
+      return;
     }
 
     // Build session playlist

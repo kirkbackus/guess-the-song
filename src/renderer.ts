@@ -36,7 +36,7 @@ export class WebGLRenderer {
   private resolutionLoc: WebGLUniformLocation | null = null;
 
   // Render variables
-  private scrollSpeed: number = 180; // pixels per second
+  private scrollSpeed: number = 240; // pixels per second
   private keyboardHeight: number = 130;
   private particles: Particle[] = [];
   private colorTheme: 'games' | 'pop' = 'games';

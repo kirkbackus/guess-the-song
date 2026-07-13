@@ -27,6 +27,7 @@
   "dependencies": {
     "@capacitor/core": "^8.4.1",
     "@capacitor/ios": "^8.4.1",
+    "@diffusionstudio/vits-web": "^1.0.3",
     "@tonejs/midi": "^2.0.28",
     "tone": "^15.1.22"
   }

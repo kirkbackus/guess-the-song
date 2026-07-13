@@ -24,9 +24,30 @@
         </header>
 
         <section class="config-card">
-          <div class="settings-grid">
-            <!-- Column 1: Game Settings -->
-            <div class="settings-col">
+          <!-- Switch-style Sidebar + Content layout -->
+          <div class="settings-tab-container">
+            <div class="settings-tabs-sidebar">
+            <button type="button" class="tab-btn active" data-tab="game">
+              <span class="tab-icon">🎮</span>
+              <span class="tab-text">Game Settings</span>
+            </button>
+            <button type="button" class="tab-btn" data-tab="filters">
+              <span class="tab-icon">🎵</span>
+              <span class="tab-text">Music Filters</span>
+            </button>
+            <button type="button" class="tab-btn" data-tab="voice">
+              <span class="tab-icon">🗣️</span>
+              <span class="tab-text">Voice Reveal</span>
+            </button>
+            <button type="button" class="tab-btn" data-tab="audio">
+              <span class="tab-icon">🔊</span>
+              <span class="tab-text">Audio & Instruments</span>
+            </button>
+          </div>
+
+          <div class="settings-tab-content">
+            <!-- Panel 1: Game Settings -->
+            <div class="tab-panel active" id="tab-game">
               <h3 class="pane-title">Game Settings</h3>
               
               <div class="setting-item-box">
@@ -52,10 +73,21 @@
                 </div>
                 <span class="help-text">Rounds to play this session</span>
               </div>
+
+              <div class="setting-item-box-row">
+                <div class="setting-label-block">
+                  <label for="toggle-hints">Show Hints</label>
+                  <span class="help-text">Display clue during play</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="toggle-hints" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
             </div>
 
-            <!-- Column 2: Core Music Filters -->
-            <div class="settings-col">
+            <!-- Panel 2: Music Filters -->
+            <div class="tab-panel hidden" id="tab-filters">
               <h3 class="pane-title">Music Filters</h3>
 
               <div class="setting-item-box">
@@ -102,11 +134,6 @@
                 </div>
                 <span class="help-text">Filter musical style</span>
               </div>
-            </div>
-
-            <!-- Column 3: Game Options & Sources -->
-            <div class="settings-col">
-              <h3 class="pane-title">Game Options</h3>
 
               <div class="setting-item-box">
                 <label for="select-company">Publisher / Developer</label>
@@ -127,6 +154,11 @@
                 </div>
                 <span class="help-text">Filter game series</span>
               </div>
+            </div>
+
+            <!-- Panel 3: Voice Settings -->
+            <div class="tab-panel hidden" id="tab-voice">
+              <h3 class="pane-title">Voice Settings</h3>
 
               <div class="setting-item-box-row">
                 <div class="setting-label-block">
@@ -139,20 +171,75 @@
                 </label>
               </div>
 
-              <div class="setting-item-box-row">
+              <div class="setting-item-box" id="tts-engine-container">
+                <label for="select-tts-engine">Speech Engine</label>
+                <div class="select-wrapper">
+                  <select id="select-tts-engine">
+                    <option value="local-native" selected>System Native (Web Speech)</option>
+                    <option value="piper-wasm">AI Neural Offline (Piper WASM)</option>
+                  </select>
+                </div>
+                <span class="help-text">Select speech synthesis engine</span>
+              </div>
+
+              <div class="setting-item-box" id="tts-voice-container">
+                <label for="select-tts-voice">Announcer Voice</label>
+                <div class="select-wrapper">
+                  <select id="select-tts-voice">
+                    <option value="">Detecting voices...</option>
+                  </select>
+                </div>
+                <span class="help-text" id="tts-voice-help">Choose your preferred voice</span>
+                <span class="help-text hidden" id="tts-status-text" style="color: var(--neon-blue); font-weight: 800;"></span>
+              </div>
+            </div>
+
+            <!-- Panel 4: Audio & Instrument Options -->
+            <div class="tab-panel hidden" id="tab-audio">
+              <h3 class="pane-title">Audio & Instruments</h3>
+
+              <div class="setting-item-box" id="instrument-container">
+                <label for="select-instrument">Instrument Sound</label>
+                <div class="select-wrapper">
+                  <select id="select-instrument">
+                    <option value="grand-piano" selected>Grand Piano (Classic)</option>
+                    <option value="ambient-piano">Ambient Grand (Mellow)</option>
+                    <option value="electric-piano">Vintage Rhodes (Electric Piano)</option>
+                    <option value="music-box">Music Box (Chime/Bell)</option>
+                    <option value="chiptune">Retro Synth (8-Bit NES)</option>
+                  </select>
+                </div>
+                <span class="help-text">Select instrument timbre</span>
+              </div>
+
+              <div class="setting-item-box" id="reverb-container">
+                <label for="select-reverb">Reverb / Acoustics</label>
+                <div class="select-wrapper">
+                  <select id="select-reverb">
+                    <option value="off">Off (Dry)</option>
+                    <option value="low">Low (Cozy Room)</option>
+                    <option value="medium" selected>Medium (Concert Hall)</option>
+                    <option value="high">High (Cathedral)</option>
+                  </select>
+                </div>
+                <span class="help-text">Adds spaciousness to sound</span>
+              </div>
+
+              <div class="setting-item-box-row" id="humanize-container">
                 <div class="setting-label-block">
-                  <label for="toggle-hints">Show Hints</label>
-                  <span class="help-text">Display clue during play</span>
+                  <label for="toggle-humanize">Humanize Playback</label>
+                  <span class="help-text">Randomize velocity/timing to reduce robotic feel</span>
                 </div>
                 <label class="toggle-switch">
-                  <input type="checkbox" id="toggle-hints" checked>
+                  <input type="checkbox" id="toggle-humanize" checked>
                   <span class="slider"></span>
                 </label>
               </div>
             </div>
           </div>
+        </div> <!-- Close settings-tab-container -->
 
-          <div class="dashboard-action-row">
+        <div class="dashboard-action-row">
             <button id="btn-start" class="btn btn-primary switch-btn-red">
               <span>START GAME</span>
             </button>
@@ -320,6 +407,22 @@
           <button id="btn-restart" class="btn btn-primary btn-glow">
             <span>PLAY AGAIN</span>
           </button>
+        </div>
+      </div>
+
+      <!-- CUSTOM MODAL DIALOG -->
+      <div id="custom-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+          <div class="modal-header">
+            <span class="modal-icon">⚠️</span>
+            <h3 id="modal-title">System Message</h3>
+          </div>
+          <div id="modal-body" class="modal-body"></div>
+          <div class="modal-footer">
+            <button id="btn-modal-ok" class="btn btn-secondary switch-btn-blue">
+              <span>OK</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
