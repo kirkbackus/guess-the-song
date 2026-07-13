@@ -3,6 +3,7 @@ import { AudioManager } from './audio';
 import { WebGLRenderer } from './renderer';
 import { GameManager, type GameConfig } from './game';
 import { LibraryManager } from './library';
+import { SONGS } from './songs';
 
 const initApp = (): void => {
   const canvas = document.getElementById('piano-roll-canvas') as HTMLCanvasElement;
@@ -47,8 +48,43 @@ const initApp = (): void => {
   const selectRounds = document.getElementById('select-rounds') as HTMLSelectElement;
   const selectDecade = document.getElementById('select-decade') as HTMLSelectElement;
   const selectGenre = document.getElementById('select-genre') as HTMLSelectElement;
+  const selectStyle = document.getElementById('select-style') as HTMLSelectElement;
+  const selectCompany = document.getElementById('select-company') as HTMLSelectElement;
+  const selectFranchise = document.getElementById('select-franchise') as HTMLSelectElement;
   const toggleTts = document.getElementById('toggle-tts') as HTMLInputElement;
   const toggleHints = document.getElementById('toggle-hints') as HTMLInputElement;
+
+  // Dynamically populate Styles, Companies and Franchises in settings
+  const styles = new Set<string>();
+  const companies = new Set<string>();
+  const franchises = new Set<string>();
+
+  SONGS.forEach(s => {
+    if (s.style) styles.add(s.style);
+    if (s.company) companies.add(s.company);
+    if (s.franchise) franchises.add(s.franchise);
+  });
+
+  Array.from(styles).sort().forEach(style => {
+    const opt = document.createElement('option');
+    opt.value = style;
+    opt.textContent = style;
+    selectStyle.appendChild(opt);
+  });
+
+  Array.from(companies).sort().forEach(company => {
+    const opt = document.createElement('option');
+    opt.value = company;
+    opt.textContent = company;
+    selectCompany.appendChild(opt);
+  });
+
+  Array.from(franchises).sort().forEach(franchise => {
+    const opt = document.createElement('option');
+    opt.value = franchise;
+    opt.textContent = franchise;
+    selectFranchise.appendChild(opt);
+  });
 
   // Bind UI to Game Manager
   game.bindUI({
@@ -98,6 +134,9 @@ const initApp = (): void => {
         rounds: parseInt(selectRounds.value, 10),
         decade: selectDecade.value,
         genre: selectGenre.value,
+        style: selectStyle.value,
+        company: selectCompany.value,
+        franchise: selectFranchise.value,
         ttsEnabled: toggleTts.checked,
         hintsEnabled: toggleHints.checked
       };

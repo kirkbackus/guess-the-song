@@ -9,6 +9,9 @@ export interface GameConfig {
   rounds: number;        // 5, 10, 20, 30, 50 rounds
   decade: string;
   genre: string;
+  style: string;
+  company: string;
+  franchise: string;
   ttsEnabled: boolean;
   hintsEnabled: boolean;
 }
@@ -20,6 +23,9 @@ export class GameManager {
     rounds: 5,
     decade: 'all',
     genre: 'all',
+    style: 'all',
+    company: 'all',
+    franchise: 'all',
     ttsEnabled: true,
     hintsEnabled: true
   };
@@ -99,7 +105,10 @@ export class GameManager {
     let filtered = SONGS.filter((s) => {
       const matchDecade = config.decade === 'all' || s.decade === config.decade;
       const matchGenre = config.genre === 'all' || s.genre === config.genre;
-      return matchDecade && matchGenre;
+      const matchStyle = config.style === 'all' || s.style === config.style;
+      const matchCompany = config.company === 'all' || s.company === config.company;
+      const matchFranchise = config.franchise === 'all' || s.franchise === config.franchise;
+      return matchDecade && matchGenre && matchStyle && matchCompany && matchFranchise;
     });
     
     if (filtered.length === 0) {
