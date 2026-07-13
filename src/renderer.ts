@@ -24,11 +24,15 @@ export class WebGLRenderer {
   private positionBuffer: WebGLBuffer | null = null;
   private colorBuffer: WebGLBuffer | null = null;
   private texCoordBuffer: WebGLBuffer | null = null;
+  private rectSizeBuffer: WebGLBuffer | null = null;
+  private typeBuffer: WebGLBuffer | null = null;
 
   // Shader locations
   private positionLoc: number = -1;
   private colorLoc: number = -1;
   private texCoordLoc: number = -1;
+  private rectSizeLoc: number = -1;
+  private typeLoc: number = -1;
   private resolutionLoc: WebGLUniformLocation | null = null;
 
   // Render variables
@@ -41,6 +45,8 @@ export class WebGLRenderer {
   private positions: number[] = [];
   private colors: number[] = [];
   private texCoords: number[] = [];
+  private rectSizes: number[] = [];
+  private types: number[] = [];
 
   constructor() {}
 
@@ -64,8 +70,14 @@ export class WebGLRenderer {
       attribute vec2 a_position;
       attribute vec4 a_color;
       attribute vec2 a_texCoord;
+      attribute vec2 a_rectSize;
+      attribute float a_type;
+
       varying vec4 v_color;
       varying vec2 v_texCoord;
+      varying vec2 v_rectSize;
+      varying float v_type;
+
       uniform vec2 u_resolution;
 
       void main() {
@@ -75,6 +87,8 @@ export class WebGLRenderer {
         gl_Position = vec4(clipSpace * vec2(1.0, -1.0), 0.0, 1.0);
         v_color = a_color;
         v_texCoord = a_texCoord;
+        v_rectSize = a_rectSize;
+        v_type = a_type;
       }
     `;
 
@@ -82,32 +96,37 @@ export class WebGLRenderer {
       precision mediump float;
       varying vec4 v_color;
       varying vec2 v_texCoord;
+      varying vec2 v_rectSize;
+      varying float v_type;
 
       void main() {
-        // Rounded corners SDF (radius r)
-        float r = 0.15;
-        vec2 d = abs(v_texCoord - vec2(0.5)) - vec2(0.5 - r);
-        float dist = length(max(d, vec2(0.0))) - r;
+        if (v_type < 0.5) {
+          gl_FragColor = v_color;
+          return;
+        }
 
-        // Discard pixels outside the capsule
-        if (dist > 0.0) {
+        // Rounded note capsule with neon glow (pixel-perfect)
+        vec2 p = v_texCoord * v_rectSize;
+        float r = min(6.0, min(v_rectSize.x, v_rectSize.y) * 0.5);
+
+        vec2 d = abs(p - v_rectSize * 0.5) - (v_rectSize * 0.5 - vec2(r));
+        float dist = length(max(d, vec2(0.0))) + min(max(d.x, d.y), 0.0) - r;
+
+        if (dist > 0.5) {
           discard;
         }
 
-        // Glow calculations
-        // dist ranges from -0.5 to 0.0
-        float edgeGlow = smoothstep(-0.06, 0.0, dist);
-        vec3 neonColor = v_color.rgb * 1.6;
-        vec3 bodyColor = v_color.rgb * 0.65;
-
-        // Blend neon edge and body
+        float alpha = smoothstep(0.5, -0.5, dist);
+        float edgeGlow = smoothstep(-3.5, -0.5, dist);
+        
+        vec3 neonColor = v_color.rgb * 2.0;
+        vec3 bodyColor = v_color.rgb * 0.9;
         vec3 finalColor = mix(bodyColor, neonColor, edgeGlow);
 
-        // Highlight line at the edge
-        float whiteEdge = smoothstep(-0.015, 0.0, dist);
-        finalColor = mix(finalColor, vec3(1.0), whiteEdge * 0.45);
+        float whiteEdge = smoothstep(-1.2, -0.2, dist);
+        finalColor = mix(finalColor, vec3(1.0), whiteEdge * 0.6);
 
-        gl_FragColor = vec4(finalColor, v_color.a);
+        gl_FragColor = vec4(finalColor, v_color.a * alpha);
       }
     `;
 
@@ -132,12 +151,16 @@ export class WebGLRenderer {
     this.positionLoc = gl.getAttribLocation(this.program, 'a_position');
     this.colorLoc = gl.getAttribLocation(this.program, 'a_color');
     this.texCoordLoc = gl.getAttribLocation(this.program, 'a_texCoord');
+    this.rectSizeLoc = gl.getAttribLocation(this.program, 'a_rectSize');
+    this.typeLoc = gl.getAttribLocation(this.program, 'a_type');
     this.resolutionLoc = gl.getUniformLocation(this.program, 'u_resolution');
 
     // Create buffers
     this.positionBuffer = gl.createBuffer();
     this.colorBuffer = gl.createBuffer();
     this.texCoordBuffer = gl.createBuffer();
+    this.rectSizeBuffer = gl.createBuffer();
+    this.typeBuffer = gl.createBuffer();
   }
 
   setTheme(theme: 'games' | 'pop'): void {
@@ -205,7 +228,14 @@ export class WebGLRenderer {
   }
 
   // Add rectangle to the batch rendering queues
-  private pushRect(x: number, y: number, w: number, h: number, color: [number, number, number, number]): void {
+  private pushRect(
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    color: [number, number, number, number],
+    type: number = 0
+  ): void {
     // 2 triangles forming a quad
     // Top-Left, Top-Right, Bottom-Left, Bottom-Right
     const x1 = x;
@@ -224,6 +254,8 @@ export class WebGLRenderer {
 
     for (let i = 0; i < 6; i++) {
       this.colors.push(...color);
+      this.rectSizes.push(w, h);
+      this.types.push(type);
     }
 
     this.texCoords.push(
@@ -273,6 +305,8 @@ export class WebGLRenderer {
     this.positions = [];
     this.colors = [];
     this.texCoords = [];
+    this.rectSizes = [];
+    this.types = [];
   }
 
   // Main Render Loop
@@ -350,7 +384,7 @@ export class WebGLRenderer {
         const color = this.getNoteColor(note.midi, isActive);
         // If the title is not revealed yet, we hide the visual representation of notes OR we keep it to look cool
         // Keeping it looks very cool and helps children guess the speed/intervals. 
-        this.pushRect(layout.x + 2, topY, layout.width - 4, rectHeight, color);
+        this.pushRect(layout.x + 2, topY, layout.width - 4, rectHeight, color, 1.0);
       }
     });
 
@@ -435,6 +469,18 @@ export class WebGLRenderer {
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.texCoords), gl.DYNAMIC_DRAW);
     gl.enableVertexAttribArray(this.texCoordLoc);
     gl.vertexAttribPointer(this.texCoordLoc, 2, gl.FLOAT, false, 0, 0);
+
+    // Bind rectSizes
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.rectSizeBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.rectSizes), gl.DYNAMIC_DRAW);
+    gl.enableVertexAttribArray(this.rectSizeLoc);
+    gl.vertexAttribPointer(this.rectSizeLoc, 2, gl.FLOAT, false, 0, 0);
+
+    // Bind types
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.typeBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.types), gl.DYNAMIC_DRAW);
+    gl.enableVertexAttribArray(this.typeLoc);
+    gl.vertexAttribPointer(this.typeLoc, 1, gl.FLOAT, false, 0, 0);
 
     // Draw Triangles
     gl.drawArrays(gl.TRIANGLES, 0, this.positions.length / 2);
