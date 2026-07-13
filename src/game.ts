@@ -262,7 +262,9 @@ export class GameManager {
       this.elSongTitle.classList.add('revealed');
     }
     if (this.elSongArtist) {
-      this.elSongArtist.textContent = `by ${currentSong.artist}`;
+      this.elSongArtist.textContent = currentSong.category === 'games' && currentSong.game
+        ? `from ${currentSong.game}`
+        : `by ${currentSong.artist}`;
       this.elSongArtist.classList.remove('hidden');
     }
     if (this.elSongHint) {
@@ -273,7 +275,10 @@ export class GameManager {
     }
 
     // Trigger Speech synthesis
-    this.audio.speakSongTitle(currentSong.title);
+    const announcementText = currentSong.category === 'games' && currentSong.game
+      ? `${currentSong.title}, from ${currentSong.game}`
+      : `${currentSong.title} by ${currentSong.artist}`;
+    this.audio.speakSongTitle(announcementText);
 
     // Keep playing MIDI for an extra 7 seconds, then fade out and load next
     let revealTimeLeft = 7;

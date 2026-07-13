@@ -180,41 +180,28 @@ export class WebGLRenderer {
 
   // Get color for a note based on its pitch and theme
   private getNoteColor(midi: number, isActive: boolean): [number, number, number, number] {
-    const alpha = isActive ? 1.0 : 0.85;
-    
-    if (this.colorTheme === 'games') {
-      // Classic Cyberpunk / Retro Game style: Cyan, Purple, Magenta
-      // Map MIDI pitch to HSL
-      const hue = ((midi - 21) / 88) * 100 + 190; // 190 to 290 (cyan to magenta)
-      return this.hslToRgb(hue, 1.0, isActive ? 0.6 : 0.45, alpha);
-    }
-    
-    // Pop theme: Synthwave neon pinks, oranges, and deep blues
-    const hue = ((midi - 21) / 88) * 80 + 310; // 310 to 390/30 (magenta/pink to orange)
-    return this.hslToRgb(hue % 360, 1.0, isActive ? 0.62 : 0.47, alpha);
-  }
+    const alpha = isActive ? 1.0 : 0.75;
+    const t = (midi - 21) / 88;
 
-  private hslToRgb(h: number, s: number, l: number, a: number): [number, number, number, number] {
-    h = h / 360;
-    let r = l;
-    let g = l;
-    let b = l;
-    if (s !== 0) {
-      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-      const p = 2 * l - q;
-      const hue2rgb = (t: number) => {
-        if (t < 0) t += 1;
-        if (t > 1) t -= 1;
-        if (t < 1/6) return p + (q - p) * 6 * t;
-        if (t < 1/2) return q;
-        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-        return p;
-      };
-      r = hue2rgb(h + 1/3);
-      g = hue2rgb(h);
-      b = hue2rgb(h - 1/3);
-    }
-    return [r, g, b, a];
+    const isGames = this.colorTheme === 'games';
+    const rStart = isGames ? 0.0 : 0.1;
+    const rEnd = 1.0;
+    const gStart = isGames ? 0.765 : 0.89;
+    const gEnd = isGames ? 0.235 : 0.18;
+    const bStart = isGames ? 0.89 : 0.35;
+    const bEnd = isGames ? 0.314 : 0.58;
+
+    const r = (1 - t) * rStart + t * rEnd;
+    const g = (1 - t) * gStart + t * gEnd;
+    const b = (1 - t) * bStart + t * bEnd;
+    const mult = isActive ? 1.25 : 0.8;
+
+    return [
+      Math.min(1.0, r * mult),
+      Math.min(1.0, g * mult),
+      Math.min(1.0, b * mult),
+      alpha
+    ];
   }
 
   // Add rectangle to the batch rendering queues
@@ -305,8 +292,8 @@ export class WebGLRenderer {
 
     gl.viewport(0, 0, this.canvas.width, this.canvas.height);
 
-    // Clear background to dark space blue
-    gl.clearColor(0.06, 0.06, 0.08, 1.0);
+    // Clear background to charcoal
+    gl.clearColor(0.169, 0.169, 0.169, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     const wWidth = this.canvas.width / 52;
@@ -322,7 +309,7 @@ export class WebGLRenderer {
     for (let i = 0; i < 52; i++) {
       const lineX = i * wWidth;
       // Draw super subtle grid lines
-      this.pushRect(lineX, 0, 1.5, scrollAreaHeight, [0.15, 0.15, 0.2, 0.25]);
+      this.pushRect(lineX, 0, 1.5, scrollAreaHeight, [0.18, 0.18, 0.18, 0.25]);
     }
 
     // 2. Add notes to the batch

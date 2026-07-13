@@ -126,6 +126,11 @@ export class LibraryManager {
     if (!this.elSongList) return;
     this.elSongList.innerHTML = '';
 
+    const elCount = document.getElementById('library-song-count');
+    if (elCount) {
+      elCount.textContent = `Showing ${this.filteredSongs.length} of ${SONGS.length} songs`;
+    }
+
     if (this.filteredSongs.length === 0) {
       const emptyMsg = document.createElement('div');
       emptyMsg.className = 'help-text';

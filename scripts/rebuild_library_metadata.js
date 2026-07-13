@@ -198,7 +198,7 @@ function start() {
   hint: string;
   category: 'games' | 'pop';
   decade: 'retro' | '80s' | '90s' | '2000s' | '2010s' | '2020s';
-  genre: 'game' | 'pop' | 'rock';
+  genre: 'game' | 'pop' | 'rock' | 'electronic' | 'hiphop' | 'metal' | 'folk' | 'traditional' | 'soundtrack';
   year: number;
   style: string;
   game?: string;

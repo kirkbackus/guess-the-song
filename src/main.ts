@@ -119,6 +119,30 @@ const initApp = (): void => {
     progressSlider: document.getElementById('library-progress-slider') as HTMLInputElement,
     totalTimeText: document.getElementById('library-total-time')!
   });
+
+  // Dynamic filter match count updater
+  const updateConfigMatchCount = (): void => {
+    const elFilterStatus = document.getElementById('game-filter-status');
+    if (!elFilterStatus) return;
+
+    const filtered = SONGS.filter((s) => {
+      const matchDecade = selectDecade.value === 'all' || s.decade === selectDecade.value;
+      const matchGenre = selectGenre.value === 'all' || s.genre === selectGenre.value;
+      const matchStyle = selectStyle.value === 'all' || s.style === selectStyle.value;
+      const matchCompany = selectCompany.value === 'all' || s.company === selectCompany.value;
+      const matchFranchise = selectFranchise.value === 'all' || s.franchise === selectFranchise.value;
+      return matchDecade && matchGenre && matchStyle && matchCompany && matchFranchise;
+    });
+
+    elFilterStatus.textContent = `${filtered.length} songs match current filters`;
+  };
+
+  [selectDecade, selectGenre, selectStyle, selectCompany, selectFranchise].forEach(select => {
+    select.addEventListener('change', updateConfigMatchCount);
+  });
+  
+  // Initial run to populate count
+  updateConfigMatchCount();
   
   // Wire up Start Game
   elStartBtn.addEventListener('click', async () => {

@@ -6,7 +6,7 @@ export interface Song {
   hint: string;
   category: 'games' | 'pop';
   decade: 'retro' | '80s' | '90s' | '2000s' | '2010s' | '2020s';
-  genre: 'game' | 'pop' | 'rock';
+  genre: 'game' | 'pop' | 'rock' | 'electronic' | 'hiphop' | 'metal' | 'folk' | 'traditional' | 'soundtrack';
   year: number;
   style: string;
   game?: string;
@@ -158,7 +158,7 @@ export const SONGS: Song[] = [
     "hint": "Epic, swelling orchestral theme from the climactic battle in Avengers: Endgame",
     "category": "pop",
     "decade": "2010s",
-    "genre": "pop",
+    "genre": "soundtrack",
     "year": 2019,
     "style": "Orchestral Soundtrack"
   },
@@ -710,7 +710,7 @@ export const SONGS: Song[] = [
     "hint": "Cerebral underground hip-hop track featuring the masked villain over a soul sample",
     "category": "pop",
     "decade": "2000s",
-    "genre": "pop",
+    "genre": "hiphop",
     "year": 2004,
     "style": "Hip Hop"
   },
@@ -842,7 +842,7 @@ export const SONGS: Song[] = [
     "hint": "The definitive Minecraft music video parody of Coldplay's Viva La Vida",
     "category": "games",
     "decade": "2010s",
-    "genre": "game",
+    "genre": "electronic",
     "year": 2012,
     "style": "Synth-pop Pop Rock",
     "game": "Minecraft Parody",
@@ -1154,7 +1154,7 @@ export const SONGS: Song[] = [
     "hint": "West Coast hip hop track with an infectious hook and soulful backing track",
     "category": "pop",
     "decade": "2010s",
-    "genre": "pop",
+    "genre": "hiphop",
     "year": 2019,
     "style": "Hip Hop"
   },
@@ -1631,7 +1631,7 @@ export const SONGS: Song[] = [
     "hint": "Soft folk-rock ballad recounting a journey through the desert with a nameless horse",
     "category": "pop",
     "decade": "retro",
-    "genre": "rock",
+    "genre": "folk",
     "year": 1971,
     "style": "Folk Rock"
   },
@@ -1655,7 +1655,7 @@ export const SONGS: Song[] = [
     "hint": "Traditional patriotic American anthem celebrating natural beauty and unity",
     "category": "pop",
     "decade": "retro",
-    "genre": "pop",
+    "genre": "traditional",
     "year": 1910,
     "style": "Patriotic"
   },
@@ -1703,7 +1703,7 @@ export const SONGS: Song[] = [
     "hint": "Vibrant progressive house hit sampling Etta James' vocals",
     "category": "pop",
     "decade": "2010s",
-    "genre": "pop",
+    "genre": "electronic",
     "year": 2011,
     "style": "EDM House"
   },
@@ -1715,7 +1715,7 @@ export const SONGS: Song[] = [
     "hint": "Soaring, emotional electro-house track co-produced by Martin Garrix",
     "category": "pop",
     "decade": "2010s",
-    "genre": "pop",
+    "genre": "electronic",
     "year": 2015,
     "style": "EDM House"
   },
@@ -1727,7 +1727,7 @@ export const SONGS: Song[] = [
     "hint": "Influential, fast proto-metal song expressing angst and despair",
     "category": "pop",
     "decade": "retro",
-    "genre": "rock",
+    "genre": "metal",
     "year": 1970,
     "style": "Heavy Metal"
   },
@@ -1862,7 +1862,7 @@ export const SONGS: Song[] = [
     "hint": "Dark hip-hop masterpiece sampling Stevie Wonder, detailing inner-city struggles",
     "category": "pop",
     "decade": "90s",
-    "genre": "pop",
+    "genre": "hiphop",
     "year": 1995,
     "style": "Hip Hop"
   },
@@ -1874,7 +1874,7 @@ export const SONGS: Song[] = [
     "hint": "Dark hip-hop masterpiece sampling Stevie Wonder, detailing inner-city struggles",
     "category": "pop",
     "decade": "90s",
-    "genre": "pop",
+    "genre": "hiphop",
     "year": 1995,
     "style": "Hip Hop"
   },
@@ -1886,7 +1886,7 @@ export const SONGS: Song[] = [
     "hint": "Repetitive, groovy French house classic with a syncopated synth bassline",
     "category": "pop",
     "decade": "90s",
-    "genre": "pop",
+    "genre": "electronic",
     "year": 1997,
     "style": "French House"
   },
@@ -1898,7 +1898,7 @@ export const SONGS: Song[] = [
     "hint": "Euphoric, heavily autotuned filter-house dance floor anthem",
     "category": "pop",
     "decade": "2000s",
-    "genre": "pop",
+    "genre": "electronic",
     "year": 2000,
     "style": "French House"
   },
@@ -1910,7 +1910,7 @@ export const SONGS: Song[] = [
     "hint": "Traditional Christian hymn urging perseverance through trials",
     "category": "pop",
     "decade": "retro",
-    "genre": "pop",
+    "genre": "traditional",
     "year": 1900,
     "style": "Hymn"
   },
@@ -2054,7 +2054,7 @@ export const SONGS: Song[] = [
     "hint": "EDM dance track infused with bluegrass banjo, brass horns and soulful country vocals",
     "category": "pop",
     "decade": "2010s",
-    "genre": "pop",
+    "genre": "electronic",
     "year": 2013,
     "style": "Folk House"
   },
@@ -2114,7 +2114,7 @@ export const SONGS: Song[] = [
     "hint": "Furious, aggressive nu-metal song with the famous breakdown 'Shut up when I'm talking to you!'",
     "category": "pop",
     "decade": "2000s",
-    "genre": "rock",
+    "genre": "metal",
     "year": 2000,
     "style": "Nu Metal"
   },
@@ -2126,7 +2126,7 @@ export const SONGS: Song[] = [
     "hint": "Heavy metal classic with a creepy nightmare nursery rhyme monologue",
     "category": "pop",
     "decade": "90s",
-    "genre": "rock",
+    "genre": "metal",
     "year": 1991,
     "style": "Heavy Metal"
   },
@@ -2138,7 +2138,7 @@ export const SONGS: Song[] = [
     "hint": "Epic 8-minute thrash metal masterpiece depicting the horrors of drug addiction",
     "category": "pop",
     "decade": "80s",
-    "genre": "rock",
+    "genre": "metal",
     "year": 1986,
     "style": "Thrash Metal"
   },
@@ -2150,7 +2150,7 @@ export const SONGS: Song[] = [
     "hint": "Intimate power ballad featuring acoustic guitar picking and orchestral backing strings",
     "category": "pop",
     "decade": "90s",
-    "genre": "rock",
+    "genre": "metal",
     "year": 1992,
     "style": "Heavy Metal Ballad"
   },
@@ -2381,7 +2381,7 @@ export const SONGS: Song[] = [
     "hint": "Over-the-top patriotic satire track from the creators of South Park",
     "category": "pop",
     "decade": "2000s",
-    "genre": "pop",
+    "genre": "soundtrack",
     "year": 2004,
     "style": "Satire Rock"
   },
@@ -2393,7 +2393,7 @@ export const SONGS: Song[] = [
     "hint": "Traditional Sunday school hymn expressing gratitude for spiritual learning",
     "category": "pop",
     "decade": "retro",
-    "genre": "pop",
+    "genre": "traditional",
     "year": 1890,
     "style": "Hymn"
   },
@@ -2453,7 +2453,7 @@ export const SONGS: Song[] = [
     "hint": "Short acoustic tongue-in-cheek ditty playing as a hidden track at the end of Abbey Road",
     "category": "pop",
     "decade": "retro",
-    "genre": "rock",
+    "genre": "folk",
     "year": 1969,
     "style": "Acoustic Folk"
   },
@@ -2465,7 +2465,7 @@ export const SONGS: Song[] = [
     "hint": "Optimistic acoustic folk-rock track written by George Harrison in Eric Clapton's garden",
     "category": "pop",
     "decade": "retro",
-    "genre": "rock",
+    "genre": "folk",
     "year": 1969,
     "style": "Folk Rock"
   },
@@ -2645,7 +2645,7 @@ export const SONGS: Song[] = [
     "hint": "Folk-rock classic famous for its dramatic final bass solo and group harmonies",
     "category": "pop",
     "decade": "retro",
-    "genre": "rock",
+    "genre": "folk",
     "year": 1977,
     "style": "Classic Rock"
   },
@@ -2657,7 +2657,7 @@ export const SONGS: Song[] = [
     "hint": "Groovy EDM hit combining acoustic folk instrumentation with electronic drop synths",
     "category": "pop",
     "decade": "2010s",
-    "genre": "pop",
+    "genre": "electronic",
     "year": 2014,
     "style": "Folk House"
   },

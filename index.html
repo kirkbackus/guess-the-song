@@ -7,7 +7,7 @@
     <!-- Google Fonts for premium typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&family=Orbitron:wght@500;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="app-background"></div>
@@ -20,125 +20,151 @@
             <span class="piano-icon">🎹</span>
             <h1 class="logo-text">GUESS THE SONG</h1>
           </div>
-          <p class="subtitle">Piano Roll Guessing Game</p>
+          <p class="subtitle">Melody Trivia Game</p>
         </header>
 
         <section class="config-card">
-          <h2 class="section-title">Configure Game</h2>
-
-          <!-- Configuration Settings -->
-          <div class="settings-group">
-            <div class="setting-item">
-              <label for="select-playtime">Play Time</label>
-              <div class="select-wrapper">
-                <select id="select-playtime">
-                  <option value="10">10 Seconds</option>
-                  <option value="15" selected>15 Seconds</option>
-                  <option value="20">20 Seconds</option>
-                </select>
+          <div class="settings-grid">
+            <!-- Column 1: Game Settings -->
+            <div class="settings-col">
+              <h3 class="pane-title">Game Settings</h3>
+              
+              <div class="setting-item-box">
+                <label for="select-playtime">Play Time</label>
+                <div class="select-wrapper">
+                  <select id="select-playtime">
+                    <option value="10">10 Seconds</option>
+                    <option value="15" selected>15 Seconds</option>
+                    <option value="20">20 Seconds</option>
+                  </select>
+                </div>
+                <span class="help-text">Time allowed to guess the song</span>
               </div>
-              <small class="help-text">Time allowed to guess the song</small>
-            </div>
 
-            <div class="setting-item">
-              <label for="select-rounds">Number of Songs</label>
-              <div class="select-wrapper">
-                <select id="select-rounds">
-                  <option value="5" selected>5 Songs</option>
-                  <option value="10">10 Songs</option>
-                  <option value="20">20 Songs</option>
-                </select>
+              <div class="setting-item-box">
+                <label for="select-rounds">Number of Songs</label>
+                <div class="select-wrapper">
+                  <select id="select-rounds">
+                    <option value="5" selected>5 Songs</option>
+                    <option value="10">10 Songs</option>
+                    <option value="20">20 Songs</option>
+                  </select>
+                </div>
+                <span class="help-text">Rounds to play this session</span>
               </div>
-              <small class="help-text">Rounds to play this session</small>
             </div>
 
-            <div class="setting-item">
-              <label for="select-decade">Decade</label>
-              <div class="select-wrapper">
-                <select id="select-decade">
-                  <option value="all" selected>All Decades</option>
-                  <option value="retro">Retro (60s/70s)</option>
-                  <option value="80s">80s</option>
-                  <option value="90s">90s</option>
-                  <option value="2000s">2000s</option>
-                  <option value="2010s">2010s</option>
-                  <option value="2020s">2020s</option>
-                </select>
+            <!-- Column 2: Core Music Filters -->
+            <div class="settings-col">
+              <h3 class="pane-title">Music Filters</h3>
+
+              <div class="setting-item-box">
+                <label for="select-decade">Decade</label>
+                <div class="select-wrapper">
+                  <select id="select-decade">
+                    <option value="all" selected>All Decades</option>
+                    <option value="retro">Retro (60s/70s)</option>
+                    <option value="80s">80s</option>
+                    <option value="90s">90s</option>
+                    <option value="2000s">2000s</option>
+                    <option value="2010s">2010s</option>
+                    <option value="2020s">2020s</option>
+                  </select>
+                </div>
+                <span class="help-text">Filter song eras</span>
               </div>
-              <small class="help-text">Filter song eras</small>
-            </div>
 
-            <div class="setting-item">
-              <label for="select-genre">Genre</label>
-              <div class="select-wrapper">
-                <select id="select-genre">
-                  <option value="all" selected>All Genres</option>
-                  <option value="game">Video Games</option>
-                  <option value="pop">Pop Music</option>
-                  <option value="rock">Rock Music</option>
-                </select>
+              <div class="setting-item-box">
+                <label for="select-genre">Genre</label>
+                <div class="select-wrapper">
+                  <select id="select-genre">
+                    <option value="all" selected>All Genres</option>
+                    <option value="game">Video Games</option>
+                    <option value="pop">Pop</option>
+                    <option value="rock">Rock</option>
+                    <option value="electronic">Electronic / EDM</option>
+                    <option value="hiphop">Hip Hop</option>
+                    <option value="metal">Heavy Metal</option>
+                    <option value="folk">Folk / Country</option>
+                    <option value="traditional">Classical / Hymns</option>
+                    <option value="soundtrack">Movie / TV Themes</option>
+                  </select>
+                </div>
+                <span class="help-text">Filter general genre</span>
               </div>
-              <small class="help-text">Filter general genre</small>
-            </div>
 
-            <div class="setting-item">
-              <label for="select-style">Subgenre / Style</label>
-              <div class="select-wrapper">
-                <select id="select-style">
-                  <option value="all" selected>All Styles</option>
-                </select>
+              <div class="setting-item-box">
+                <label for="select-style">Subgenre / Style</label>
+                <div class="select-wrapper">
+                  <select id="select-style">
+                    <option value="all" selected>All Styles</option>
+                  </select>
+                </div>
+                <span class="help-text">Filter musical style</span>
               </div>
-              <small class="help-text">Filter musical style</small>
             </div>
 
-            <div class="setting-item">
-              <label for="select-company">Publisher / Developer</label>
-              <div class="select-wrapper">
-                <select id="select-company">
-                  <option value="all" selected>All Publishers</option>
-                </select>
+            <!-- Column 3: Game Options & Sources -->
+            <div class="settings-col">
+              <h3 class="pane-title">Game Options</h3>
+
+              <div class="setting-item-box">
+                <label for="select-company">Publisher / Developer</label>
+                <div class="select-wrapper">
+                  <select id="select-company">
+                    <option value="all" selected>All Publishers</option>
+                  </select>
+                </div>
+                <span class="help-text">Filter game creators</span>
               </div>
-              <small class="help-text">Filter game creators</small>
-            </div>
 
-            <div class="setting-item">
-              <label for="select-franchise">Game Franchise</label>
-              <div class="select-wrapper">
-                <select id="select-franchise">
-                  <option value="all" selected>All Franchises</option>
-                </select>
+              <div class="setting-item-box">
+                <label for="select-franchise">Game Franchise</label>
+                <div class="select-wrapper">
+                  <select id="select-franchise">
+                    <option value="all" selected>All Franchises</option>
+                  </select>
+                </div>
+                <span class="help-text">Filter game series</span>
               </div>
-              <small class="help-text">Filter game series</small>
-            </div>
 
-            <div class="setting-item">
-              <label for="toggle-tts">Voice Reveal (TTS)</label>
-              <label class="toggle-switch">
-                <input type="checkbox" id="toggle-tts" checked>
-                <span class="slider"></span>
-              </label>
-              <small class="help-text">Announce song title when revealed</small>
-            </div>
+              <div class="setting-item-box-row">
+                <div class="setting-label-block">
+                  <label for="toggle-tts">Voice Reveal (TTS)</label>
+                  <span class="help-text">Announce song title when revealed</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="toggle-tts" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
 
-            <div class="setting-item">
-              <label for="toggle-hints">Show Hints</label>
-              <label class="toggle-switch">
-                <input type="checkbox" id="toggle-hints" checked>
-                <span class="slider"></span>
-              </label>
-              <small class="help-text">Display a song clue during guessing time</small>
+              <div class="setting-item-box-row">
+                <div class="setting-label-block">
+                  <label for="toggle-hints">Show Hints</label>
+                  <span class="help-text">Display clue during play</span>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="toggle-hints" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
             </div>
           </div>
 
-          <div class="menu-buttons">
-            <button id="btn-start" class="btn btn-primary btn-glow">
+          <div class="dashboard-action-row">
+            <button id="btn-start" class="btn btn-primary switch-btn-red">
               <span>START GAME</span>
             </button>
-            <button id="btn-library" class="btn btn-secondary">
-              <span>VIEW MUSIC LIBRARY</span>
+            <button id="btn-library" class="btn btn-secondary switch-btn-blue">
+              <span>MUSIC LIBRARY</span>
             </button>
           </div>
+          <div id="game-filter-status" class="help-text" style="text-align: center; margin-top: 8px; font-weight: 800; text-transform: uppercase; color: var(--neon-blue);">
+            Loading song pool...
+          </div>
         </section>
+      </div>
       </div>
 
       <!-- ACTIVE GAME SCREEN -->
@@ -236,9 +262,20 @@
                     <option value="game">Video Games</option>
                     <option value="pop">Pop</option>
                     <option value="rock">Rock</option>
+                    <option value="electronic">Electronic / EDM</option>
+                    <option value="hiphop">Hip Hop</option>
+                    <option value="metal">Heavy Metal</option>
+                    <option value="folk">Folk / Country</option>
+                    <option value="traditional">Classical / Hymns</option>
+                    <option value="soundtrack">Movie / TV Themes</option>
                   </select>
                 </div>
               </div>
+            </div>
+
+            <!-- Song Count Status -->
+            <div id="library-song-count" class="help-text" style="margin-bottom: 8px; font-weight: 800; text-transform: uppercase; color: var(--neon-blue);">
+              Showing 0 songs
             </div>
 
             <!-- Scrollable song list -->
