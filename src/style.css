@@ -423,7 +423,7 @@ input:checked + .slider:before {
   width: 38px;
   height: 38px;
   font-size: 1.1rem;
-  border-radius: 50%;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
