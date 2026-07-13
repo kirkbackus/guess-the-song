@@ -48,6 +48,7 @@ export class GameManager {
   private elSkipBtn: HTMLElement | null = null;
   
   private animationFrameId: number | null = null;
+  private getReadyStartTime: number | null = null;
 
   constructor(audio: AudioManager, renderer: WebGLRenderer) {
     this.audio = audio;
@@ -179,6 +180,7 @@ export class GameManager {
     let countdown = 3;
     const elCountdownNumber = document.getElementById('countdown-number');
     if (elCountdownNumber) elCountdownNumber.textContent = countdown.toString();
+    this.getReadyStartTime = performance.now();
 
     this.timerIntervalId = window.setInterval(() => {
       countdown--;
@@ -342,6 +344,7 @@ export class GameManager {
       clearInterval(this.timerIntervalId);
       this.timerIntervalId = null;
     }
+    this.getReadyStartTime = null;
   }
 
   // Render Loop
@@ -361,11 +364,18 @@ export class GameManager {
     }
   }
 
-  private renderFrame(_timestamp: number): void {
-    // Determine current audio time
-    const audioSeconds = this.audio.getCurrentTime();
+  private renderFrame(timestamp: number): void {
+    let currentTime = 0;
+    
+    if (this.state === 'GET_READY' && this.getReadyStartTime !== null) {
+      const elapsed = (timestamp - this.getReadyStartTime) / 1000;
+      currentTime = -3.0 + elapsed;
+      if (currentTime > 0) currentTime = 0;
+    } else {
+      currentTime = this.audio.getCurrentTime();
+    }
     
     // Render WebGL
-    this.renderer.render(audioSeconds, this.currentNotes);
+    this.renderer.render(currentTime, this.currentNotes);
   }
 }
