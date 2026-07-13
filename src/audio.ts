@@ -1,5 +1,7 @@
 import * as Tone from 'tone';
 import { Midi } from '@tonejs/midi';
+import { Capacitor } from '@capacitor/core';
+import { TextToSpeech } from '@capacitor-community/text-to-speech';
 
 export interface NoteEvent {
   midi: number;
@@ -283,6 +285,9 @@ export class AudioManager {
     
     // Stop any current native speech
     window.speechSynthesis.cancel();
+    if (Capacitor.isNativePlatform()) {
+      void TextToSpeech.stop();
+    }
     
     // Stop any active Piper audio playback
     if (this.activeAudioElement) {
@@ -294,6 +299,31 @@ export class AudioManager {
       this.onTtsStatusCallback('');
 
     if (this.ttsEngine === 'local-native') {
+      if (Capacitor.isNativePlatform()) {
+        let lang = 'en-US';
+        const voices = window.speechSynthesis.getVoices();
+        if (this.selectedVoiceName) {
+          const selectedVoice = voices.find(voice => voice.name === this.selectedVoiceName);
+          if (selectedVoice) lang = selectedVoice.lang;
+        } else {
+          const englishVoices = voices.filter(voice => voice.lang.toLowerCase().startsWith('en'));
+          const naturalVoice = englishVoices.find(voice => 
+            /google|natural|online|neural|microsoft aria|microsoft guy|microsoft jenny/i.test(voice.name)
+          );
+          const selected = naturalVoice || englishVoices[0];
+          if (selected) lang = selected.lang;
+        }
+        void TextToSpeech.speak({
+          text: title,
+          lang,
+          rate: 1.0,
+          pitch: 1.0,
+          volume: 1.0,
+          category: 'ambient'
+        });
+        return;
+      }
+
       const utterance = new SpeechSynthesisUtterance(title);
       const voices = window.speechSynthesis.getVoices();
       
@@ -372,7 +402,7 @@ export class AudioManager {
     this.stop();
     this.clearScheduledEvents();
 
-    const fetchUrl = (window.location.protocol === 'file:' && url.startsWith('/')) ? url.substring(1) : url;
+    const fetchUrl = url.startsWith('/') ? url.substring(1) : url;
     const response = await fetch(fetchUrl);
     const arrayBuffer = await response.arrayBuffer();
     this.activeMidi = new Midi(arrayBuffer);
@@ -461,6 +491,9 @@ export class AudioManager {
     
     // Stop TTS announcements as well
     window.speechSynthesis.cancel();
+    if (Capacitor.isNativePlatform()) {
+      void TextToSpeech.stop();
+    }
     if (this.activeAudioElement) {
       this.activeAudioElement.pause();
       this.activeAudioElement = null;
