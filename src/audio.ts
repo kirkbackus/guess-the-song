@@ -134,7 +134,7 @@ export class AudioManager {
     // Reset volume node gain
     if (this.volumeNode) {
       this.volumeNode.gain.cancelScheduledValues(Tone.now());
-      this.volumeNode.gain.setValueAtTime(this.isMuted ? 0 : 1.0, Tone.now());
+      this.volumeNode.gain.value = this.isMuted ? 0 : 1.0;
     }
 
     // Schedule events in ToneJS
@@ -165,6 +165,10 @@ export class AudioManager {
 
   // Start playback
   start(): void {
+    if (this.volumeNode) {
+      this.volumeNode.gain.cancelScheduledValues(Tone.now());
+      this.volumeNode.gain.value = this.isMuted ? 0 : 1.0;
+    }
     Tone.Transport.start();
   }
 
@@ -185,7 +189,7 @@ export class AudioManager {
     if (!this.volumeNode) return;
     const now = Tone.now();
     this.volumeNode.gain.cancelScheduledValues(now);
-    this.volumeNode.gain.setValueAtTime(this.isMuted ? 0 : 1.0, now);
+    this.volumeNode.gain.value = this.isMuted ? 0 : 1.0;
     this.volumeNode.gain.linearRampToValueAtTime(0, now + durationSeconds);
   }
 
