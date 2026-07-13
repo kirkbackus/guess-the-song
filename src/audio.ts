@@ -110,7 +110,8 @@ export class AudioManager {
     this.stop();
     this.clearScheduledEvents();
 
-    const response = await fetch(url);
+    const fetchUrl = (window.location.protocol === 'file:' && url.startsWith('/')) ? url.substring(1) : url;
+    const response = await fetch(fetchUrl);
     const arrayBuffer = await response.arrayBuffer();
     this.activeMidi = new Midi(arrayBuffer);
     this.notes = [];
