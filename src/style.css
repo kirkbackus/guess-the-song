@@ -656,8 +656,8 @@ input:checked + .slider:before {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding-right: 4px;
+  gap: 12px;
+  padding: 8px 12px; /* Pad all around to prevent scaling and border highlights from clipping */
 }
 
 /* Custom Scrollbars */
