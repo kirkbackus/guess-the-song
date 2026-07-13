@@ -281,9 +281,9 @@ export class WebGLRenderer {
       p.x += p.vx * deltaTime;
       p.y += p.vy * deltaTime;
       p.life -= deltaTime * 1.5; // lifespan of ~0.6s
-      if (p.life <= 0) {
+      if (p.life <= 0) 
         this.particles.splice(i, 1);
-      }
+      
     }
   }
 
@@ -376,12 +376,12 @@ export class WebGLRenderer {
 
       // Calculate vertical positions
       let bottomY = scrollAreaHeight - timeToHit * this.scrollSpeed;
-      let topY = scrollAreaHeight - noteEndOffset * this.scrollSpeed;
+      const topY = scrollAreaHeight - noteEndOffset * this.scrollSpeed;
 
       // Pin the bottom of playing notes to the keyboard line
-      if (isActive) {
+      if (isActive) 
         bottomY = scrollAreaHeight;
-      }
+      
 
       // Render capsule
       const rectHeight = bottomY - topY;

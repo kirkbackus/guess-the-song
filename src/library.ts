@@ -1,6 +1,7 @@
 import { SONGS, type Song } from './songs';
-import { AudioManager, type NoteEvent } from './audio';
-import { WebGLRenderer } from './renderer';
+import type { AudioManager} from './audio';
+import { type NoteEvent } from './audio';
+import type { WebGLRenderer } from './renderer';
 
 export class LibraryManager {
   private audio: AudioManager;
@@ -127,9 +128,9 @@ export class LibraryManager {
     this.elSongList.innerHTML = '';
 
     const elCount = document.getElementById('library-song-count');
-    if (elCount) {
+    if (elCount) 
       elCount.textContent = `Showing ${this.filteredSongs.length} of ${SONGS.length} songs`;
-    }
+    
 
     if (this.filteredSongs.length === 0) {
       const emptyMsg = document.createElement('div');
@@ -205,7 +206,7 @@ export class LibraryManager {
       item.appendChild(info);
       item.appendChild(playBtn);
 
-      item.addEventListener('click', () => this.handleSongSelection(song));
+      item.addEventListener('click', () => void this.handleSongSelection(song));
       this.elSongList?.appendChild(item);
     });
   }

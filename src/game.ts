@@ -1,6 +1,7 @@
 import { SONGS, type Song } from './songs';
-import { AudioManager, type NoteEvent } from './audio';
-import { WebGLRenderer } from './renderer';
+import type { AudioManager} from './audio';
+import { type NoteEvent } from './audio';
+import type { WebGLRenderer } from './renderer';
 
 export type GameState = 'MENU' | 'GET_READY' | 'PLAYING' | 'REVEALING' | 'SUMMARY';
 
@@ -134,9 +135,9 @@ export class GameManager {
     for (let i = 0; i < config.rounds; i++) {
       // Loop array if requested rounds is greater than pool size
       const poolIndex = i % shuffledPool.length;
-      if (poolIndex === 0 && i > 0) {
+      if (poolIndex === 0 && i > 0) 
         shuffleArray(shuffledPool);
-      }
+      
       this.sessionSongs.push(shuffledPool[poolIndex]);
     }
 
@@ -267,12 +268,12 @@ export class GameManager {
         : `by ${currentSong.artist}`;
       this.elSongArtist.classList.remove('hidden');
     }
-    if (this.elSongHint) {
+    if (this.elSongHint) 
       this.elSongHint.classList.add('hidden');
-    }
-    if (this.elSkipBtn) {
+    
+    if (this.elSkipBtn) 
       this.elSkipBtn.textContent = 'Next Song';
-    }
+    
 
     // Trigger Speech synthesis
     const announcementText = currentSong.category === 'games' && currentSong.game
@@ -282,20 +283,20 @@ export class GameManager {
 
     // Keep playing MIDI for an extra 7 seconds, then fade out and load next
     let revealTimeLeft = 7;
-    if (this.elTimer) {
+    if (this.elTimer) 
       this.elTimer.textContent = 'Revealed!';
-    }
-    if (this.elTimerProgress) {
+    
+    if (this.elTimerProgress) 
       this.elTimerProgress.style.width = '100%';
-    }
+    
 
     this.timerIntervalId = window.setInterval(() => {
       revealTimeLeft--;
 
       // When 2 seconds remain, begin fading out the volume
-      if (revealTimeLeft === 2) {
+      if (revealTimeLeft === 2) 
         this.audio.fadeOut(1.8);
-      }
+      
 
       if (revealTimeLeft <= 0) {
         this.clearTimers();
@@ -308,7 +309,7 @@ export class GameManager {
   private nextRound(): void {
     this.audio.stop();
     this.currentSongIndex++;
-    this.loadRound();
+    void this.loadRound();
   }
 
   // Go back to main settings menu
@@ -336,9 +337,9 @@ export class GameManager {
       this.elSummary?.classList.add('hidden');
       
       // Update screen highlights based on game state
-      if (this.elGame) {
+      if (this.elGame) 
         this.elGame.className = 'screen-panel game-container ' + newState.toLowerCase().replace('_', '-');
-      }
+      
       
       this.startAnimationLoop();
     } 
@@ -352,9 +353,9 @@ export class GameManager {
   }
 
   private updateProgressTimer(timeLeft: number, total: number): void {
-    if (this.elTimer) {
+    if (this.elTimer) 
       this.elTimer.textContent = `${timeLeft}s`;
-    }
+    
     if (this.elTimerProgress) {
       const pct = (timeLeft / total) * 100;
       this.elTimerProgress.style.width = `${pct}%`;
@@ -393,9 +394,9 @@ export class GameManager {
       const elapsed = (timestamp - this.getReadyStartTime) / 1000;
       currentTime = -3.0 + elapsed;
       if (currentTime > 0) currentTime = 0;
-    } else {
+    } else 
       currentTime = this.audio.getCurrentTime();
-    }
+    
     
     // Render WebGL
     this.renderer.render(currentTime, this.currentNotes);

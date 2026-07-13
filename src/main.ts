@@ -145,60 +145,64 @@ const initApp = (): void => {
   updateConfigMatchCount();
   
   // Wire up Start Game
-  elStartBtn.addEventListener('click', async () => {
-    const originalText = elStartBtn.innerHTML;
-    elStartBtn.disabled = true;
-    elStartBtn.innerHTML = '<span>LOADING PIANO...</span>';
-    
-    try {
-      await audio.init();
+  elStartBtn.addEventListener('click', () => {
+    void (async () => {
+      const originalText = elStartBtn.innerHTML;
+      elStartBtn.disabled = true;
+      elStartBtn.innerHTML = '<span>LOADING PIANO...</span>';
       
-      const config: GameConfig = {
-        playTime: parseInt(selectPlaytime.value, 10),
-        rounds: parseInt(selectRounds.value, 10),
-        decade: selectDecade.value,
-        genre: selectGenre.value,
-        style: selectStyle.value,
-        company: selectCompany.value,
-        franchise: selectFranchise.value,
-        ttsEnabled: toggleTts.checked,
-        hintsEnabled: toggleHints.checked
-      };
-      
-      const isMuted = audio.getMuted();
-      elMuteIcon.textContent = isMuted ? '🔇' : '🔊';
-      elMuteBtn.title = isMuted ? 'Unmute Sound' : 'Mute Sound';
+      try {
+        await audio.init();
+        
+        const config: GameConfig = {
+          playTime: parseInt(selectPlaytime.value, 10),
+          rounds: parseInt(selectRounds.value, 10),
+          decade: selectDecade.value,
+          genre: selectGenre.value,
+          style: selectStyle.value,
+          company: selectCompany.value,
+          franchise: selectFranchise.value,
+          ttsEnabled: toggleTts.checked,
+          hintsEnabled: toggleHints.checked
+        };
+        
+        const isMuted = audio.getMuted();
+        elMuteIcon.textContent = isMuted ? '🔇' : '🔊';
+        elMuteBtn.title = isMuted ? 'Unmute Sound' : 'Mute Sound';
 
-      await game.startNewGame(config);
-    } catch (err) {
-      console.error(err);
-      alert('Failed to load piano samples. Check your connection.');
-    } finally {
-      elStartBtn.disabled = false;
-      elStartBtn.innerHTML = originalText;
-    }
+        await game.startNewGame(config);
+      } catch (err) {
+        console.error(err);
+        alert('Failed to load piano samples. Check your connection.');
+      } finally {
+        elStartBtn.disabled = false;
+        elStartBtn.innerHTML = originalText;
+      }
+    })();
   });
   
   // Wire up View Music Library
-  elLibraryBtn.addEventListener('click', async () => {
-    const originalText = elLibraryBtn.innerHTML;
-    elLibraryBtn.disabled = true;
-    elLibraryBtn.innerHTML = '<span>LOADING PIANO...</span>';
-    
-    try {
-      await audio.init();
-      game.quitToMenu();
+  elLibraryBtn.addEventListener('click', () => {
+    void (async () => {
+      const originalText = elLibraryBtn.innerHTML;
+      elLibraryBtn.disabled = true;
+      elLibraryBtn.innerHTML = '<span>LOADING PIANO...</span>';
       
-      elMenu.classList.add('hidden');
-      elLibraryPanel.classList.remove('hidden');
-      library.enter();
-    } catch (err) {
-      console.error(err);
-      alert('Failed to load piano samples. Check your connection.');
-    } finally {
-      elLibraryBtn.disabled = false;
-      elLibraryBtn.innerHTML = originalText;
-    }
+      try {
+        await audio.init();
+        game.quitToMenu();
+        
+        elMenu.classList.add('hidden');
+        elLibraryPanel.classList.remove('hidden');
+        library.enter();
+      } catch (err) {
+        console.error(err);
+        alert('Failed to load piano samples. Check your connection.');
+      } finally {
+        elLibraryBtn.disabled = false;
+        elLibraryBtn.innerHTML = originalText;
+      }
+    })();
   });
 
   // Quit Library to Menu
@@ -230,6 +234,7 @@ const initApp = (): void => {
 };
 
 // Execute initialization
-document.readyState === 'loading'
-  ? document.addEventListener('DOMContentLoaded', initApp)
-  : initApp();
+if (document.readyState === 'loading')
+  document.addEventListener('DOMContentLoaded', initApp);
+else
+  initApp();

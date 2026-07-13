@@ -91,9 +91,9 @@ export class AudioManager {
     // Find a good voice if possible, or use default
     const voices = window.speechSynthesis.getVoices();
     const englishVoice = voices.find(voice => voice.lang.startsWith('en'));
-    if (englishVoice) {
+    if (englishVoice) 
       utterance.voice = englishVoice;
-    }
+    
     
     utterance.rate = 1.0;
     utterance.pitch = 1.0;
@@ -141,21 +141,21 @@ export class AudioManager {
     // Schedule events in ToneJS
     this.notes.forEach((note) => {
       const startId = Tone.Transport.schedule((time) => {
-        if (!this.isMuted) {
+        if (!this.isMuted) 
           this.sampler?.triggerAttack(note.name, time, note.velocity);
-        }
-        if (this.onNoteTriggerCallback) {
+        
+        if (this.onNoteTriggerCallback) 
           this.onNoteTriggerCallback(note.name, true);
-        }
+        
       }, note.time);
 
       const endId = Tone.Transport.schedule((time) => {
-        if (!this.isMuted) {
+        if (!this.isMuted) 
           this.sampler?.triggerRelease(note.name, time);
-        }
-        if (this.onNoteTriggerCallback) {
+        
+        if (this.onNoteTriggerCallback) 
           this.onNoteTriggerCallback(note.name, false);
-        }
+        
       }, note.time + note.duration);
 
       this.scheduledEvents.push(startId, endId);
@@ -216,9 +216,9 @@ export class AudioManager {
   // Toggle Mute
   toggleMute(): boolean {
     this.isMuted = !this.isMuted;
-    if (this.volumeNode) {
+    if (this.volumeNode) 
       this.volumeNode.gain.setValueAtTime(this.isMuted ? 0 : 1.0, Tone.now());
-    }
+    
     return this.isMuted;
   }
 
