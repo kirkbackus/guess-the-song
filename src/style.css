@@ -737,9 +737,7 @@ input:checked + .slider:before {
 .library-song-list {
   flex: 1;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  position: relative;
   padding: 8px 12px; /* Pad all around to prevent scaling and border highlights from clipping */
 }
 
@@ -767,7 +765,11 @@ input:checked + .slider:before {
   border-radius: 16px;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 124px;
+  box-sizing: border-box;
 }
 
 .song-item:hover {

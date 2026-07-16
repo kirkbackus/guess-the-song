@@ -289,15 +289,68 @@ export class AudioManager {
     this.onTtsStatusCallback = callback;
   }
 
+  // Speak the song title using native speech engine
+  private speakNative(title: string): void {
+    if (Capacitor.isNativePlatform()) {
+      this.speakNativePlugin(title);
+      return;
+    }
+    this.speakNativeBrowser(title);
+  }
+
+  private speakNativePlugin(title: string): void {
+    let lang = 'en-US';
+    const voices = window.speechSynthesis.getVoices();
+    if (this.selectedVoiceName) {
+      const selectedVoice = voices.find(voice => voice.name === this.selectedVoiceName);
+      if (selectedVoice) lang = selectedVoice.lang;
+    } else {
+      const englishVoices = voices.filter(voice => voice.lang.toLowerCase().startsWith('en'));
+      const naturalVoice = englishVoices.find(voice => 
+        /google|natural|online|neural|microsoft aria|microsoft guy|microsoft jenny/i.test(voice.name)
+      );
+      const selected = naturalVoice || englishVoices[0];
+      if (selected) lang = selected.lang;
+    }
+    void TextToSpeech.speak({
+      text: title,
+      lang,
+      rate: 1.0,
+      pitch: 1.0,
+      volume: 1.0,
+      category: 'ambient'
+    });
+  }
+
+  private speakNativeBrowser(title: string): void {
+    const utterance = new SpeechSynthesisUtterance(title);
+    const voices = window.speechSynthesis.getVoices();
+    
+    if (this.selectedVoiceName) {
+      const selectedVoice = voices.find(voice => voice.name === this.selectedVoiceName);
+      if (selectedVoice) utterance.voice = selectedVoice;
+    }
+
+    if (!utterance.voice) {
+      const englishVoices = voices.filter(voice => voice.lang.toLowerCase().startsWith('en'));
+      const naturalVoice = englishVoices.find(voice => 
+        /google|natural|online|neural|microsoft aria|microsoft guy|microsoft jenny/i.test(voice.name)
+      );
+      utterance.voice = naturalVoice || englishVoices[0] || null;
+    }
+    
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+    window.speechSynthesis.speak(utterance);
+  }
+
   // Speak the song title
   speakSongTitle(title: string): void {
     if (!this.ttsEnabled) return;
     
     // Stop any current native speech
     window.speechSynthesis.cancel();
-    if (Capacitor.isNativePlatform()) {
-      void TextToSpeech.stop();
-    }
+    if (Capacitor.isNativePlatform()) void TextToSpeech.stop();
     
     // Stop any active Piper audio playback
     if (this.activeAudioElement) {
@@ -309,97 +362,54 @@ export class AudioManager {
       this.onTtsStatusCallback('');
 
     if (this.ttsEngine === 'local-native') {
-      if (Capacitor.isNativePlatform()) {
-        let lang = 'en-US';
-        const voices = window.speechSynthesis.getVoices();
-        if (this.selectedVoiceName) {
-          const selectedVoice = voices.find(voice => voice.name === this.selectedVoiceName);
-          if (selectedVoice) lang = selectedVoice.lang;
-        } else {
-          const englishVoices = voices.filter(voice => voice.lang.toLowerCase().startsWith('en'));
-          const naturalVoice = englishVoices.find(voice => 
-            /google|natural|online|neural|microsoft aria|microsoft guy|microsoft jenny/i.test(voice.name)
-          );
-          const selected = naturalVoice || englishVoices[0];
-          if (selected) lang = selected.lang;
-        }
-        void TextToSpeech.speak({
-          text: title,
-          lang,
-          rate: 1.0,
-          pitch: 1.0,
-          volume: 1.0,
-          category: 'ambient'
-        });
-        return;
-      }
-
-      const utterance = new SpeechSynthesisUtterance(title);
-      const voices = window.speechSynthesis.getVoices();
-      
-      if (this.selectedVoiceName) {
-        const selectedVoice = voices.find(voice => voice.name === this.selectedVoiceName);
-        if (selectedVoice) 
-          utterance.voice = selectedVoice;
-      }
-
-      if (!utterance.voice) {
-        const englishVoices = voices.filter(voice => voice.lang.toLowerCase().startsWith('en'));
-        const naturalVoice = englishVoices.find(voice => 
-          /google|natural|online|neural|microsoft aria|microsoft guy|microsoft jenny/i.test(voice.name)
-        );
-        utterance.voice = naturalVoice || englishVoices[0] || null;
-      }
-      
-      utterance.rate = 1.0;
-      utterance.pitch = 1.0;
-      window.speechSynthesis.speak(utterance);
-    } else {
-      if (this.isMuted) return;
-
-      void (async () => {
-        try {
-          if (this.onTtsStatusCallback) 
-            this.onTtsStatusCallback('Synthesizing voice...');
-          
-          const tts = await import('@diffusionstudio/vits-web');
-          const wav = await tts.predict(
-            {
-              text: title,
-              voiceId: this.piperVoiceId as any
-            },
-            (progress) => {
-              if (this.onTtsStatusCallback) {
-                const percent = Math.round((progress.loaded * 100) / progress.total);
-                this.onTtsStatusCallback(`Downloading voice model... ${percent}%`);
-              }
-            }
-          );
-          
-          if (this.onTtsStatusCallback) 
-            this.onTtsStatusCallback('');
-
-          if (this.isMuted) return;
-
-          const audioUrl = URL.createObjectURL(wav);
-          const audioEl = new Audio(audioUrl);
-          audioEl.volume = 1.0;
-          this.activeAudioElement = audioEl;
-
-          audioEl.addEventListener('ended', () => {
-            URL.revokeObjectURL(audioUrl);
-            if (this.activeAudioElement === audioEl) 
-              this.activeAudioElement = null;
-          });
-
-          await audioEl.play();
-        } catch (err) {
-          console.error('Piper TTS error:', err);
-          if (this.onTtsStatusCallback) 
-            this.onTtsStatusCallback('TTS Error: failed to load voice.');
-        }
-      })();
+      this.speakNative(title);
+      return;
     }
+
+    if (this.isMuted) return;
+
+    void (async () => {
+      try {
+        if (this.onTtsStatusCallback) 
+          this.onTtsStatusCallback('Synthesizing voice...');
+        
+        const tts = await import('@diffusionstudio/vits-web');
+        const wav = await tts.predict(
+          {
+            text: title,
+            voiceId: this.piperVoiceId as any
+          },
+          (progress) => {
+            if (this.onTtsStatusCallback) {
+              const percent = Math.round((progress.loaded * 100) / progress.total);
+              this.onTtsStatusCallback(`Downloading voice model... ${percent}%`);
+            }
+          }
+        );
+        
+        if (this.onTtsStatusCallback) 
+          this.onTtsStatusCallback('');
+
+        if (this.isMuted) return;
+
+        const audioUrl = URL.createObjectURL(wav);
+        const audioEl = new Audio(audioUrl);
+        audioEl.volume = 1.0;
+        this.activeAudioElement = audioEl;
+
+        audioEl.addEventListener('ended', () => {
+          URL.revokeObjectURL(audioUrl);
+          if (this.activeAudioElement === audioEl) 
+            this.activeAudioElement = null;
+        });
+
+        await audioEl.play();
+      } catch (err) {
+        console.error('Piper TTS error:', err);
+        if (this.onTtsStatusCallback) 
+          this.onTtsStatusCallback('TTS Error: failed to load voice.');
+      }
+    })();
   }
 
   // Set visual callback for notes
@@ -418,12 +428,13 @@ export class AudioManager {
     this.activeMidi = new Midi(arrayBuffer);
     this.notes = [];
 
-    // Flatten tracks and save events
+    // Flatten tracks and save events (skipping percussion)
     this.activeMidi.tracks.forEach((track) => {
+      if (track.instrument.percussion || track.channel === 9) return;
       track.notes.forEach((note) => {
         this.notes.push({
           midi: note.midi,
-          time: note.time,
+          time: note.time + 1.0, // Shift notes forward by 1.0s to allow a 1-second preview lead-in
           duration: note.duration,
           name: note.name,
           velocity: note.velocity
@@ -433,6 +444,19 @@ export class AudioManager {
 
     // Sort notes chronologically
     this.notes.sort((a, b) => a.time - b.time);
+
+    // Shorten notes of the same pitch that overlap or are consecutive
+    // to prevent their release events from cutting off subsequent note attacks.
+    const gap = 0.025;
+    for (let i = 0; i < this.notes.length; i++) {
+      const note = this.notes[i];
+      const nextSamePitchNote = this.notes.slice(i + 1).find((n) => n.midi === note.midi);
+      if (!nextSamePitchNote) continue;
+
+      const endTime = note.time + note.duration;
+      if (endTime > nextSamePitchNote.time - gap)
+        note.duration = Math.max(0.05, nextSamePitchNote.time - note.time - gap);
+    }
 
     // Reset volume node gain
     if (this.volumeNode) {
@@ -501,9 +525,7 @@ export class AudioManager {
     
     // Stop TTS announcements as well
     window.speechSynthesis.cancel();
-    if (Capacitor.isNativePlatform()) {
-      void TextToSpeech.stop();
-    }
+    if (Capacitor.isNativePlatform()) void TextToSpeech.stop();
     if (this.activeAudioElement) {
       this.activeAudioElement.pause();
       this.activeAudioElement = null;

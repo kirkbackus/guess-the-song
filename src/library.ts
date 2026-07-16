@@ -36,6 +36,10 @@ export class LibraryManager {
   private animationFrameId: number | null = null;
   private isUserSeeking: boolean = false;
 
+  // Virtual Scrolling State
+  private elVirtualContainer: HTMLElement | null = null;
+  private renderedItems = new Map<string, HTMLElement>();
+
   constructor(audio: AudioManager, renderer: WebGLRenderer) {
     this.audio = audio;
     this.renderer = renderer;
@@ -88,6 +92,8 @@ export class LibraryManager {
     if (this.elStopBtn) this.elStopBtn.addEventListener('click', () => this.stopPlayback());
     if (this.elMuteBtn) this.elMuteBtn.addEventListener('click', () => this.toggleMute());
 
+    if (this.elSongList) this.elSongList.addEventListener('scroll', () => this.renderSongList());
+
     if (this.elProgressSlider) {
       this.elProgressSlider.addEventListener('input', () => {
         this.isUserSeeking = true;
@@ -120,95 +126,156 @@ export class LibraryManager {
       return matchSearch && matchDecade && matchGenre;
     });
 
+    if (this.elSongList) this.elSongList.scrollTop = 0;
+
     this.renderSongList();
   }
 
   private renderSongList(): void {
     if (!this.elSongList) return;
-    this.elSongList.innerHTML = '';
+
+    // Ensure virtual container exists
+    if (!this.elVirtualContainer) {
+      this.elVirtualContainer = document.createElement('div');
+      this.elVirtualContainer.style.position = 'relative';
+      this.elVirtualContainer.style.width = '100%';
+      this.elSongList.appendChild(this.elVirtualContainer);
+    }
 
     const elCount = document.getElementById('library-song-count');
-    if (elCount) 
-      elCount.textContent = `Showing ${this.filteredSongs.length} of ${SONGS.length} songs`;
-    
+    if (elCount) elCount.textContent = `Showing ${this.filteredSongs.length} of ${SONGS.length} songs`;
 
     if (this.filteredSongs.length === 0) {
+      this.elVirtualContainer.innerHTML = '';
+      this.elVirtualContainer.style.height = '0px';
+      this.renderedItems.clear();
+
       const emptyMsg = document.createElement('div');
       emptyMsg.className = 'help-text';
       emptyMsg.style.textAlign = 'center';
       emptyMsg.style.padding = '20px';
       emptyMsg.textContent = 'No matching songs found';
-      this.elSongList.appendChild(emptyMsg);
+      this.elVirtualContainer.appendChild(emptyMsg);
       return;
     }
 
-    this.filteredSongs.forEach((song) => {
-      const item = document.createElement('div');
+    // Clean up empty message if it exists
+    const helpText = this.elVirtualContainer.querySelector('.help-text');
+    if (helpText) helpText.remove();
+
+    const rowHeight = 136;
+    const buffer = 5;
+
+    const scrollTop = this.elSongList.scrollTop;
+    const clientHeight = this.elSongList.clientHeight;
+
+    const totalHeight = this.filteredSongs.length * rowHeight - 12; // Subtract last gap
+    this.elVirtualContainer.style.height = `${totalHeight}px`;
+
+    const startIndex = Math.max(0, Math.floor(scrollTop / rowHeight) - buffer);
+    const endIndex = Math.min(this.filteredSongs.length - 1, Math.ceil((scrollTop + clientHeight) / rowHeight) + buffer);
+
+    const visibleSongIds = new Set<string>();
+
+    for (let i = startIndex; i <= endIndex; i++) {
+      const song = this.filteredSongs[i];
+      visibleSongIds.add(song.id);
+
+      const item = this.renderedItems.get(song.id);
       const isActive = this.selectedSong?.id === song.id;
-      item.className = isActive ? 'song-item active' : 'song-item';
-      
-      const info = document.createElement('div');
-      info.className = 'song-info';
 
-      const title = document.createElement('div');
-      title.className = 'song-title';
-      title.textContent = song.title;
-
-      const artist = document.createElement('div');
-      artist.className = 'song-artist';
-      artist.textContent = song.artist;
-
-      const meta = document.createElement('div');
-      meta.className = 'song-meta';
-
-      const decadeBadge = document.createElement('span');
-      decadeBadge.className = 'meta-badge';
-      decadeBadge.textContent = song.decade;
-      meta.appendChild(decadeBadge);
-
-      const yearBadge = document.createElement('span');
-      yearBadge.className = 'meta-badge';
-      yearBadge.textContent = String(song.year);
-      meta.appendChild(yearBadge);
-
-      const genreBadge = document.createElement('span');
-      genreBadge.className = 'meta-badge';
-      genreBadge.textContent = song.genre;
-      meta.appendChild(genreBadge);
-
-      const styleBadge = document.createElement('span');
-      styleBadge.className = 'meta-badge';
-      styleBadge.textContent = song.style;
-      meta.appendChild(styleBadge);
-
-      if (song.game) {
-        const gameBadge = document.createElement('span');
-        gameBadge.className = 'meta-badge';
-        gameBadge.textContent = song.game;
-        meta.appendChild(gameBadge);
+      if (item) {
+        this.updateSongItemDOM(item, isActive);
+        item.style.top = `${i * rowHeight}px`;
+        continue;
       }
 
-      if (song.company) {
-        const companyBadge = document.createElement('span');
-        companyBadge.className = 'meta-badge';
-        companyBadge.textContent = song.company;
-        meta.appendChild(companyBadge);
+      const newItem = this.createSongItemDOM(song, isActive);
+      newItem.style.top = `${i * rowHeight}px`;
+      this.elVirtualContainer.appendChild(newItem);
+      this.renderedItems.set(song.id, newItem);
+    }
+
+    // Remove items that are no longer visible
+    for (const [id, item] of this.renderedItems.entries())
+      if (!visibleSongIds.has(id)) {
+        item.remove();
+        this.renderedItems.delete(id);
       }
+  }
 
-      info.appendChild(title);
-      info.appendChild(artist);
-      info.appendChild(meta);
+  private updateSongItemDOM(item: HTMLElement, isActive: boolean): void {
+    const wasActive = item.classList.contains('active');
+    if (isActive !== wasActive) item.className = isActive ? 'song-item active' : 'song-item';
+    const playBtn = item.querySelector('.song-play-btn');
+    if (playBtn) playBtn.textContent = isActive && this.isPlaying ? '⏸' : '▶';
+  }
 
-      const playBtn = document.createElement('button');
-      playBtn.className = 'song-play-btn';
-      playBtn.textContent = isActive && this.isPlaying ? '⏸' : '▶';
+  private createSongItemDOM(song: Song, isActive: boolean): HTMLElement {
+    const item = document.createElement('div');
+    item.className = isActive ? 'song-item active' : 'song-item';
+    
+    const info = document.createElement('div');
+    info.className = 'song-info';
 
-      item.appendChild(info);
-      item.appendChild(playBtn);
+    const title = document.createElement('div');
+    title.className = 'song-title';
+    title.textContent = song.title;
 
-      item.addEventListener('click', () => void this.handleSongSelection(song));
-      this.elSongList?.appendChild(item);
-    });
+    const artist = document.createElement('div');
+    artist.className = 'song-artist';
+    artist.textContent = song.artist;
+
+    const meta = document.createElement('div');
+    meta.className = 'song-meta';
+
+    const decadeBadge = document.createElement('span');
+    decadeBadge.className = 'meta-badge';
+    decadeBadge.textContent = song.decade;
+    meta.appendChild(decadeBadge);
+
+    const yearBadge = document.createElement('span');
+    yearBadge.className = 'meta-badge';
+    yearBadge.textContent = String(song.year);
+    meta.appendChild(yearBadge);
+
+    const genreBadge = document.createElement('span');
+    genreBadge.className = 'meta-badge';
+    genreBadge.textContent = song.genre;
+    meta.appendChild(genreBadge);
+
+    const styleBadge = document.createElement('span');
+    styleBadge.className = 'meta-badge';
+    styleBadge.textContent = song.style;
+    meta.appendChild(styleBadge);
+
+    if (song.game) {
+      const gameBadge = document.createElement('span');
+      gameBadge.className = 'meta-badge';
+      gameBadge.textContent = song.game;
+      meta.appendChild(gameBadge);
+    }
+
+    if (song.company) {
+      const companyBadge = document.createElement('span');
+      companyBadge.className = 'meta-badge';
+      companyBadge.textContent = song.company;
+      meta.appendChild(companyBadge);
+    }
+
+    info.appendChild(title);
+    info.appendChild(artist);
+    info.appendChild(meta);
+
+    const playBtn = document.createElement('button');
+    playBtn.className = 'song-play-btn';
+    playBtn.textContent = isActive && this.isPlaying ? '⏸' : '▶';
+
+    item.appendChild(info);
+    item.appendChild(playBtn);
+
+    item.addEventListener('click', () => void this.handleSongSelection(song));
+    return item;
   }
 
   private async handleSongSelection(song: Song): Promise<void> {
