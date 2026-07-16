@@ -196,6 +196,14 @@ export class GameManager {
     this.audio.stop();
     this.clearTimers();
 
+    const currentSong = this.sessionSongs[this.currentSongIndex];
+    if (this.config.ttsEnabled) {
+      const announcementText = currentSong.category === 'games' && currentSong.game
+        ? `${currentSong.title}, from ${currentSong.game}`
+        : `${currentSong.title} by ${currentSong.artist}`;
+      void this.audio.prepareSpeech(announcementText);
+    }
+
     let countdown = 3;
     const elCountdownNumber = document.getElementById('countdown-number');
     if (elCountdownNumber) elCountdownNumber.textContent = countdown.toString();

@@ -9,6 +9,7 @@ export interface NoteEvent {
   duration: number;
   name: string;
   velocity: number;
+  instrument?: string;
 }
 
 export class AudioManager {
@@ -25,6 +26,13 @@ export class AudioManager {
   private piperVoiceId: string = 'en_US-amy-medium';
   private activeAudioElement: HTMLAudioElement | null = null;
   private onTtsStatusCallback: ((status: string) => void) | null = null;
+  private preparedSpeechText: string | null = null;
+  private preparedAudioUrl: string | null = null;
+  private isPreparingSpeech: boolean = false;
+  private speechPreparePromise: Promise<void> | null = null;
+  private disabledInstruments = new Set<string>();
+  private grandPianoBuffers = new Map<string, AudioBuffer>();
+  private trackInstruments = new Map<string, any>();
 
   // New audio/instrument custom properties
   private selectedInstrumentType: string = 'grand-piano';
@@ -179,6 +187,7 @@ export class AudioManager {
             const arrayBuffer = await response.arrayBuffer();
             const audioBuffer = await Tone.context.decodeAudioData(arrayBuffer);
             this.sampler!.add(note as any, audioBuffer);
+            this.grandPianoBuffers.set(note, audioBuffer);
           });
           
           await Promise.all(loadPromises);
@@ -195,6 +204,16 @@ export class AudioManager {
   setInstrument(type: string): void {
     this.selectedInstrumentType = type;
     
+    if (this.trackInstruments.size > 0) {
+      const activeKeys = Array.from(this.trackInstruments.keys());
+      this.clearTrackInstruments();
+      activeKeys.forEach((key) => {
+        const instance = this.createInstrumentInstance();
+        if (instance) 
+          this.trackInstruments.set(key, instance);
+      });
+    }
+
     // Set up active instrument
     if (type === 'grand-piano' || type === 'ambient-piano') 
       this.activeInstrument = this.sampler;
@@ -344,6 +363,59 @@ export class AudioManager {
     window.speechSynthesis.speak(utterance);
   }
 
+  // Pre-synthesize speech announcements to reduce reveal latency
+  async prepareSpeech(title: string): Promise<void> {
+    if (!this.ttsEnabled || this.ttsEngine !== 'piper-wasm' || this.isMuted) return;
+    if (this.preparedSpeechText === title) return;
+
+    this.clearPreparedSpeech();
+
+    this.preparedSpeechText = title;
+    this.isPreparingSpeech = true;
+
+    this.speechPreparePromise = (async () => {
+      try {
+        if (this.onTtsStatusCallback) this.onTtsStatusCallback('Synthesizing voice...');
+
+        const tts = await import('@diffusionstudio/vits-web');
+        const wav = await tts.predict(
+          {
+            text: title,
+            voiceId: this.piperVoiceId as any
+          },
+          (progress) => {
+            if (this.onTtsStatusCallback) {
+              const percent = Math.round((progress.loaded * 100) / progress.total);
+              this.onTtsStatusCallback(`Downloading voice model... ${percent}%`);
+            }
+          }
+        );
+
+        if (this.onTtsStatusCallback) this.onTtsStatusCallback('');
+        if (this.preparedSpeechText !== title) return;
+
+        this.preparedAudioUrl = URL.createObjectURL(wav);
+      } catch (err) {
+        console.error('Piper TTS prep error:', err);
+        if (this.onTtsStatusCallback) this.onTtsStatusCallback('TTS Error: failed to load voice.');
+      } finally {
+        if (this.preparedSpeechText === title) this.isPreparingSpeech = false;
+      }
+    })();
+
+    await this.speechPreparePromise;
+  }
+
+  private clearPreparedSpeech(): void {
+    if (this.preparedAudioUrl) {
+      URL.revokeObjectURL(this.preparedAudioUrl);
+      this.preparedAudioUrl = null;
+    }
+    this.preparedSpeechText = null;
+    this.isPreparingSpeech = false;
+    this.speechPreparePromise = null;
+  }
+
   // Speak the song title
   speakSongTitle(title: string): void {
     if (!this.ttsEnabled) return;
@@ -358,8 +430,7 @@ export class AudioManager {
       this.activeAudioElement = null;
     }
 
-    if (this.onTtsStatusCallback) 
-      this.onTtsStatusCallback('');
+    if (this.onTtsStatusCallback) this.onTtsStatusCallback('');
 
     if (this.ttsEngine === 'local-native') {
       this.speakNative(title);
@@ -369,9 +440,44 @@ export class AudioManager {
     if (this.isMuted) return;
 
     void (async () => {
+      // 1. Check if we have a prepared speech URL or are currently preparing it
+      if (this.preparedSpeechText === title) {
+        if (this.isPreparingSpeech && this.speechPreparePromise)
+          try {
+            await this.speechPreparePromise;
+          } catch (e) {
+            console.error('Error awaiting prepared speech:', e);
+          }
+        if (this.preparedSpeechText === title && this.preparedAudioUrl) {
+          const audioUrl = this.preparedAudioUrl;
+          // Clear preparation state to transfer ownership of the URL to the Audio element's ended callback
+          this.preparedAudioUrl = null;
+          this.preparedSpeechText = null;
+          this.isPreparingSpeech = false;
+          this.speechPreparePromise = null;
+
+          try {
+            const audioEl = new Audio(audioUrl);
+            audioEl.volume = 1.0;
+            this.activeAudioElement = audioEl;
+
+            audioEl.addEventListener('ended', () => {
+              URL.revokeObjectURL(audioUrl);
+              if (this.activeAudioElement === audioEl) this.activeAudioElement = null;
+            });
+
+            await audioEl.play();
+            return;
+          } catch (playErr) {
+            console.error('Failed to play prepared audio, falling back:', playErr);
+            URL.revokeObjectURL(audioUrl);
+          }
+        }
+      }
+
+      // 2. Fallback: Synthesize normally from scratch
       try {
-        if (this.onTtsStatusCallback) 
-          this.onTtsStatusCallback('Synthesizing voice...');
+        if (this.onTtsStatusCallback) this.onTtsStatusCallback('Synthesizing voice...');
         
         const tts = await import('@diffusionstudio/vits-web');
         const wav = await tts.predict(
@@ -387,8 +493,7 @@ export class AudioManager {
           }
         );
         
-        if (this.onTtsStatusCallback) 
-          this.onTtsStatusCallback('');
+        if (this.onTtsStatusCallback) this.onTtsStatusCallback('');
 
         if (this.isMuted) return;
 
@@ -399,15 +504,13 @@ export class AudioManager {
 
         audioEl.addEventListener('ended', () => {
           URL.revokeObjectURL(audioUrl);
-          if (this.activeAudioElement === audioEl) 
-            this.activeAudioElement = null;
+          if (this.activeAudioElement === audioEl) this.activeAudioElement = null;
         });
 
         await audioEl.play();
       } catch (err) {
         console.error('Piper TTS error:', err);
-        if (this.onTtsStatusCallback) 
-          this.onTtsStatusCallback('TTS Error: failed to load voice.');
+        if (this.onTtsStatusCallback) this.onTtsStatusCallback('TTS Error: failed to load voice.');
       }
     })();
   }
@@ -421,6 +524,8 @@ export class AudioManager {
   async loadMidi(url: string): Promise<NoteEvent[]> {
     this.stop();
     this.clearScheduledEvents();
+    this.clearDisabledInstruments();
+    this.clearTrackInstruments();
 
     const fetchUrl = url.startsWith('/') ? url.substring(1) : url;
     const response = await fetch(fetchUrl);
@@ -437,7 +542,8 @@ export class AudioManager {
           time: note.time + 1.0, // Shift notes forward by 1.0s to allow a 1-second preview lead-in
           duration: note.duration,
           name: note.name,
-          velocity: note.velocity
+          velocity: note.velocity,
+          instrument: track.instrument.name
         });
       });
     });
@@ -466,6 +572,14 @@ export class AudioManager {
 
     // Schedule events in ToneJS
     this.notes.forEach((note) => {
+      if (note.instrument && !this.trackInstruments.has(note.instrument)) {
+        const instance = this.createInstrumentInstance();
+        if (instance) 
+          this.trackInstruments.set(note.instrument, instance);
+      }
+      const inst = note.instrument ? this.trackInstruments.get(note.instrument) : null;
+      const targetInstrument = inst || this.activeInstrument;
+
       // Calculate random offsets for velocity and micro-timing if humanization is enabled
       const velocityOffset = this.isHumanized ? (Math.random() * 0.15 - 0.075) : 0;
       const finalVelocity = Math.max(0.1, Math.min(1.0, note.velocity + velocityOffset));
@@ -475,19 +589,21 @@ export class AudioManager {
       const finalDuration = Math.max(0.05, note.duration + (this.isHumanized ? (Math.random() * 0.01 - 0.005) : 0));
 
       const startId = Tone.Transport.schedule((time) => {
-        if (!this.isMuted) 
-          this.activeInstrument?.triggerAttack(note.name, time, finalVelocity);
+        if (Tone.Transport.state !== 'started') return;
+        if (!this.isMuted && this.isInstrumentEnabled(note.instrument)) 
+          targetInstrument?.triggerAttack(note.name, time, finalVelocity);
         
-        if (this.onNoteTriggerCallback) 
+        if (this.onNoteTriggerCallback && this.isInstrumentEnabled(note.instrument)) 
           this.onNoteTriggerCallback(note.name, true);
         
       }, finalTime);
 
       const endId = Tone.Transport.schedule((time) => {
-        if (!this.isMuted) 
-          this.activeInstrument?.triggerRelease(note.name, time);
+        if (Tone.Transport.state !== 'started') return;
+        if (!this.isMuted && this.isInstrumentEnabled(note.instrument)) 
+          targetInstrument?.triggerRelease(note.name, time);
         
-        if (this.onNoteTriggerCallback) 
+        if (this.onNoteTriggerCallback && this.isInstrumentEnabled(note.instrument)) 
           this.onNoteTriggerCallback(note.name, false);
         
       }, finalTime + finalDuration);
@@ -522,6 +638,10 @@ export class AudioManager {
     this.rhodesSynth?.releaseAll();
     this.musicBoxSynth?.releaseAll();
     this.chiptuneSynth?.releaseAll();
+    this.trackInstruments.forEach((inst) => {
+      if (inst.releaseAll) 
+        inst.releaseAll();
+    });
     
     // Stop TTS announcements as well
     window.speechSynthesis.cancel();
@@ -530,8 +650,8 @@ export class AudioManager {
       this.activeAudioElement.pause();
       this.activeAudioElement = null;
     }
-    if (this.onTtsStatusCallback) 
-      this.onTtsStatusCallback('');
+    this.clearPreparedSpeech();
+    if (this.onTtsStatusCallback) this.onTtsStatusCallback('');
   }
 
   // Fade out music
@@ -576,6 +696,81 @@ export class AudioManager {
 
   getMuted(): boolean {
     return this.isMuted;
+  }
+
+  // Instrument filtering methods
+  getAvailableInstruments(): string[] {
+    if (!this.activeMidi) return [];
+    const insts = new Set<string>();
+    this.activeMidi.tracks.forEach((track) => {
+      if (track.instrument.percussion || track.channel === 9) return;
+      if (track.notes.length > 0) 
+        insts.add(track.instrument.name);
+    });
+    return Array.from(insts);
+  }
+
+  setInstrumentEnabled(instrumentName: string, enabled: boolean): void {
+    if (enabled) 
+      this.disabledInstruments.delete(instrumentName);
+    else 
+      this.disabledInstruments.add(instrumentName);
+  }
+
+  isInstrumentEnabled(instrumentName?: string): boolean {
+    return !instrumentName || !this.disabledInstruments.has(instrumentName);
+  }
+
+  clearDisabledInstruments(): void {
+    this.disabledInstruments.clear();
+  }
+
+  private createInstrumentInstance(): any {
+    const type = this.selectedInstrumentType;
+    
+    if (type === 'grand-piano' || type === 'ambient-piano') {
+      const urlsMap: Record<string, AudioBuffer> = {};
+      this.grandPianoBuffers.forEach((buffer, note) => {
+        urlsMap[note] = buffer;
+      });
+      return new Tone.Sampler({
+        urls: urlsMap
+      }).connect(this.filterNode!);
+    }
+    
+    if (type === 'electric-piano') 
+      return new Tone.PolySynth(Tone.FMSynth, {
+        harmonicity: 3,
+        modulationIndex: 8,
+        oscillator: { type: 'sine' },
+        envelope: { attack: 0.001, decay: 1.5, sustain: 0.0, release: 1.2 },
+        modulation: { type: 'sine' },
+        modulationEnvelope: { attack: 0.005, decay: 0.5, sustain: 0, release: 1.0 }
+      }).connect(this.filterNode!);
+    
+
+    if (type === 'music-box') 
+      return new Tone.PolySynth(Tone.Synth, {
+        oscillator: { type: 'sine' },
+        envelope: { attack: 0.002, decay: 0.8, sustain: 0.01, release: 0.8 }
+      }).connect(this.filterNode!);
+    
+
+    if (type === 'chiptune') 
+      return new Tone.PolySynth(Tone.Synth, {
+        oscillator: { type: 'square' },
+        envelope: { attack: 0.001, decay: 0.1, sustain: 0.4, release: 0.1 }
+      }).connect(this.filterNode!);
+    
+
+    return null;
+  }
+
+  private clearTrackInstruments(): void {
+    this.trackInstruments.forEach((instr) => {
+      instr.dispose();
+    });
+    this.trackInstruments.clear();
   }
 
   private clearScheduledEvents(): void {

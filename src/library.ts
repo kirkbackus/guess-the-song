@@ -25,6 +25,7 @@ export class LibraryManager {
   private elCurrentTimeText: HTMLElement | null = null;
   private elProgressSlider: HTMLInputElement | null = null;
   private elTotalTimeText: HTMLElement | null = null;
+  private elInstrumentsContainer: HTMLElement | null = null;
 
   // State
   private filteredSongs: Song[] = [];
@@ -77,6 +78,7 @@ export class LibraryManager {
     this.elCurrentTimeText = elements.currentTimeText;
     this.elProgressSlider = elements.progressSlider;
     this.elTotalTimeText = elements.totalTimeText;
+    this.elInstrumentsContainer = document.getElementById('library-instruments-container');
 
     this.setupEventListeners();
   }
@@ -291,6 +293,7 @@ export class LibraryManager {
 
     try {
       this.currentNotes = await this.audio.loadMidi(song.path);
+      this.renderInstrumentPills();
       this.audio.start();
       this.isPlaying = true;
       this.updateNowPlayingUI('PLAYING');
@@ -351,6 +354,7 @@ export class LibraryManager {
     if (this.elPlayPauseBtn) this.elPlayPauseBtn.textContent = '▶';
     if (this.elProgressSlider) (this.elProgressSlider as HTMLInputElement).value = '0';
     if (this.elCurrentTimeText) this.elCurrentTimeText.textContent = '0:00';
+    if (this.elInstrumentsContainer) this.elInstrumentsContainer.innerHTML = '';
     
     this.renderer.render(0, []);
     this.renderSongList();
@@ -418,6 +422,7 @@ export class LibraryManager {
     this.updatePlayerControlsState(false);
     this.syncMuteState();
     this.renderSongList();
+    if (this.elInstrumentsContainer) this.elInstrumentsContainer.innerHTML = '';
 
     this.renderer.render(0, []);
   }
@@ -450,7 +455,46 @@ export class LibraryManager {
       return;
     }
 
-    this.renderer.render(current, this.currentNotes);
+    const activeNotes = this.currentNotes.filter((note) => this.audio.isInstrumentEnabled(note.instrument));
+    this.renderer.render(current, activeNotes);
     this.updateTimeDisplay();
+  }
+
+  private renderInstrumentPills(): void {
+    if (!this.elInstrumentsContainer) return;
+    this.elInstrumentsContainer.innerHTML = '';
+
+    const instruments = this.audio.getAvailableInstruments();
+    if (instruments.length === 0) return;
+
+    instruments.forEach((instName) => {
+      const pill = document.createElement('button');
+      pill.className = 'instrument-pill enabled';
+      
+      const dot = document.createElement('span');
+      dot.className = 'instrument-pill-status-dot';
+      
+      const text = document.createTextNode(` ${instName}`);
+      
+      pill.appendChild(dot);
+      pill.appendChild(text);
+
+      pill.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isEnabled = pill.classList.contains('enabled');
+        if (isEnabled) {
+          pill.classList.remove('enabled');
+          pill.classList.add('disabled');
+          this.audio.setInstrumentEnabled(instName, false);
+        } else {
+          pill.classList.remove('disabled');
+          pill.classList.add('enabled');
+          this.audio.setInstrumentEnabled(instName, true);
+        }
+        if (!this.isPlaying) this.renderFrame();
+      });
+
+      this.elInstrumentsContainer!.appendChild(pill);
+    });
   }
 }
