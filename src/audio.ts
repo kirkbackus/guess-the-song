@@ -30,6 +30,9 @@ export class AudioManager {
   private preparedAudioUrl: string | null = null;
   private isPreparingSpeech: boolean = false;
   private speechPreparePromise: Promise<void> | null = null;
+  private ttsWorker: Worker | null = null;
+  private speechResolver: ((value: void) => void) | null = null;
+  private speechRejecter: ((reason?: any) => void) | null = null;
   private disabledInstruments = new Set<string>();
   private grandPianoBuffers = new Map<string, AudioBuffer>();
   private trackInstruments = new Map<string, any>();
@@ -363,47 +366,75 @@ export class AudioManager {
     window.speechSynthesis.speak(utterance);
   }
 
+  private getTtsWorker(): Worker {
+    if (!this.ttsWorker) {
+      this.ttsWorker = new Worker(new URL('./tts.worker.ts', import.meta.url), {
+        type: 'module'
+      });
+      this.ttsWorker.onmessage = (e: MessageEvent) => this.handleWorkerMessage(e.data);
+    }
+    return this.ttsWorker;
+  }
+
+  private handleWorkerMessage(data: any): void {
+    const { type, percent, wav, error } = data;
+
+    if (type === 'progress') {
+      if (this.onTtsStatusCallback) this.onTtsStatusCallback(`Downloading voice model... ${percent}%`);
+      return;
+    }
+
+    if (type === 'success') {
+      if (this.onTtsStatusCallback) this.onTtsStatusCallback('');
+      if (wav) this.preparedAudioUrl = URL.createObjectURL(wav);
+      this.isPreparingSpeech = false;
+      if (this.speechResolver) {
+        this.speechResolver();
+        this.speechResolver = null;
+        this.speechRejecter = null;
+      }
+      return;
+    }
+
+    if (type === 'error') {
+      console.error('TTS Worker reported error:', error);
+      if (this.onTtsStatusCallback) this.onTtsStatusCallback('TTS Error: failed to load voice.');
+      this.isPreparingSpeech = false;
+      if (this.speechRejecter) {
+        this.speechRejecter(new Error(error));
+        this.speechResolver = null;
+        this.speechRejecter = null;
+      }
+    }
+  }
+
   // Pre-synthesize speech announcements to reduce reveal latency
-  async prepareSpeech(title: string): Promise<void> {
-    if (!this.ttsEnabled || this.ttsEngine !== 'piper-wasm' || this.isMuted) return;
-    if (this.preparedSpeechText === title) return;
+  prepareSpeech(title: string): Promise<void> {
+    if (!this.ttsEnabled || this.ttsEngine !== 'piper-wasm' || this.isMuted) return Promise.resolve();
+    if (this.preparedSpeechText === title) return Promise.resolve();
 
     this.clearPreparedSpeech();
 
     this.preparedSpeechText = title;
     this.isPreparingSpeech = true;
 
-    this.speechPreparePromise = (async () => {
+    this.speechPreparePromise = new Promise<void>((resolve, reject) => {
+      this.speechResolver = resolve;
+      this.speechRejecter = reject;
+
       try {
-        if (this.onTtsStatusCallback) this.onTtsStatusCallback('Synthesizing voice...');
-
-        const tts = await import('@diffusionstudio/vits-web');
-        const wav = await tts.predict(
-          {
-            text: title,
-            voiceId: this.piperVoiceId as any
-          },
-          (progress) => {
-            if (this.onTtsStatusCallback) {
-              const percent = Math.round((progress.loaded * 100) / progress.total);
-              this.onTtsStatusCallback(`Downloading voice model... ${percent}%`);
-            }
-          }
-        );
-
-        if (this.onTtsStatusCallback) this.onTtsStatusCallback('');
-        if (this.preparedSpeechText !== title) return;
-
-        this.preparedAudioUrl = URL.createObjectURL(wav);
+        const worker = this.getTtsWorker();
+        worker.postMessage({
+          type: 'synthesize',
+          text: title,
+          voiceId: this.piperVoiceId
+        });
       } catch (err) {
-        console.error('Piper TTS prep error:', err);
-        if (this.onTtsStatusCallback) this.onTtsStatusCallback('TTS Error: failed to load voice.');
-      } finally {
-        if (this.preparedSpeechText === title) this.isPreparingSpeech = false;
+        reject(err);
       }
-    })();
+    });
 
-    await this.speechPreparePromise;
+    return this.speechPreparePromise;
   }
 
   private clearPreparedSpeech(): void {
@@ -414,6 +445,13 @@ export class AudioManager {
     this.preparedSpeechText = null;
     this.isPreparingSpeech = false;
     this.speechPreparePromise = null;
+    this.speechResolver = null;
+    this.speechRejecter = null;
+
+    if (this.ttsWorker) {
+      this.ttsWorker.terminate();
+      this.ttsWorker = null;
+    }
   }
 
   // Speak the song title
@@ -448,69 +486,38 @@ export class AudioManager {
           } catch (e) {
             console.error('Error awaiting prepared speech:', e);
           }
-        if (this.preparedSpeechText === title && this.preparedAudioUrl) {
-          const audioUrl = this.preparedAudioUrl;
-          // Clear preparation state to transfer ownership of the URL to the Audio element's ended callback
-          this.preparedAudioUrl = null;
-          this.preparedSpeechText = null;
-          this.isPreparingSpeech = false;
-          this.speechPreparePromise = null;
-
-          try {
-            const audioEl = new Audio(audioUrl);
-            audioEl.volume = 1.0;
-            this.activeAudioElement = audioEl;
-
-            audioEl.addEventListener('ended', () => {
-              URL.revokeObjectURL(audioUrl);
-              if (this.activeAudioElement === audioEl) this.activeAudioElement = null;
-            });
-
-            await audioEl.play();
-            return;
-          } catch (playErr) {
-            console.error('Failed to play prepared audio, falling back:', playErr);
-            URL.revokeObjectURL(audioUrl);
-          }
+      } else
+        // Fallback: prepare it now
+        try {
+          await this.prepareSpeech(title);
+        } catch (e) {
+          console.error('Fallback synthesis failed:', e);
         }
-      }
 
-      // 2. Fallback: Synthesize normally from scratch
-      try {
-        if (this.onTtsStatusCallback) this.onTtsStatusCallback('Synthesizing voice...');
-        
-        const tts = await import('@diffusionstudio/vits-web');
-        const wav = await tts.predict(
-          {
-            text: title,
-            voiceId: this.piperVoiceId as any
-          },
-          (progress) => {
-            if (this.onTtsStatusCallback) {
-              const percent = Math.round((progress.loaded * 100) / progress.total);
-              this.onTtsStatusCallback(`Downloading voice model... ${percent}%`);
-            }
-          }
-        );
-        
-        if (this.onTtsStatusCallback) this.onTtsStatusCallback('');
+      // 2. Play the prepared audio if it is available now
+      if (this.preparedSpeechText === title && this.preparedAudioUrl) {
+        const audioUrl = this.preparedAudioUrl;
+        // Clear preparation state to transfer ownership of the URL to the Audio element's ended callback
+        this.preparedAudioUrl = null;
+        this.preparedSpeechText = null;
+        this.isPreparingSpeech = false;
+        this.speechPreparePromise = null;
 
-        if (this.isMuted) return;
+        try {
+          const audioEl = new Audio(audioUrl);
+          audioEl.volume = 1.0;
+          this.activeAudioElement = audioEl;
 
-        const audioUrl = URL.createObjectURL(wav);
-        const audioEl = new Audio(audioUrl);
-        audioEl.volume = 1.0;
-        this.activeAudioElement = audioEl;
+          audioEl.addEventListener('ended', () => {
+            URL.revokeObjectURL(audioUrl);
+            if (this.activeAudioElement === audioEl) this.activeAudioElement = null;
+          });
 
-        audioEl.addEventListener('ended', () => {
+          await audioEl.play();
+        } catch (playErr) {
+          console.error('Failed to play prepared audio, falling back:', playErr);
           URL.revokeObjectURL(audioUrl);
-          if (this.activeAudioElement === audioEl) this.activeAudioElement = null;
-        });
-
-        await audioEl.play();
-      } catch (err) {
-        console.error('Piper TTS error:', err);
-        if (this.onTtsStatusCallback) this.onTtsStatusCallback('TTS Error: failed to load voice.');
+        }
       }
     })();
   }
